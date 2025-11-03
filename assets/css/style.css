@@ -1,0 +1,1652 @@
+:root {
+  --black: #000000;
+  --dark: #0a0a0a;
+  --white: #eaf2ff;
+  --gray: #9ca5b3;
+  --violet: #9a4dff;
+  --violet-glow: rgba(154, 77, 255, 0.25);
+  --border: rgba(154, 77, 255, 0.2); /* PROMENA: sada i border ima violet ton */
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background: var(--black);
+  color: var(--white);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+.nx-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--black);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.nx-hero__inner {
+  z-index: 2;
+  padding: 2rem;
+  max-width: 800px;
+}
+
+.nx-logo__mark {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 2rem;
+  opacity: 0.85;
+  transition: transform 1.8s ease;
+}
+.nx-logo__mark:hover {
+  transform: rotate(8deg) scale(1.05);
+}
+
+.nx-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  animation: fadeIn 1.8s ease forwards;
+}
+
+.nx-sub {
+  font-size: 1.1rem;
+  color: var(--gray);
+  opacity: 0.85;
+  margin-bottom: 2rem;
+  animation: fadeIn 2.5s ease forwards;
+}
+
+.nx-action {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+}
+
+.nx-input {
+  background: var(--dark);
+  border: 1px solid var(--border);
+  color: var(--white);
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  outline: none;
+  width: 60%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nx-input:focus {
+  border-color: var(--violet);
+  box-shadow: 0 0 12px rgba(154, 77, 255, 0.25);
+}
+
+.nx-btn {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--violet);
+  border-radius: 8px;
+  padding: 0.9rem 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nx-btn:hover {
+  background: var(--violet);
+  color: #fff;
+  box-shadow: 0 0 14px rgba(154, 77, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Scroll cue */
+.nx-scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--gray);
+  opacity: 0.6;
+  animation: fadeIn 3s ease forwards;
+}
+
+.nx-caret {
+  width: 2px;
+  height: 18px;
+  background: var(--violet);
+  animation: scrollPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.nx-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+/* === SERVICES / SISTEMI === */
+.nx-services {
+  background: var(--black);
+  color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.nx-section-inner {
+  max-width: 1100px;
+  width: 100%;
+}
+
+.nx-section-header {
+  margin-bottom: 4rem;
+  animation: fadeIn 2s ease forwards;
+}
+
+.nx-section-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.nx-section-sub {
+  color: var(--gray);
+  font-size: 1.1rem;
+  opacity: 0.8;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.nx-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.nx-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 2.2rem 1.8rem;
+  flex: 1 1 300px;
+  max-width: 340px;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.nx-card h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.06em;
+}
+
+.nx-card p {
+  color: var(--gray);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.nx-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--violet);
+  box-shadow: 0 0 25px rgba(154, 77, 255, 0.25);
+}
+
+/* Animacija ulaska pri skrolovanju */
+.nx-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.9s ease;
+}
+/* === PROJECTS / ARHIVA === */
+.nx-projects {
+  background: var(--black);
+  color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.nx-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.nx-tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+.nx-tile.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nx-tile img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0.65);
+  transition: all 0.8s ease;
+}
+
+.nx-tile-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(154,77,255,0.0) 0%, rgba(154,77,255,0.25) 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.nx-tile-title {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.2rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-align: left;
+  z-index: 2;
+  color: var(--white);
+  text-shadow: 0 0 10px rgba(154,77,255,0.5);
+  opacity: 0.85;
+  transition: all 0.4s ease;
+}
+
+/* Efekti pri hoveru */
+.nx-tile:hover img {
+  filter: brightness(1) blur(1px);
+  transform: scale(1.05);
+}
+
+.nx-tile:hover .nx-tile-overlay {
+  opacity: 1;
+}
+
+.nx-tile:hover .nx-tile-title {
+  opacity: 1;
+  text-shadow: 0 0 20px rgba(154,77,255,0.8);
+}
+/* === ABOUT / MANIFEST === */
+.nx-about {
+  position: relative;
+  background: var(--black);
+  color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.nx-grid-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.25;
+  animation: gridPulse 12s infinite linear;
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.03); }
+}
+
+.nx-about__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.nx-manifest {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--gray);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1.2s ease;
+}
+
+.nx-manifest.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nx-manifest p {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.nx-manifest p:nth-child(odd) {
+  color: #EAF2FF;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+/* === CONTACT / TRANSMISSION === */
+.nx-contact {
+  background: var(--black);
+  color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.nx-contact__inner {
+  max-width: 700px;
+  width: 100%;
+  z-index: 2;
+}
+
+.nx-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.nx-field input,
+.nx-field textarea {
+  width: 100%;
+  background: var(--dark);
+  border: 1px solid var(--border);
+  color: var(--white);
+  font-family: "Inter", sans-serif;
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  resize: none;
+  transition: all 0.3s ease;
+}
+
+.nx-field input:focus,
+.nx-field textarea:focus {
+  border-color: var(--violet);
+  box-shadow: 0 0 15px rgba(154, 77, 255, 0.25);
+  outline: none;
+}
+
+.nx-btn--send {
+  border: 1px solid var(--violet);
+  margin-top: 1rem;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.9rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.nx-btn--send:hover {
+  background: var(--violet);
+  box-shadow: 0 0 18px rgba(154,77,255,0.4);
+  transform: translateY(-1px);
+}
+
+/* Signal efekat */
+.nx-transmission-signal {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nx-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--violet);
+  border-radius: 50%;
+  animation: blink 1.4s infinite ease-in-out;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+.nx-wave {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--violet), transparent);
+  animation: wavePulse 1.8s infinite ease-in-out;
+}
+
+@keyframes wavePulse {
+  0%, 100% { opacity: 0.3; transform: scaleX(0.7); }
+  50% { opacity: 1; transform: scaleX(1); }
+}
+/* === DARK FOOTER PROTOCOL === */
+.nx-footer {
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  text-align: center;
+  padding: 1.4rem 1rem;
+  color: var(--gray);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+/* === SISTEMI v2 — NEXORY CORE GRID === */
+.nx-cards--animated {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.nx-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  color: var(--white);
+  transition: all 0.45s ease;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 0 var(--violet);
+}
+
+.nx-card .nx-icon {
+  font-size: 2rem;
+  color: var(--violet);
+  margin-bottom: 1.4rem;
+  transition: all 0.6s ease;
+  opacity: 0.8;
+}
+
+.nx-card h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.nx-card p {
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Hover efekat — energetski puls */
+.nx-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--violet);
+  box-shadow: 0 0 25px rgba(154, 77, 255, 0.25);
+  background: rgba(154, 77, 255, 0.05);
+}
+
+.nx-card:hover .nx-icon {
+  color: #fff;
+  text-shadow: 0 0 12px rgba(154, 77, 255, 0.8);
+  transform: scale(1.15) rotate(8deg);
+  opacity: 1;
+}
+
+/* Glow animacija rubova */
+.nx-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(120deg, transparent 0%, rgba(154,77,255,0.1) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.nx-card:hover::before {
+  opacity: 1;
+}
+/* === LIVE SYSTEMS EFFECTS — NEXORY OPERATING CORE === */
+
+/* Sva karta ima “živu površinu” */
+.nx-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.nx-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.12;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+/* 1️⃣ WEB DIZAJN — horizontalni energetski signal */
+.nx-card:nth-child(1)::after {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(154, 77, 255, 0.25) 0%,
+    rgba(154, 77, 255, 0) 6%
+  );
+  animation: nx-signal 3s linear infinite;
+}
+
+/* 2️⃣ LOGO DIZAJN — kružni kristalni orbit */
+.nx-card:nth-child(2)::after {
+  background: radial-gradient(circle at 50% 50%, rgba(154,77,255,0.25), transparent 60%);
+  animation: nx-orbit 6s ease-in-out infinite;
+}
+
+/* 3️⃣ SEO OPTIMIZACIJA — vertikalni “scan line” efekat */
+.nx-card:nth-child(3)::after {
+  background: linear-gradient(180deg, transparent, rgba(154,77,255,0.18), transparent);
+  animation: nx-scan 4s ease-in-out infinite;
+}
+
+/* 4️⃣ MOBILNE APLIKACIJE — rotirajuća energetska orbita */
+.nx-card:nth-child(4)::after {
+  background: conic-gradient(
+    from 0deg,
+    rgba(154,77,255,0.25),
+    rgba(255,216,107,0.1),
+    rgba(154,77,255,0.25)
+  );
+  animation: nx-rotate 8s linear infinite;
+}
+
+/* Animacije */
+@keyframes nx-signal {
+  0% { background-position: 0 0; }
+  100% { background-position: 200px 0; }
+}
+
+@keyframes nx-orbit {
+  0%, 100% { transform: translate(0,0) scale(1); opacity: 0.1; }
+  50% { transform: translate(5px, -5px) scale(1.1); opacity: 0.25; }
+}
+
+@keyframes nx-scan {
+  0% { background-position: 0% -200%; }
+  100% { background-position: 0% 200%; }
+}
+
+@keyframes nx-rotate {
+  0% { transform: rotate(0deg); opacity: 0.1; }
+  100% { transform: rotate(360deg); opacity: 0.25; }
+}
+
+/* Sadržaj karte uvek iznad efekta */
+.nx-card > * {
+  position: relative;
+  z-index: 2;
+}
+/* === LIVE SYSTEMS EFFECTS — NEXORY ULTRA CORE === */
+.nx-card {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,0.015);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 0 12px rgba(154,77,255,0.08);
+  backdrop-filter: blur(6px);
+  transition: all 0.5s ease;
+}
+
+.nx-card::after,
+.nx-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.14;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* === 1️⃣ WEB DIZAJN — horizontalni energetski signal === */
+.nx-card:nth-child(1)::after {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(154, 77, 255, 0.3) 0%,
+    rgba(154, 77, 255, 0) 6%
+  );
+  animation: nx-signal 3s linear infinite;
+}
+.nx-card:nth-child(1)::before {
+  background: radial-gradient(circle at 50% 50%, rgba(154,77,255,0.05), transparent 80%);
+  animation: nx-breath 5s ease-in-out infinite;
+}
+
+/* === 2️⃣ LOGO DIZAJN — kristalna orbita === */
+.nx-card:nth-child(2)::after {
+  background: radial-gradient(circle at 50% 50%, rgba(154,77,255,0.25), transparent 60%);
+  animation: nx-orbit 6s ease-in-out infinite;
+}
+.nx-card:nth-child(2)::before {
+  background: conic-gradient(
+    from 0deg,
+    rgba(154,77,255,0.25),
+    rgba(255,216,107,0.1),
+    rgba(154,77,255,0.25)
+  );
+  animation: nx-rotate 10s linear infinite;
+}
+
+/* === 3️⃣ SEO OPTIMIZACIJA — vertikalni scan === */
+.nx-card:nth-child(3)::after {
+  background: linear-gradient(180deg, transparent, rgba(154,77,255,0.25), transparent);
+  animation: nx-scan 4s ease-in-out infinite;
+}
+.nx-card:nth-child(3)::before {
+  background: radial-gradient(circle at 50% 80%, rgba(154,77,255,0.1), transparent 80%);
+  animation: nx-pulse 7s ease-in-out infinite;
+}
+
+/* === 4️⃣ MOBILNE APLIKACIJE — rotirajuća energetska orbita === */
+.nx-card:nth-child(4)::after {
+  background: conic-gradient(
+    from 0deg,
+    rgba(154,77,255,0.25),
+    rgba(255,216,107,0.08),
+    rgba(154,77,255,0.25)
+  );
+  animation: nx-rotate 8s linear infinite;
+}
+.nx-card:nth-child(4)::before {
+  background: radial-gradient(circle at 40% 40%, rgba(255,216,107,0.15), transparent 80%);
+  animation: nx-breath 6s ease-in-out infinite;
+}
+
+/* === Animacije jezgra === */
+@keyframes nx-signal {
+  0% { background-position: 0 0; }
+  100% { background-position: 200px 0; }
+}
+@keyframes nx-orbit {
+  0%, 100% { transform: translate(0,0) scale(1); opacity: 0.1; }
+  50% { transform: translate(5px,-5px) scale(1.1); opacity: 0.25; }
+}
+@keyframes nx-scan {
+  0% { background-position: 0 -200%; }
+  100% { background-position: 0 200%; }
+}
+@keyframes nx-rotate {
+  0% { transform: rotate(0deg); opacity: 0.1; }
+  100% { transform: rotate(360deg); opacity: 0.25; }
+}
+@keyframes nx-breath {
+  0%, 100% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.25; transform: scale(1.05); }
+}
+@keyframes nx-pulse {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.08); }
+}
+
+/* === Struktura i slojevi === */
+.nx-card > * {
+  position: relative;
+  z-index: 2;
+}
+/* === GLOBAL ENERGY FIELD — CRNI VAKUUM === */
+.nx-pulse-field {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(154,77,255,0.1) 0%, transparent 70%);
+  transform: scale(0);
+  opacity: 0;
+  transition: all 1.8s ease;
+  pointer-events: none;
+}
+
+.nx-pulse-field.active {
+  transform: scale(3);
+  opacity: 0.3;
+}
+
+/* Kada sistem primi energiju */
+.nx-system-active .nx-card {
+  border-color: var(--violet);
+  box-shadow: 0 0 25px rgba(154,77,255,0.25), inset 0 0 12px rgba(154,77,255,0.1);
+  transition: all 1.4s ease;
+}
+
+.nx-system-active .nx-section-title {
+  text-shadow: 0 0 18px rgba(154,77,255,0.6);
+}
+/* === MANIFEST / NEXORY CORE TERMINAL === */
+.nx-about {
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 8rem 2rem;
+}
+
+.nx-core {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  z-index: 1;
+}
+
+.nx-core__grid {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, transparent 96%, rgba(154,77,255,0.05) 100%);
+  background-size: 100% 40px;
+  opacity: 0.1;
+  animation: gridFlow 6s linear infinite;
+}
+
+.nx-core__overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(154,77,255,0.12), transparent 70%);
+  opacity: 0.3;
+  filter: blur(60px);
+  animation: corePulse 8s ease-in-out infinite;
+}
+
+.nx-core__inner {
+  position: relative;
+  z-index: 2;
+}
+
+.nx-terminal {
+  margin-top: 3rem;
+  font-family: "Space Grotesk", monospace;
+  font-size: 1.2rem;
+  color: var(--violet);
+  text-align: left;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 0 24px rgba(154,77,255,0.1);
+  overflow: hidden;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.nx-terminal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: var(--violet);
+  animation: scanBar 6s infinite linear;
+}
+
+.nx-line {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: typeIn 0.8s ease forwards;
+}
+
+.nx-line:nth-child(1) { animation-delay: 0.5s; }
+.nx-line:nth-child(2) { animation-delay: 1.2s; }
+.nx-line:nth-child(3) { animation-delay: 1.9s; }
+.nx-line:nth-child(4) { animation-delay: 2.6s; }
+.nx-line:nth-child(5) { animation-delay: 3.3s; }
+.nx-line:nth-child(6) { animation-delay: 4.0s; }
+
+@keyframes typeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gridFlow {
+  from { background-position-y: 0; }
+  to { background-position-y: 40px; }
+}
+
+@keyframes corePulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.03); }
+}
+
+@keyframes scanBar {
+  0% { width: 0; left: 0; }
+  50% { width: 100%; left: 0; }
+  100% { width: 0; left: 100%; }
+}
+/* === NEXORY UPDATE: FAZA 1 — HERO PULSE & VIOLET FRAME === */
+
+/* Globalni energetski okvir */
+body {
+  border: 1px solid rgba(154,77,255,0.25);
+  box-shadow: 0 0 40px rgba(154,77,255,0.08) inset;
+}
+
+/* Hero core re-alignment */
+.nx-hero {
+  padding-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Logo – pulsirajući kristal */
+.nx-logo__mark {
+  width: 90px;
+  height: 90px;
+  filter: drop-shadow(0 0 25px rgba(154,77,255,0.4));
+  animation: heroPulse 6s ease-in-out infinite;
+}
+
+/* Naslov – energetski pulse */
+.nx-title {
+  text-shadow: 0 0 25px rgba(154,77,255,0.25);
+  animation: heroFade 2s ease forwards, heroPulse 6s ease-in-out infinite;
+}
+
+/* Podnaslov – blaži puls */
+.nx-sub {
+  text-shadow: 0 0 15px rgba(154,77,255,0.15);
+  animation: heroFade 3s ease forwards, heroPulse 8s ease-in-out infinite;
+}
+
+/* Dugme Pokreni – aktivni signal */
+.nx-btn {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--violet);
+  box-shadow: 0 0 10px rgba(154,77,255,0.2);
+  transition: all 0.3s ease;
+}
+
+.nx-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(154,77,255,0.3), transparent);
+  transform: translateX(-100%);
+  transition: none;
+}
+
+.nx-btn:hover::after {
+  transform: translateX(100%);
+  transition: transform 0.6s ease;
+}
+
+.nx-btn:hover {
+  background: var(--violet);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(154,77,255,0.6);
+}
+
+/* Scroll indikator – smiren pulse */
+.nx-caret {
+  animation: scrollPulse 1.8s infinite ease-in-out, heroPulse 6s ease-in-out infinite;
+}
+
+/* Hero Pulse Animacija */
+@keyframes heroPulse {
+  0%, 100% { filter: drop-shadow(0 0 15px rgba(154,77,255,0.15)); }
+  50% { filter: drop-shadow(0 0 40px rgba(154,77,255,0.35)); }
+}
+
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* === NEXORY UPDATE: FAZA 2 — SISTEMSKA ŽIVA ENERGIJA === */
+
+/* Sinhronizovani energetski talas kroz sve karte */
+@keyframes systemPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(154,77,255,0.08); transform: scale(1); }
+  50% { box-shadow: 0 0 40px rgba(154,77,255,0.25); transform: scale(1.015); }
+}
+
+/* Svi sistemi dišu u istom ritmu */
+.nx-cards .nx-card {
+  animation: systemPulse 6s ease-in-out infinite;
+}
+
+/* Mikro kašnjenje po kartici za talasasti efekat */
+.nx-cards .nx-card:nth-child(1) { animation-delay: 0s; }
+.nx-cards .nx-card:nth-child(2) { animation-delay: 1s; }
+.nx-cards .nx-card:nth-child(3) { animation-delay: 2s; }
+
+/* Aktivna orbita unutar karte */
+.nx-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(154,77,255,0.08) 0%, transparent 70%);
+  mix-blend-mode: screen;
+  opacity: 0.25;
+  animation: orbitRotate 8s linear infinite;
+  z-index: 0;
+}
+
+@keyframes orbitRotate {
+  0% { transform: rotate(0deg) scale(1); opacity: 0.2; }
+  50% { transform: rotate(180deg) scale(1.1); opacity: 0.35; }
+  100% { transform: rotate(360deg) scale(1); opacity: 0.2; }
+}
+
+/* Ikonasti centar (ako želiš ubaciti SVG kasnije) */
+.nx-card .nx-icon {
+  font-size: 1.8rem;
+  color: var(--violet);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 15px rgba(154,77,255,0.6);
+  animation: iconGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes iconGlow {
+  0% { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Hover = reaktivni “core spike” */
+.nx-card:hover {
+  background: rgba(154,77,255,0.06);
+  box-shadow: 0 0 40px rgba(154,77,255,0.4);
+  transform: translateY(-6px) scale(1.03);
+}
+/* === NEXORY UPDATE: FAZA 3 — MANIFEST DECRYPT MODE === */
+
+/* Pozadina manifest sekcije – blagi holografski grid */
+.nx-about {
+  position: relative;
+  background: radial-gradient(circle at center, rgba(154,77,255,0.05), #000 90%);
+  overflow: hidden;
+}
+
+/* Efekat mreže iza teksta */
+.nx-about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+      0deg,
+      rgba(154,77,255,0.05) 0px,
+      transparent 1px,
+      transparent 60px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(154,77,255,0.05) 0px,
+      transparent 1px,
+      transparent 60px
+    );
+  background-size: 60px 60px;
+  animation: gridShift 20s linear infinite;
+  z-index: 0;
+  opacity: 0.25;
+}
+
+@keyframes gridShift {
+  0% { background-position: 0 0; }
+  100% { background-position: 120px 120px; }
+}
+
+/* Decrypt efekat teksta */
+.nx-manifest p {
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(5px);
+  animation: decryptReveal 1s forwards;
+}
+
+.nx-manifest p:nth-child(1) { animation-delay: 0.6s; }
+.nx-manifest p:nth-child(2) { animation-delay: 1.3s; }
+.nx-manifest p:nth-child(3) { animation-delay: 2s; }
+.nx-manifest p:nth-child(4) { animation-delay: 2.7s; }
+.nx-manifest p:nth-child(5) { animation-delay: 3.4s; }
+
+@keyframes decryptReveal {
+  0% { opacity: 0; transform: translateY(10px); filter: blur(5px); letter-spacing: 0.25em; }
+  50% { opacity: 0.7; filter: blur(1px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); letter-spacing: normal; }
+}
+
+/* Energetski okvir oko manifest zone */
+.nx-about__inner {
+  position: relative;
+  z-index: 2;
+  border: 1px solid rgba(154,77,255,0.25);
+  border-radius: 14px;
+  padding: 3rem 2rem;
+  background: rgba(255,255,255,0.01);
+  box-shadow: 0 0 40px rgba(154,77,255,0.15) inset;
+  animation: glowPulse 8s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 30px rgba(154,77,255,0.1) inset; }
+  50% { box-shadow: 0 0 50px rgba(154,77,255,0.25) inset; }
+}
+/* === NEXORY UPDATE: FAZA 3 — MANIFEST DECRYPT MODE (TERMINAL VERSION) === */
+
+/* Pozadina i kristalni grid */
+.nx-core {
+  position: relative;
+  background: radial-gradient(circle at center, rgba(154,77,255,0.05), #000 90%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.nx-core__grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+      0deg,
+      rgba(154,77,255,0.05) 0px,
+      transparent 1px,
+      transparent 60px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(154,77,255,0.05) 0px,
+      transparent 1px,
+      transparent 60px
+    );
+  background-size: 60px 60px;
+  animation: gridShift 20s linear infinite;
+  z-index: 0;
+  opacity: 0.25;
+}
+
+@keyframes gridShift {
+  0% { background-position: 0 0; }
+  100% { background-position: 120px 120px; }
+}
+
+/* Kristalna aura oko celog bloka */
+.nx-core__inner {
+  position: relative;
+  z-index: 2;
+  border: 1px solid rgba(154,77,255,0.25);
+  border-radius: 14px;
+  padding: 3rem 2rem;
+  background: rgba(255,255,255,0.01);
+  box-shadow: 0 0 40px rgba(154,77,255,0.15) inset;
+  animation: glowPulse 8s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 30px rgba(154,77,255,0.1) inset; }
+  50% { box-shadow: 0 0 50px rgba(154,77,255,0.25) inset; }
+}
+
+/* Terminal efekat */
+.nx-terminal {
+  margin-top: 2.5rem;
+  font-family: "Space Grotesk", monospace;
+  text-align: left;
+  color: var(--white);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nx-line {
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(4px);
+  white-space: pre;
+  overflow: hidden;
+  border-left: 2px solid rgba(154,77,255,0.7);
+  padding-left: 0.8rem;
+  margin-bottom: 0.8rem;
+  animation: decryptLine 0.8s forwards ease-out;
+}
+
+.nx-line:nth-child(1) { animation-delay: 0.6s; }
+.nx-line:nth-child(2) { animation-delay: 1.3s; }
+.nx-line:nth-child(3) { animation-delay: 2s; }
+.nx-line:nth-child(4) { animation-delay: 2.7s; }
+.nx-line:nth-child(5) { animation-delay: 3.4s; }
+.nx-line:nth-child(6) { animation-delay: 4.1s; }
+
+@keyframes decryptLine {
+  0% { opacity: 0; transform: translateY(10px); filter: blur(5px); letter-spacing: 0.25em; }
+  50% { opacity: 0.7; filter: blur(1px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); letter-spacing: normal; }
+}
+
+/* Blink kursor na kraju svakog reda */
+.nx-line::after {
+  content: "_";
+  color: rgba(154,77,255,0.7);
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+/* Kursor sada svetli u ritmu dok se kuca */
+.nx-line::after {
+  content: "█";
+  display: inline-block;
+  margin-left: 4px;
+  animation: blinkCursor 0.8s infinite steps(1);
+  color: rgba(154,77,255,0.8);
+}
+
+@keyframes blinkCursor {
+  50% { opacity: 0; }
+}
+html, body {
+  height: 100%;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
+
+section, header, footer {
+  scroll-snap-align: start;
+}
+/* === NEXORY GLASS USLUGE === */
+.nx-glass-services {
+  background: var(--black);
+  padding: 7rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.nx-glass-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.nx-glass {
+  position: relative;
+  width: 180px;
+  height: 200px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(154,77,255,0.05));
+  border: 1px solid rgba(154,77,255,0.25);
+  box-shadow: 0 25px 25px rgba(0,0,0,0.35);
+  backdrop-filter: blur(14px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.6s ease;
+  transform: rotate(calc(var(--r, 0) * 1deg));
+  overflow: hidden;
+}
+
+.nx-glass:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 0 0 35px rgba(154,77,255,0.45);
+  border-color: rgba(154,77,255,0.6);
+  background: rgba(154,77,255,0.06);
+}
+
+./* === NEXORY GLASS USLUGE === */
+.nx-glass-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-top: 5rem;
+  perspective: 1000px;
+}
+
+.nx-glass {
+  position: relative;
+  width: 190px;
+  height: 210px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(154,77,255,0.06));
+  border: 1px solid rgba(154,77,255,0.25);
+  box-shadow: 0 25px 25px rgba(0,0,0,0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  margin: 0 -40px;
+  backdrop-filter: blur(14px);
+  transform: rotate(calc(var(--r) * 1deg));
+  transition: all 0.7s ease;
+  opacity: 0;
+  animation: glassFade 1.3s ease forwards;
+}
+
+@keyframes glassFade {
+  from { opacity: 0; transform: translateY(50px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.nx-glass:nth-child(1) { animation-delay: 0.3s; }
+.nx-glass:nth-child(2) { animation-delay: 0.5s; }
+.nx-glass:nth-child(3) { animation-delay: 0.7s; }
+.nx-glass:nth-child(4) { animation-delay: 0.9s; }
+
+.nx-glass-container:hover .nx-glass {
+  transform: rotate(0deg);
+  margin: 0 10px;
+}
+
+.nx-glass::before {
+  content: attr(data-text);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 42px;
+  background: rgba(154,77,255,0.07);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  border-top: 1px solid rgba(154,77,255,0.15);
+  text-shadow: 0 0 10px rgba(154,77,255,0.35);
+}
+
+.nx-glass i {
+  font-size: 2.4rem;
+  color: var(--white);
+  opacity: 0.9;
+  transition: all 0.4s ease;
+}
+
+.nx-glass:hover i {
+  color: var(--violet);
+  text-shadow: 0 0 25px rgba(154,77,255,0.85);
+  transform: scale(1.15);
+}
+/* === NEXORY WEB PAKETI — 4 POLJA U ISTOJ LINIJI === */
+.nx-packages {
+  background: var(--black);
+  color: var(--white);
+  padding: 8rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.nx-section-header {
+  max-width: 800px;
+  margin: 0 auto 4rem auto;
+}
+
+.nx-package-grid {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: nowrap; /* sprečava spuštanje 4. kartice */
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nx-card {
+  flex: 1 1 0;
+  min-width: 250px;
+  max-width: 280px;
+  padding: 2.4rem 1.6rem;
+  background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(154,77,255,0.06));
+  border: 1px solid rgba(154,77,255,0.25);
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.35);
+  backdrop-filter: blur(14px);
+  text-align: center;
+  transition: all 0.5s ease;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: floatIn 1.2s ease forwards;
+}
+
+.nx-card:nth-child(1){animation-delay:0.2s}
+.nx-card:nth-child(2){animation-delay:0.4s}
+.nx-card:nth-child(3){animation-delay:0.6s}
+.nx-card:nth-child(4){animation-delay:0.8s}
+
+.nx-card:hover {
+  transform: translateY(-10px) scale(1.04);
+  box-shadow: 0 0 35px rgba(154,77,255,0.45);
+  border-color: rgba(154,77,255,0.6);
+}
+
+@keyframes floatIn {
+  from {opacity:0;transform:translateY(60px) scale(0.95);}
+  to {opacity:1;transform:translateY(0) scale(1);}
+}
+
+.nx-card-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.3rem;
+  color: var(--white);
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nx-card-price {
+  color: var(--violet);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.nx-card-price span {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.nx-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  color: var(--white);
+  font-size: 0.95rem;
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+}
+
+.nx-list li::before {
+  content: "✓ ";
+  color: var(--violet);
+  font-weight: 900;
+}
+
+.nx-btn-card {
+  background: linear-gradient(135deg, rgba(154,77,255,0.7), rgba(58,143,255,0.8));
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 1.2rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  color: var(--white);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.nx-btn-card:hover {
+  box-shadow: 0 0 25px rgba(154,77,255,0.7);
+  transform: scale(1.05);
+}
+
+.nx-card.highlight {
+  border-color: rgba(255,216,107,0.6);
+  box-shadow: 0 0 40px rgba(255,216,107,0.25);
+}
+
+.nx-card.special {
+  border-color: rgba(58,143,255,0.6);
+  box-shadow: 0 0 40px rgba(58,143,255,0.35);
+}
+
+.nx-card.special:hover {
+  background: rgba(58,143,255,0.1);
+}
+
+/* Responsivnost — ako je ekran uži, rasporedi 2x2 */
+@media (max-width: 1200px) {
+  .nx-package-grid {
+    flex-wrap: wrap;
+  }
+  .nx-card {
+    flex: 1 1 calc(50% - 2rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .nx-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+/* === NEXORY VIDEO EDITING PAKETI === */
+.nx-video {
+  background: var(--black);
+  color: var(--white);
+  padding: 8rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.nx-video-grid {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nx-video .nx-card {
+  flex: 1 1 0;
+  min-width: 250px;
+  max-width: 280px;
+  padding: 2.4rem 1.6rem;
+  background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(154,77,255,0.06));
+  border: 1px solid rgba(154,77,255,0.25);
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.35);
+  backdrop-filter: blur(14px);
+  text-align: center;
+  transition: all 0.5s ease;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: floatIn 1.2s ease forwards;
+}
+
+.nx-video .nx-card:nth-child(1){animation-delay:0.2s}
+.nx-video .nx-card:nth-child(2){animation-delay:0.4s}
+.nx-video .nx-card:nth-child(3){animation-delay:0.6s}
+.nx-video .nx-card:nth-child(4){animation-delay:0.8s}
+
+.nx-video .nx-card:hover {
+  transform: translateY(-10px) scale(1.04);
+  box-shadow: 0 0 35px rgba(154,77,255,0.45);
+  border-color: rgba(154,77,255,0.6);
+}
+
+/* Responsivnost */
+@media (max-width: 1200px) {
+  .nx-video-grid {
+    flex-wrap: wrap;
+  }
+  .nx-video .nx-card {
+    flex: 1 1 calc(50% - 2rem);
+  }
+}
+@media (max-width: 700px) {
+  .nx-video .nx-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+/* === NEXORY SOCIAL DOMINION === */
+.nx-social {
+  background: var(--black);
+  color: var(--white);
+  padding: 8rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.nx-social-grid {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nx-social .nx-card {
+  flex: 1 1 0;
+  min-width: 250px;
+  max-width: 280px;
+  padding: 2.4rem 1.6rem;
+  background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(154,77,255,0.06));
+  border: 1px solid rgba(154,77,255,0.25);
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.35);
+  backdrop-filter: blur(14px);
+  text-align: center;
+  transition: all 0.5s ease;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: floatIn 1.2s ease forwards;
+}
+
+.nx-social .nx-card:nth-child(1){animation-delay:0.2s}
+.nx-social .nx-card:nth-child(2){animation-delay:0.4s}
+.nx-social .nx-card:nth-child(3){animation-delay:0.6s}
+.nx-social .nx-card:nth-child(4){animation-delay:0.8s}
+
+.nx-social .nx-card:hover {
+  transform: translateY(-10px) scale(1.04);
+  box-shadow: 0 0 35px rgba(154,77,255,0.45);
+  border-color: rgba(154,77,255,0.6);
+}
+
+@media (max-width: 1200px) {
+  .nx-social-grid {
+    flex-wrap: wrap;
+  }
+  .nx-social .nx-card {
+    flex: 1 1 calc(50% - 2rem);
+  }
+}
+@media (max-width: 700px) {
+  .nx-social .nx-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+/* === NEXORY SPLINE 3D SEKCIJA === */
+.nx-spline {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  background: radial-gradient(circle at center, rgba(154,77,255,0.05), #000 85%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  border-top: 1px solid rgba(154,77,255,0.15);
+  border-bottom: 1px solid rgba(154,77,255,0.15);
+  overflow: hidden;
+}
+
+.nx-spline__wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 0 45px rgba(154,77,255,0.25);
+  animation: splineReveal 2s ease-out forwards;
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+}
+
+.nx-spline-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  background: #000;
+}
+
+@keyframes splineReveal {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
