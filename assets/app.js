@@ -59,3 +59,26 @@
     }, 350 + i*90);
   });
 })();
+<script>
+// --- NEXORY Loader Language Fix ---
+const loader = document.getElementById("loader");
+const langSelect = document.getElementById("langSelect");
+
+// Ako je jezik već izabran, preskače loader i izbor jezika
+if (sessionStorage.getItem("langChosen")) {
+  loader?.remove();
+  langSelect?.remove();
+}
+
+// Ako nije, čeka da se klikne dugme i pamti izbor
+document.querySelectorAll(".nx-btn-lang").forEach(btn => {
+  btn.addEventListener("click", e => {
+    e.preventDefault();
+    const lang = btn.textContent.trim();
+    sessionStorage.setItem("langChosen", lang);
+    if (lang === "EN") window.location.href = "index-en.html";
+    else window.location.href = "index.html";
+  });
+});
+</script>
+
