@@ -145,37 +145,39 @@
 </head>
 
 <body>
- <!-- LOADER -->
+<!-- LOADER -->
 <div class="nx-loader" id="loader">
   <div class="nx-logo">
-    <img src="assets/img/nexory_logo.png" alt="NEXORY Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-    <span class="nx-fallback">NEXORY</span>
+    <div class="nx-logo-ring"></div>
+    <img src="assets/img/nexory_logo.png" alt="NEXORY Logo">
   </div>
-  <div class="nx-progress"></div>
+  <div class="nx-progress">
+    <div class="nx-progress-bar"></div>
+  </div>
 </div>
 
-
-  <!-- LANGUAGE SELECTION -->
-  <div class="nx-lang-select" id="langSelect">
-    <div class="nx-lang-title">Select language / Odaberi jezik</div>
-    <div class="nx-lang-buttons">
-      <button class="nx-btn-lang" onclick="location.href='index.html'">SR</button>
-      <button class="nx-btn-lang" onclick="location.href='index-en.html'">EN</button>
-    </div>
+<!-- LANGUAGE SELECTION -->
+<div class="nx-lang-select" id="langSelect">
+  <div class="nx-lang-title">Select language / Odaberi jezik</div>
+  <div class="nx-lang-buttons">
+    <button class="nx-btn-lang" onclick="location.href='index.html'">SR</button>
+    <button class="nx-btn-lang" onclick="location.href='index-en.html'">EN</button>
   </div>
+</div>
 
-  <script>
-    const loader = document.getElementById('loader');
-    const langSelect = document.getElementById('langSelect');
+<script>
+  const loader = document.getElementById("loader");
+  const langSelect = document.getElementById("langSelect");
 
-    // Simulacija loadinga
+  // Start loader sequence
+  window.addEventListener("load", () => {
     setTimeout(() => {
-      loader.style.opacity = '0';
+      loader.classList.add("hide");
       setTimeout(() => {
-        loader.style.display = 'none';
-        langSelect.style.display = 'flex';
-      }, 800);
-    }, 3000);
-  </script>
-</body>
-</html>
+        loader.style.display = "none";
+        langSelect.style.display = "flex";
+      }, 600);
+    }, 2400);
+  });
+</script>
+
