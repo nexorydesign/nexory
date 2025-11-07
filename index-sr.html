@@ -7,167 +7,299 @@
   <meta name="theme-color" content="#000000" />
   <meta name="color-scheme" content="dark" />
 
+  <!-- META (dopuni po potrebi) -->
+  <meta name="description" content="Nexory je crni operativni sloj brenda — sistem, ne dekoracija. Web, video, identitet i menadžment.">
+  <meta name="keywords" content="Nexory, web dizajn, UI UX, video editing, brending, menadžment, SEO">
+
   <!-- FONTS & ICONS -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Xx" crossorigin="anonymous" referrerpolicy="no-referrer">
 
   <!-- STYLES -->
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-
 <body>
+
   <!-- HEADER -->
-  <header class="nx-header">
+  <header class="nx-header" role="banner">
     <div class="nx-header-logo">
-      <img src="assets/img/nexory_logo.png" alt="NEXORY Logo">
+      <img src="assets/img/nexory_logo.png" alt="NEXORY Logo" width="160" height="44">
     </div>
 
-    <nav class="nx-nav">
+    <nav class="nx-nav" role="navigation" aria-label="Primarna navigacija">
       <a href="#services">Usluge</a>
       <a href="#packages">Paketi</a>
       <a href="#video">Video</a>
       <a href="#social">Menadžment</a>
-      <a href="#contact">Pridruži se</a>
+      <a href="#contact">Kontakt</a>
     </nav>
 
     <div class="nx-social-icons">
       <a href="index-en.html" class="nx-lang" aria-label="Switch to English" data-lang="EN">EN</a>
-      <a href="https://www.instagram.com/nexorydesign" target="_blank" aria-label="Instagram">
-        <i class="fa-brands fa-instagram"></i>
+      <a href="https://www.instagram.com/nexorydesign" target="_blank" rel="noopener" aria-label="Instagram">
+        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
       </a>
-      <a href="https://www.facebook.com/nexorydesign" target="_blank" aria-label="Facebook">
-        <i class="fa-brands fa-facebook-f"></i>
+      <a href="https://www.facebook.com/nexorydesign" target="_blank" rel="noopener" aria-label="Facebook">
+        <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
       </a>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="nx-hero" id="hero">
-    <h1 class="nx-title">Preciznost izvan dizajna.</h1>
-    <p class="nx-sub">Nexory je crni operativni sloj brenda — sistem, ne dekoracija.</p>
+  <main id="main-content">
+    <!-- HERO -->
+    <section class="nx-hero" id="hero" aria-labelledby="nx-hero-title">
+      <h1 class="nx-title" id="nx-hero-title">Preciznost izvan dizajna.</h1>
+      <p class="nx-sub">Nexory je crni operativni sloj brenda — sistem, ne dekoracija.</p>
 
-    <form class="nx-action">
-      <input id="nx-mission" type="text" class="nx-input" placeholder="Upiši misiju ili cilj…" autocomplete="off" />
-      <button type="submit" class="nx-btn">Pokreni</button>
-    </form>
-
-    <div class="nx-scroll-cue">
-      <span>skroluj</span>
-      <i class="fa-solid fa-angle-down"></i>
-    </div>
-  </section>
-
-  <!-- USLUGE -->
-  <section class="nx-services" id="services">
-    <div class="nx-section-header">
-      <h2 class="nx-section-title">Usluge</h2>
-      <p class="nx-section-sub">
-        Nexory konstruiše digitalne strukture koje pokreću vizuelne imperije.<br>
-        Svaka komponenta je precizno dizajnirana da dominira prostorom interneta.
-      </p>
-    </div>
-
-    <div class="nx-glass-container">
-      <div class="nx-glass"><i class="fa-solid fa-film"></i><span>Video Editing</span></div>
-      <div class="nx-glass"><i class="fa-solid fa-globe"></i><span>Web Dizajn / UI & UX</span></div>
-      <div class="nx-glass"><i class="fa-solid fa-gem"></i><span>Logo & Identitet</span></div>
-      <div class="nx-glass"><i class="fa-solid fa-bullhorn"></i><span>Instagram Menadžment</span></div>
-    </div>
-  </section>
-
-  <!-- WEB PAKETI -->
-  <section class="nx-packages" id="packages">
-    <div class="nx-section-header">
-      <h2 class="nx-section-title">Web Paketi</h2>
-      <p class="nx-section-sub">Fleksibilni paketi dizajnirani za svaku fazu tvoje digitalne dominacije.</p>
-    </div>
-    <!-- (paketi ostaju isti kao što već imaš) -->
-  </section>
-
-  <!-- VIDEO -->
-  <section class="nx-video" id="video">
-    <!-- (ostaje isto kao što već imaš) -->
-  </section>
-
-  <!-- MENADŽMENT -->
-  <section class="nx-social" id="social">
-    <!-- (ostaje isto kao što već imaš) -->
-  </section>
-
-  <!-- 🔥 NOVA SEKCIJA: PRIDRUŽI SE -->
-  <section class="nx-form-section" id="contact">
-    <div class="nx-form-container">
-      <h1>Pridruži se <span>NEXORY</span></h1>
-      <p>Premium forma za nove partnere. Sve mora imati smisla — i izgled i reči.</p>
-
-      <form id="nexoryForm">
-        <div class="nx-row">
-          <div class="nx-field">
-            <label for="name">Ime</label>
-            <input type="text" id="name" name="client_name" placeholder="Unesi svoje ime" required>
-          </div>
-          <div class="nx-field">
-            <label for="brand">Brend (opcionalno)</label>
-            <input type="text" id="brand" name="brand_name" placeholder="Naziv brenda">
-          </div>
-        </div>
-
-        <div class="nx-field full">
-          <label for="email">E-mail adresa</label>
-          <input type="email" id="email" name="client_email" placeholder="example@gmail.com" required>
-        </div>
-
-        <div class="nx-field full">
-          <label for="service">Šta ti je potrebno?</label>
-          <select id="service" name="service" required>
-            <option value="">Odaberi oblast</option>
-            <option>Web Dizajn</option>
-            <option>Logo Dizajn</option>
-            <option>Video Editing</option>
-            <option>Instagram / Facebook</option>
-          </select>
-        </div>
-
-        <div class="nx-field full">
-          <label for="package">Odaberi paket</label>
-          <select id="package" name="package" required>
-            <option value="">Izaberi paket</option>
-            <option>Basic</option>
-            <option>Standard</option>
-            <option>Premium</option>
-            <option>Dogovor</option>
-          </select>
-        </div>
-
-        <div class="nx-field full">
-          <label for="desc">Opiši ukratko svoj brend</label>
-          <textarea id="desc" name="brand_desc" placeholder="Npr. digitalna agencija koja želi moderan web sajt..." rows="4"></textarea>
-        </div>
-
-        <button type="submit" class="nx-btn nx-btn--send">Pošalji zahtev</button>
-        <p id="status" style="margin-top:10px;color:#9A4DFF;font-size:14px;"></p>
+      <form class="nx-action" action="#" method="post">
+        <label for="nx-mission" class="sr-only">Misija ili cilj</label>
+        <input id="nx-mission" name="mission" type="text" class="nx-input" placeholder="Upiši misiju ili cilj…" autocomplete="off" />
+        <button type="submit" class="nx-btn">Pokreni</button>
       </form>
 
-      <div class="nx-success hidden">
-        <h3>✅ Welcome to Team NEXORY</h3>
-        <p>Uspešno si poslao zahtev. Naš tim će te kontaktirati uskoro.</p>
+      <div class="nx-scroll-cue" aria-hidden="true">
+        <span>skroluj</span>
+        <i class="fa-solid fa-angle-down"></i>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- USLUGE -->
+    <section class="nx-services" id="services" aria-labelledby="services-title">
+      <div class="nx-section-header">
+        <h2 class="nx-section-title" id="services-title">Usluge</h2>
+        <p class="nx-section-sub">
+          Nexory konstruiše digitalne strukture koje pokreću vizuelne imperije.<br>
+          Svaka komponenta je precizno dizajnirana da dominira prostorom interneta.
+        </p>
+      </div>
+
+      <div class="nx-glass-container">
+        <div class="nx-glass"><i class="fa-solid fa-film" aria-hidden="true"></i><span>Video Editing</span></div>
+        <div class="nx-glass"><i class="fa-solid fa-globe" aria-hidden="true"></i><span>Web Dizajn / UI &amp; UX</span></div>
+        <div class="nx-glass"><i class="fa-solid fa-gem" aria-hidden="true"></i><span>Logo &amp; Identitet</span></div>
+        <div class="nx-glass"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i><span>Instagram Menadžment</span></div>
+      </div>
+    </section>
+
+    <!-- WEB PAKETI -->
+    <section class="nx-packages" id="packages" aria-labelledby="packages-title">
+      <div class="nx-section-header">
+        <h2 class="nx-section-title" id="packages-title">Web Paketi</h2>
+        <p class="nx-section-sub">Fleksibilni paketi dizajnirani za svaku fazu tvoje digitalne dominacije.</p>
+      </div>
+
+      <div class="nx-package-grid">
+        <div class="nx-card">
+          <h3 class="nx-card-title">Basic</h3>
+          <p class="nx-card-price">od 80€</p>
+          <ul class="nx-list">
+            <li>1–3 stranice</li>
+            <li>Responzivan dizajn</li>
+            <li>Osnovni SEO</li>
+            <li>Kontakt forma</li>
+          </ul>
+          <button class="nx-btn-card" type="button">Započni</button>
+        </div>
+
+        <div class="nx-card">
+          <h3 class="nx-card-title">Standard</h3>
+          <p class="nx-card-price">od 120€</p>
+          <ul class="nx-list">
+            <li>4–6 stranica</li>
+            <li>Napredni UI &amp; UX</li>
+            <li>SEO optimizacija</li>
+            <li>Integracija sa društvima</li>
+          </ul>
+          <button class="nx-btn-card" type="button">Pokreni Projekat</button>
+        </div>
+
+        <div class="nx-card highlight">
+          <h3 class="nx-card-title">Premium</h3>
+          <p class="nx-card-price">od 200€</p>
+          <ul class="nx-list">
+            <li>7+ stranica</li>
+            <li>Ekskluzivan dizajn</li>
+            <li>Animacije i efekti</li>
+            <li>Održavanje 30 dana</li>
+          </ul>
+          <button class="nx-btn-card" type="button">Premium Izbor</button>
+        </div>
+
+        <div class="nx-card special">
+          <h3 class="nx-card-title">Specijalni Dogovor</h3>
+          <p class="nx-card-price">Fleksibilno</p>
+          <ul class="nx-list">
+            <li>Custom broj stranica</li>
+            <li>Personalizovani sistem</li>
+            <li>Napredna automatizacija</li>
+            <li>AI integracije i unikatni dizajn</li>
+          </ul>
+          <button class="nx-btn-card" type="button">Zakaži Konsultaciju</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO EDITING -->
+    <section class="nx-video" id="video" aria-labelledby="video-title">
+      <div class="nx-section-header">
+        <h2 class="nx-section-title" id="video-title">Video Editing</h2>
+        <p class="nx-section-sub">Paketi kreirani za brendove koji žele konzistentan, kvalitetan i energičan sadržaj.</p>
+      </div>
+
+      <div class="nx-video-grid">
+        <div class="nx-card">
+          <h3 class="nx-card-title">5 videa</h3>
+          <p class="nx-card-price">4 000 RSD</p>
+          <ul class="nx-list">
+            <li>Format za Instagram / TikTok</li>
+            <li>Tekst + tranzicije</li>
+            <li>Kolor korekcija</li>
+            <li>1 revizija po videu</li>
+          </ul>
+          <button class="nx-btn-card" type="button">Započni</button>
+        </div>
+
+        <div class="nx-card">
+          <h3 class="nx-card-title">10 videa</h3>
+          <p class="nx-card-price">7 000 RSD</p>
+          <ul class="nx-list">
+            <li>HD kvalitet</li>
+            <li>Tekst + efekti</li>
+            <li>Audio balans + kolor</li>
+            <li>Brendirani outro</li>
+          </ul>
+          <button class="nx-btn-card" type="button">Pokreni Projekat</button>
+        </div>
+
+        <div class="nx-card highlight">
+          <h3 class="nx-card-title">20 videa</h3>
+          <p class="nx-card-price">15 000 RSD</p>
+          <ul class="nx-list">
+            <li>Full vizuelni edit</li>
+            <li>Reels / Shorts optimizacija</li>
+            <li>Motion efekti i dinamika</li>
+            <li>Prioritetna isporuka</li>
+          </ul>
+          <button class="nx-btn-card" type="button">Premium Izbor</button>
+        </div>
+
+        <div class="nx-card special">
+          <h3 class="nx-card-title">Dogovor</h3>
+          <p class="nx-card-price">Fleksibilno</p>
+          <ul class="nx-list">
+            <li>Neograničen broj videa</li>
+            <li>Personalizovani stil</li>
+            <li>Dugoročna saradnja</li>
+            <li>Cena po projektu</li>
+          </ul>
+          <button class="nx-btn-card" type="button">Zakaži Razgovor</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENADŽMENT -->
+    <section class="nx-social" id="social" aria-labelledby="social-title">
+      <div class="nx-section-header">
+        <h2 class="nx-section-title" id="social-title">Instagram &amp; Facebook Menadžment</h2>
+        <p class="nx-section-sub">
+          Konsistentan sadržaj. Vizuelni identitet koji dominira mrežama.<br>
+          Nexory vodi tvoj brend kao digitalni sistem, ne kao profil.
+        </p>
+      </div>
+
+      <div class="nx-social-grid">
+        <div class="nx-card">
+          <h3 class="nx-card-title">5 postova / mesečno</h3>
+          <p class="nx-card-price">5 000 RSD</p>
+          <ul class="nx-list">
+            <li>Dizajn i copywriting</li>
+            <li>Priprema vizuala za IG &amp; FB</li>
+            <li>Optimizacija formata i hashtaga</li>
+            <li>Jedna revizija po objavi</li>
+          </ul>
+          <button class="nx-btn-card" type="button">Započni</button>
+        </div>
+
+        <div class="nx-card">
+          <h3 class="nx-card-title">10 postova / mesečno</h3>
+          <p class="nx-card-price">9 000 RSD</p>
+          <ul class="nx-list">
+            <li>Kompletan vizuelni feed</li>
+            <li>Hashtag strategija</li>
+            <li>Story dizajn + CTA elementi</li>
+            <li>Analiza rasta i angažovanja</li>
+          </ul>
+          <button class="nx-btn-card" type="button">Pokreni Projekat</button>
+        </div>
+
+        <div class="nx-card highlight">
+          <h3 class="nx-card-title">20 postova / mesečno</h3>
+          <p class="nx-card-price">16 000 RSD</p>
+          <ul class="nx-list">
+            <li>Strategija objava + vizuelni ton</li>
+            <li>Kompletan feed + story set</li>
+            <li>Praćenje analitike i prilagođavanje</li>
+            <li>Upravljanje komentarima i DM-ovima</li>
+          </ul>
+          <button class="nx-btn-card" type="button">Premium Upravljanje</button>
+        </div>
+
+        <div class="nx-card special">
+          <h3 class="nx-card-title">Dogovor</h3>
+          <p class="nx-card-price">Fleksibilno</p>
+          <ul class="nx-list">
+            <li>Potpuna strategija brenda</li>
+            <li>Personalizovani plan sadržaja</li>
+            <li>Reklamne kampanje + video ads</li>
+            <li>Tim Nexory menadžera</li>
+          </ul>
+          <button class="nx-btn-card" type="button">Zakaži Konsultaciju</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section class="nx-contact" id="contact" aria-labelledby="contact-title">
+      <div class="nx-section-header">
+        <h2 class="nx-section-title" id="contact-title">Kontakt</h2>
+        <p class="nx-section-sub">Ako si spreman da uđeš u sistem — pošalji signal.</p>
+      </div>
+
+      <form class="nx-form" action="#" method="post">
+        <label for="nx-name" class="sr-only">Ime ili entitet</label>
+        <input id="nx-name" name="name" type="text" placeholder="Ime ili entitet" required>
+
+        <label for="nx-email" class="sr-only">E-mail adresa</label>
+        <input id="nx-email" name="email" type="email" placeholder="E-mail adresa" required>
+
+        <label for="nx-message" class="sr-only">Poruka / zahtev</label>
+        <textarea id="nx-message" name="message" rows="4" placeholder="Poruka / zahtev" required></textarea>
+
+        <button type="submit" class="nx-btn nx-btn--send">Prenesi Signal</button>
+      </form>
+    </section>
+  </main>
 
   <!-- FOOTER -->
-  <footer class="nx-footer">
+  <footer class="nx-footer" role="contentinfo">
     <p>© 2025 NEXORY SYSTEM — Precision Beyond Design.</p>
   </footer>
 
+  <!-- STATE -->
   <script>
+    // Zabeleži izbor jezika kada je SR stranica učitana
     sessionStorage.setItem('nx_lang', 'SR');
+
+    // Minimalno poboljšanje: klasa na body kad se skroluje (koristiš u CSS-u)
+    document.addEventListener('scroll', () => {
+      if (window.scrollY > 10) document.body.classList.add('scrolled');
+      else document.body.classList.remove('scrolled');
+    });
   </script>
 
-  <!-- EMAILJS -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <!-- APP SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/app.js" defer></script>
-  <script src="assets/js/join.js"></script>
 </body>
 </html>
