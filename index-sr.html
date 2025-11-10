@@ -129,27 +129,27 @@
       emailjs.init("phBYM7_pLMYLRhzTl");
     })();
 
-    const hdr=document.getElementById('nxHeader');
+    const hdr = document.getElementById('nxHeader');
     document.addEventListener('scroll',()=>hdr.classList.toggle('shrink',window.scrollY>8));
 
-    const form=document.getElementById('nxForm');
-    const status=document.getElementById('nxStatus');
+    const form = document.getElementById('nxForm');
+    const status = document.getElementById('nxStatus');
 
     if(form){
       form.addEventListener('submit',function(e){
         e.preventDefault();
-        status.textContent="Sistem obrađuje zahtev...";
-        status.style.color="var(--gray)";
+        status.textContent = "Sistem obrađuje zahtev...";
+        status.style.color = "var(--gray)";
 
         emailjs.sendForm("service_n3dn9pu","template_4lrkynr",this)
         .then(()=>{
-          status.textContent="Zahtev uspešno poslat. Sistem registrovao signal.";
-          status.style.color="var(--violet)";
+          status.textContent = "Zahtev uspešno poslat. Sistem registrovao signal.";
+          status.style.color = "var(--violet)";
           form.reset();
         },(err)=>{
-          status.textContent="Greška u protokolu. Pokušaj ponovo.";
-          status.style.color="red";
           console.error("EmailJS Error:", err);
+          status.textContent = "Greška u protokolu. (" + (err.text || "Nepoznata greška") + ")";
+          status.style.color = "red";
         });
       });
     }
