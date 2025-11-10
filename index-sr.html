@@ -141,7 +141,8 @@
         status.textContent = "Sistem obrađuje zahtev...";
         status.style.color = "var(--gray)";
 
-        emailjs.sendForm("service_n3dn9pu","template_4lrkynr",this)
+        // 🔹 ispravan template ID
+        emailjs.sendForm("service_n3dn9pu","template_kiqk76z",this)
         .then(()=>{
           status.textContent = "Zahtev uspešno poslat. Sistem registrovao signal.";
           status.style.color = "var(--violet)";
