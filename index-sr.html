@@ -1,68 +1,311 @@
-/* ===== HAMBURGER ===== */
-.nx-toggle {
-  display:none;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:6px;
-  width:36px;
-  height:30px;
-  cursor:pointer;
-  position:absolute;
-  right:24px;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:1100;
-}
-.nx-toggle span {
-  width:100%;
-  height:2px;
-  background:var(--white);
-  border-radius:10px;
-  transition:all .3s var(--ease);
-  box-shadow:0 0 8px rgba(154,77,255,.35);
-}
-.nx-toggle.active span:nth-child(1) {
-  transform:translateY(8px) rotate(45deg);
-}
-.nx-toggle.active span:nth-child(2) {
-  opacity:0;
-}
-.nx-toggle.active span:nth-child(3) {
-  transform:translateY(-8px) rotate(-45deg);
-}
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEXORY SYSTEM — Preciznost izvan dizajna</title>
+  <meta name="theme-color" content="#000000" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="Nexory System — web, video, identitet i menadžment u jednom sistemu.">
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
 
-/* ===== NAV RESPONSIVE ===== */
-@media(max-width:880px){
-  .nx-toggle{display:flex;}
-  .nx-nav{
-    position:absolute;
-    top:100%;
-    left:0;
-    width:100%;
-    flex-direction:column;
-    align-items:center;
-    background:rgba(15,15,20,.92);
-    border:1px solid var(--border);
-    border-radius:var(--radius-sm);
-    padding:1.5rem 0;
-    gap:1.4rem;
-    backdrop-filter:blur(20px) saturate(180%);
-    box-shadow:var(--glow-strong);
-    transform:translateY(-30px);
-    opacity:0;
-    pointer-events:none;
-    transition:all .35s var(--ease);
+<body>
+
+  <header class="nx-header" id="nxHeader">
+    <div class="nx-brand">
+      <img src="assets/img/nexory_logo.png" alt="NEXORY Logo">
+    </div>
+
+    <!-- HAMBURGER DODAT -->
+    <div class="nx-toggle" id="nxToggle">
+      <span></span><span></span><span></span>
+    </div>
+
+    <nav class="nx-nav">
+      <a href="#web">Web</a>
+      <a href="#video">Video</a>
+      <a href="#branding">Identitet</a>
+      <a href="#mgmt">Menadžment</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
+  </header>
+
+  <section class="nx-hero" id="hero">
+    <div class="nx-wrap">
+      <h1 class="nx-title">Preciznost izvan dizajna.</h1>
+      <p class="nx-sub">Sistem koji gradi strukturu brenda, od koda do percepcije.</p>
+      <a class="nx-cta" href="#contact">Aktiviraj sistem</a>
+    </div>
+  </section>
+
+  <div class="nx-divider"></div>
+
+  <!-- WEB SISTEM -->
+  <section id="web">
+    <div class="nx-wrap reveal">
+      <h2 class="nx-section-title">WEB SISTEM</h2>
+      <p class="nx-section-sub">Arhitektura, učitavanje, UX i SEO u jednoj komandnoj liniji.</p>
+      <div class="nx-grid">
+
+        <article class="nx-card">
+          <h3>Basic</h3>
+          <div class="nx-price">od 80€</div>
+          <ul class="nx-list">
+            <li>1–3 stranice (Home, O meni, Kontakt)</li>
+            <li>Responzivan dizajn za sve uređaje</li>
+            <li>Osnovni SEO setup (naslovi, ključne reči, opisi)</li>
+            <li>Brzo učitavanje i čista arhitektura</li>
+            <li>Kontakt forma + Google mapa</li>
+          </ul>
+        </article>
+
+        <article class="nx-card">
+          <h3>Standard</h3>
+          <div class="nx-price">od 150€</div>
+          <ul class="nx-list">
+            <li>4–6 stranica (Home, Usluge, Portfolio, FAQ...)</li>
+            <li>UX animacije i mikro interakcije</li>
+            <li>Napredni SEO (meta, ALT tagovi, sitemap)</li>
+            <li>Integrisan Google Analytics</li>
+            <li>Osnovno održavanje 7 dana</li>
+          </ul>
+        </article>
+
+        <article class="nx-card">
+          <h3>Premium</h3>
+          <div class="nx-price">od 250€</div>
+          <ul class="nx-list">
+            <li>Custom CMS panel za unos sadržaja</li>
+            <li>Server i domen setup uključeni</li>
+            <li>Napredni SEO audit i optimizacija</li>
+            <li>Sigurnosne kopije i cache sistem</li>
+            <li>1 mesec održavanja i podrške</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="nx-divider"></div>
+
+  <!-- VIDEO SISTEM -->
+  <section id="video">
+    <div class="nx-wrap reveal">
+      <h2 class="nx-section-title">VIDEO SISTEM</h2>
+      <p class="nx-section-sub">Sadržaj koji ne skrolaš — gledaš do kraja.</p>
+      <div class="nx-grid">
+
+        <article class="nx-card">
+          <h3>Mini</h3>
+          <div class="nx-price">od 10€</div>
+          <ul class="nx-list">
+            <li>1 video do 30 sekundi</li>
+            <li>Osnovna montaža i kolor korekcija</li>
+            <li>Dodavanje teksta i brend watermarka</li>
+            <li>Format za Reels/TikTok</li>
+            <li>Isporuka u 1080p rezoluciji</li>
+          </ul>
+        </article>
+
+        <article class="nx-card">
+          <h3>Reels Pack</h3>
+          <div class="nx-price">od 50€</div>
+          <ul class="nx-list">
+            <li>5 Reels videa po 30 sekundi</li>
+            <li>Brend boje, font i tempo</li>
+            <li>Tekstualni hook-ovi i muzika</li>
+            <li>Ujednačen izgled feed-a</li>
+            <li>Revizija 1x po videu</li>
+          </ul>
+        </article>
+
+        <article class="nx-card">
+          <h3>Full Edit</h3>
+          <div class="nx-price">od 100€</div>
+          <ul class="nx-list">
+            <li>Kompletna montaža i režija</li>
+            <li>Voiceover, captioni i efekti</li>
+            <li>Profesionalni sound design</li>
+            <li>Color grading i brend efekti</li>
+            <li>2 revizije + arhiva projekta</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="nx-divider"></div>
+
+  <!-- IDENTITET SISTEM -->
+  <section id="branding">
+    <div class="nx-wrap reveal">
+      <h2 class="nx-section-title">IDENTITET SISTEM</h2>
+      <p class="nx-section-sub">Vizuelni DNK tvog brenda, precizno kodiran.</p>
+      <div class="nx-grid">
+
+        <article class="nx-card">
+          <h3>Basic</h3>
+          <div class="nx-price">od 60€</div>
+          <ul class="nx-list">
+            <li>Logo dizajn (svetla i tamna verzija)</li>
+            <li>Bojna paleta (3–5 osnovnih tonova)</li>
+            <li>Tipografija (naslovni i tekstualni font)</li>
+            <li>Transparentni PNG fajlovi</li>
+            <li>Priprema za društvene mreže</li>
+          </ul>
+        </article>
+
+        <article class="nx-card">
+          <h3>Standard</h3>
+          <div class="nx-price">od 120€</div>
+          <ul class="nx-list">
+            <li>Logo + mockupi (kartice, etikete, IG profil)</li>
+            <li>Mini Brand Guide (pravila i proporcije)</li>
+            <li>3D preview logotipa</li>
+            <li>Vektorski formati (AI, EPS, SVG, PDF)</li>
+            <li>Finalni export paketa</li>
+          </ul>
+        </article>
+
+        <article class="nx-card">
+          <h3>Premium</h3>
+          <div class="nx-price">od 200€</div>
+          <ul class="nx-list">
+            <li>Kompletan identitet (logo, font, paleta, elementi)</li>
+            <li>3D logo ili animirana verzija</li>
+            <li>Brand Book (20+ strana)</li>
+            <li>Adaptacije za web, mreže i štampu</li>
+            <li>Fajlovi spremni za dalji rast</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="nx-divider"></div>
+
+  <!-- MENADŽMENT SISTEM -->
+  <section id="mgmt">
+    <div class="nx-wrap reveal">
+      <h2 class="nx-section-title">MENADŽMENT SISTEM</h2>
+      <p class="nx-section-sub">Od prisustva do potpunog digitalnog imperijuma.</p>
+      <div class="nx-grid">
+
+        <article class="nx-card">
+          <h3>Start</h3>
+          <div class="nx-price">od 50€</div>
+          <ul class="nx-list">
+            <li>Upravljanje IG/FB profilima</li>
+            <li>3 objave nedeljno (feed ili reels)</li>
+            <li>Plan sadržaja 7 dana unapred</li>
+            <li>Osnovna komunikacija sa publikom</li>
+            <li>Analitika rasta i engagement-a</li>
+          </ul>
+        </article>
+
+        <article class="nx-card">
+          <h3>Boost</h3>
+          <div class="nx-price">od 100€</div>
+          <ul class="nx-list">
+            <li>7 objava nedeljno (feed, reels, story)</li>
+            <li>Hashtag i SEO strategija</li>
+            <li>Praćenje trendova i konkurencije</li>
+            <li>Vizuelna doslednost objava</li>
+            <li>Nedeljni izveštaj i preporuke</li>
+          </ul>
+        </article>
+
+        <article class="nx-card">
+          <h3>Empire</h3>
+          <div class="nx-price">od 180€</div>
+          <ul class="nx-list">
+            <li>Full menadžment (objave, reels, oglasi, komunikacija)</li>
+            <li>Meta Ads kampanje (Facebook/Instagram)</li>
+            <li>Optimizacija po rezultatima</li>
+            <li>Napredna analitika i izveštaji</li>
+            <li>Prioritetna podrška i konsultacije</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="nx-divider"></div>
+
+  <!-- KONTAKT -->
+  <section id="contact">
+    <div class="nx-wrap reveal">
+      <h2 class="nx-section-title">UDJI U SISTEM</h2>
+      <form class="nx-form" id="nxForm">
+        <div class="nx-row">
+          <div class="nx-field"><label for="name">Ime</label><input id="name" type="text" placeholder="Unesi ime" required></div>
+          <div class="nx-field"><label for="email">E-mail</label><input id="email" type="email" placeholder="example@gmail.com" required></div>
+        </div>
+        <div class="nx-row">
+          <div class="nx-field"><label for="service">Usluga</label><select id="service" required>
+            <option value="">Odaberi</option>
+            <option>Web Sistem</option><option>Video Sistem</option>
+            <option>Identitet Sistem</option><option>Menadžment Sistem</option>
+          </select></div>
+          <div class="nx-field"><label for="package">Paket</label><select id="package" required>
+            <option value="">Odaberi</option>
+            <option>Basic</option><option>Standard</option><option>Premium</option>
+            <option>Start</option><option>Boost</option><option>Empire</option>
+            <option>Reels Pack</option><option>Full Edit</option><option>Mini</option>
+          </select></div>
+        </div>
+        <div class="nx-field"><label for="msg">Poruka</label><textarea id="msg" rows="4" placeholder="Opiši projekat..."></textarea></div>
+        <button class="nx-cta nx-submit" type="submit">Pošalji zahtev</button>
+        <p id="nxStatus" style="margin-top:.8rem;color:var(--violet);font-size:.95rem"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="nx-footer">
+    © 2025 NEXORY SYSTEM — Preciznost izvan dizajna.
+  </footer>
+
+  <!-- JS animacije + HAMBURGER -->
+  <script>
+  const hdr=document.getElementById('nxHeader');
+  document.addEventListener('scroll',()=>hdr.classList.toggle('shrink',window.scrollY>8));
+
+  const form=document.getElementById('nxForm'),status=document.getElementById('nxStatus');
+  if(form){
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      status.textContent="Zahtev prihvaćen. Protokol aktiviran.";
+      form.reset();
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
   }
-  .nx-nav.active{
-    transform:translateY(0);
-    opacity:1;
-    pointer-events:auto;
+
+  // Scroll reveal
+  const reveals=document.querySelectorAll('.nx-section-title,.nx-section-sub,.nx-card');
+  function revealOnScroll(){
+    const trigger=window.innerHeight*0.85;
+    reveals.forEach(el=>{
+      const rect=el.getBoundingClientRect().top;
+      if(rect<trigger) el.classList.add('active');
+    });
   }
-  .nx-nav a{
-    font-size:1.05rem;
-    font-weight:600;
-    text-transform:uppercase;
-    letter-spacing:.06em;
-  }
-}
+  window.addEventListener('scroll',revealOnScroll);
+  window.addEventListener('load',revealOnScroll);
+
+  // 🔥 Hamburger logika
+  const toggle=document.getElementById('nxToggle');
+  const nav=document.querySelector('.nx-nav');
+  toggle.addEventListener('click',()=>{
+    toggle.classList.toggle('active');
+    nav.classList.toggle('active');
+  });
+  </script>
+</body>
+</html>
