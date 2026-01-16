@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — NEXORY Elite Digital Engineering</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">NEXORY</span>
+                </a>
+                <span class="logo-pulse"></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link nav-link-cta active">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="hero-grid-bg"></div>
+        <div class="container">
+            <div class="page-hero-content">
+                <span class="page-tag">GET IN TOUCH</span>
+                <h1 class="page-title">Let's Engineer<br>Your Dominance</h1>
+                <p class="page-subtitle">Premium clients only. Limited availability.<br>Tell us about your vision, and we'll architect your path to market supremacy.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <div class="form-header">
+                        <h2 class="form-title">Initiate Project</h2>
+                        <p class="form-subtitle">Fill out the form below. We respond to qualified inquiries within 24 hours.</p>
+                    </div>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName" class="form-label">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="lastName" class="form-label">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email *</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="tel" id="phone" name="phone" class="form-input">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company" class="form-label">Company *</label>
+                            <input type="text" id="company" name="company" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="website" class="form-label">Current Website</label>
+                            <input type="url" id="website" name="website" class="form-input" placeholder="https://">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service" class="form-label">Service Interest *</label>
+                            <select id="service" name="service" class="form-select" required>
+                                <option value="">Select a service</option>
+                                <option value="web">Web Architecture</option>
+                                <option value="brand">Brand Systems</option>
+                                <option value="automation">Automation Engineering</option>
+                                <option value="systems">Systems Integration</option>
+                                <option value="multiple">Multiple Services</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget" class="form-label">Investment Range *</label>
+                            <select id="budget" name="budget" class="form-select" required>
+                                <option value="">Select budget range</option>
+                                <option value="25-50">€25,000 - €50,000</option>
+                                <option value="50-100">€50,000 - €100,000</option>
+                                <option value="100-200">€100,000 - €200,000</option>
+                                <option value="200+">€200,000+</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="timeline" class="form-label">Project Timeline *</label>
+                            <select id="timeline" name="timeline" class="form-select" required>
+                                <option value="">Select timeline</option>
+                                <option value="immediate">Immediate (Start within 2 weeks)</option>
+                                <option value="1-2-months">1-2 Months</option>
+                                <option value="3-6-months">3-6 Months</option>
+                                <option value="flexible">Flexible / Planning Phase</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Project Details *</label>
+                            <textarea id="message" name="message" class="form-textarea" rows="6" placeholder="Tell us about your vision, challenges, and goals..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group form-checkbox-group">
+                            <label class="form-checkbox">
+                                <input type="checkbox" name="nda" id="nda">
+                                <span class="checkbox-label">I require an NDA before discussing details</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary btn-large btn-full-width">
+                            <span class="btn-text">Submit Application</span>
+                            <span class="btn-arrow">→</span>
+                        </button>
+                        
+                        <p class="form-note">* Required fields. We respect your privacy and never share your information.</p>
+                    </form>
+                    
+                    <div class="form-success" id="formSuccess" style="display: none;">
+                        <div class="success-icon">✓</div>
+                        <h3 class="success-title">Application Received</h3>
+                        <p class="success-message">Thank you for your interest in NEXORY. Our team will review your inquiry and respond within 24 hours.</p>
+                    </div>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="contact-info-container">
+                    <div class="contact-info-card">
+                        <h3 class="info-card-title">Direct Contact</h3>
+                        <div class="info-items">
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 8L10.89 13.26C11.23 13.47 11.61 13.59 12 13.59C12.39 13.59 12.77 13.47 13.11 13.26L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <div class="info-content">
+                                    <div class="info-label">Email</div>
+                                    <a href="mailto:elite@nexory.agency" class="info-value">elite@nexory.agency</a>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 5C3 3.89543 3.89543 3 5 3H8.27924C8.70967 3 9.09181 3.27543 9.22792 3.68377L10.7257 8.17721C10.8831 8.64932 10.6694 9.16531 10.2243 9.38787L7.96701 10.5165C9.06925 12.9612 11.0388 14.9308 13.4835 16.033L14.6121 13.7757C14.8347 13.3306 15.3507 13.1169 15.8228 13.2743L20.3162 14.7721C20.7246 14.9082 21 15.2903 21 15.7208V19C21 20.1046 20.1046 21 19 21H18C9.71573 21 3 14.2843 3 6V5Z" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <div class="info-content">
+                                    <div class="info-label">Phone</div>
+                                    <a href="tel:+33123456789" class="info-value">+33 1 23 45 67 89</a>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 21C16.4183 21 20 17.4183 20 13C20 8.58172 16.4183 5 12 5C7.58172 5 4 8.58172 4 13C4 17.4183 7.58172 21 12 21Z" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M12 7V13L15 15" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <div class="info-content">
+                                    <div class="info-label">Office Hours</div>
+                                    <div class="info-value">Mon-Fri: 9:00 - 18:00 CET</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <div class="info-content">
+                                    <div class="info-label">Location</div>
+                                    <div class="info-value">Paris, France</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <h3 class="info-card-title">What to Expect</h3>
+                        <div class="expect-items">
+                            <div class="expect-item">
+                                <div class="expect-number">01</div>
+                                <div class="expect-content">
+                                    <h4 class="expect-title">Application Review</h4>
+                                    <p class="expect-description">We review your inquiry within 24 hours and assess project fit.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="expect-item">
+                                <div class="expect-number">02</div>
+                                <div class="expect-content">
+                                    <h4 class="expect-title">Discovery Call</h4>
+                                    <p class="expect-description">45-minute strategic consultation to understand your vision and challenges.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="expect-item">
+                                <div class="expect-number">03</div>
+                                <div class="expect-content">
+                                    <h4 class="expect-title">Proposal Delivery</h4>
+                                    <p class="expect-description">Custom strategy, timeline, and investment proposal within 5-7 days.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="expect-item">
+                                <div class="expect-number">04</div>
+                                <div class="expect-content">
+                                    <h4 class="expect-title">Project Initiation</h4>
+                                    <p class="expect-description">Contract finalization and immediate project kickoff.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <h3 class="info-card-title">Investment Guidelines</h3>
+                        <p class="guidelines-text">NEXORY works exclusively with premium clients on projects starting at €25,000. Our average project value ranges from €45,000 to €180,000.</p>
+                        <p class="guidelines-text">We maintain limited availability to ensure every project receives surgical attention and elite execution.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alternative Contact Methods -->
+    <section class="alt-contact-section">
+        <div class="container">
+            <div class="alt-contact-grid">
+                <div class="alt-contact-card">
+                    <div class="alt-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" stroke="currentColor" stroke-width="2"/>
+                            <path d="M7 2V22M17 2V22M2 7H22M2 12H7M17 12H22M2 17H22" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="alt-title">Schedule Discovery Call</h3>
+                    <p class="alt-description">Prefer to talk first? Book a 45-minute strategic consultation directly with our team.</p>
+                    <a href="#" class="alt-link">View Availability →</a>
+                </div>
+                
+                <div class="alt-contact-card">
+                    <div class="alt-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M2 17L12 22L22 17M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="alt-title">Partnership Inquiries</h3>
+                    <p class="alt-description">Interested in strategic partnerships or referring clients? Let's explore collaboration.</p>
+                    <a href="mailto:partnerships@nexory.agency" class="alt-link">partnerships@nexory.agency →</a>
+                </div>
+                
+                <div class="alt-contact-card">
+                    <div class="alt-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 8V12L15 15" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="alt-title">Career Opportunities</h3>
+                    <p class="alt-description">Elite talent only. If you're exceptional at what you do, we want to hear from you.</p>
+                    <a href="mailto:careers@nexory.agency" class="alt-link">careers@nexory.agency →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">NEXORY</div>
+                    <p class="footer-tagline">Elite Digital Engineering</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">LinkedIn</a>
+                        <a href="#" class="social-link">Behance</a>
+                        <a href="#" class="social-link">Dribbble</a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-title">Navigation</h4>
+                        <ul class="footer-list">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="projects.html">Projects</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4 class="footer-title">Services</h4>
+                        <ul class="footer-list">
+                            <li><a href="services.html#web">Web Architecture</a></li>
+                            <li><a href="services.html#brand">Brand Systems</a></li>
+                            <li><a href="services.html#automation">Automation</a></li>
+                            <li><a href="services.html#systems">Systems Integration</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4 class="footer-title">Contact</h4>
+                        <ul class="footer-list">
+                            <li><a href="mailto:elite@nexory.agency">elite@nexory.agency</a></li>
+                            <li><a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
+                            <li>Paris, France</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026 NEXORY. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

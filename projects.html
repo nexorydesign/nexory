@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekti — NEXORY Digitalna Inženjering</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigacija -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">NEXORY</span>
+                </a>
+                <span class="logo-pulse"></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Početna</a></li>
+                <li><a href="services.html" class="nav-link">Usluge</a></li>
+                <li><a href="projects.html" class="nav-link active">Projekti</a></li>
+                <li><a href="about.html" class="nav-link">O nama</a></li>
+                <li><a href="contact.html" class="nav-link nav-link-cta">Kontakt</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Sekcija -->
+    <section class="page-hero">
+        <div class="hero-grid-bg"></div>
+        <div class="container">
+            <div class="page-hero-content">
+                <span class="page-tag">PORTFOLIO</span>
+                <h1 class="page-title">Provereni Digitalni<br>Arsenal</h1>
+                <p class="page-subtitle">47 projekata sa dokazanim rezultatima.<br>Generisano više od €2.4M za klijente.<br>Apsolutni rezultati. Bez kompromisa.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Sekcija -->
+    <section class="projects-filter">
+        <div class="container">
+            <div class="filter-controls">
+                <button class="filter-btn active" data-filter="all">Svi Projekti</button>
+                <button class="filter-btn" data-filter="web">Web Arhitektura</button>
+                <button class="filter-btn" data-filter="brand">Brend Sistemi</button>
+                <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
+                <button class="filter-btn" data-filter="enterprise">Enterprise</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projekti Grid -->
+    <section class="projects-grid-section">
+        <div class="container">
+            <div class="projects-masonry">
+                
+                <!-- Projekat 1: LUXEFORM -->
+                <article class="project-item" data-category="web ecommerce">
+                    <div class="project-item-image">
+                        <div class="project-img-placeholder" style="background: linear-gradient(135deg, #3A8FFF 0%, #9A4DFF 100%);">
+                            <div class="project-overlay-content">
+                                <span class="project-category-tag">E-COMMERCE</span>
+                                <h3 class="project-overlay-title">LUXEFORM</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-item-content">
+                        <div class="project-meta">
+                            <span class="project-client">Luxury Furniture</span>
+                            <span class="project-year">2025</span>
+                        </div>
+                        <h3 class="project-item-title">LUXEFORM</h3>
+                        <p class="project-item-description">Potpuna digitalna transformacija luksuznog brenda nameštaja. Prilagođena e-commerce platforma sa 3D vizualizacijom proizvoda.</p>
+                        <div class="project-results">
+                            <div class="result-item">
+                                <span class="result-value">+347%</span>
+                                <span class="result-label">Prihod</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-value">2.1s</span>
+                                <span class="result-label">Brzina učitavanja</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-value">94</span>
+                                <span class="result-label">Score</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Projekat 2: QUANTUM FINANCE -->
+                <article class="project-item" data-category="web enterprise">
+                    <div class="project-item-image">
+                        <div class="project-img-placeholder" style="background: linear-gradient(135deg, #FFD86B 0%, #3A8FFF 100%);">
+                            <div class="project-overlay-content">
+                                <span class="project-category-tag">FINTECH</span>
+                                <h3 class="project-overlay-title">QUANTUM FINANCE</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-item-content">
+                        <div class="project-meta">
+                            <span class="project-client">Finansijska platforma</span>
+                            <span class="project-year">2025</span>
+                        </div>
+                        <h3 class="project-item-title">QUANTUM FINANCE</h3>
+                        <p class="project-item-description">Enterprise finansijski dashboard sa vizualizacijom podataka u realnom vremenu i naprednim analitičkim modulom.</p>
+                        <div class="project-results">
+                            <div class="result-item">
+                                <span class="result-value">€1.2M</span>
+                                <span class="result-label">Series A</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-value">50K</span>
+                                <span class="result-label">Korisnici</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-value">99.9%</span>
+                                <span class="result-label">Uptime</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Projekat 3: APEX MOTORS -->
+                <article class="project-item" data-category="web brand">
+                    <div class="project-item-image">
+                        <div class="project-img-placeholder" style="background: linear-gradient(135deg, #9A4DFF 0%, #FFD86B 100%);">
+                            <div class="project-overlay-content">
+                                <span class="project-category-tag">AUTOMOBILI</span>
+                                <h3 class="project-overlay-title">APEX MOTORS</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-item-content">
+                        <div class="project-meta">
+                            <span class="project-client">Luksuzni Automobili</span>
+                            <span class="project-year">2024</span>
+                        </div>
+                        <h3 class="project-item-title">APEX MOTORS</h3>
+                        <p class="project-item-description">Premium automobil web sajt sa 3D konfiguratorom i virtualnim showroom iskustvom.</p>
+                        <div class="project-results">
+                            <div class="result-item">
+                                <span class="result-value">+218%</span>
+                                <span class="result-label">Leads</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-value">6.2min</span>
+                                <span class="result-label">Prosečno vreme sesije</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-value">92%</span>
+                                <span class="result-label">Zadovoljstvo</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Ostatak projekata prepraviti istim principom... -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Sekcija -->
+    <section class="projects-stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 3L21 21M21 3L3 21" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="stat-card-value">€2.4M+</div>
+                    <div class="stat-card-label">Ukupni prihod klijenata</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M2 17L12 22L22 17M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="stat-card-value">47</div>
+                    <div class="stat-card-label">Realizovani projekti</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="stat-card-value">99.8%</div>
+                    <div class="stat-card-label">Zadržavanje klijenata</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="stat-card-value">2.1s</div>
+                    <div class="stat-card-label">Prosečno vreme učitavanja</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Sekcija -->
+    <section class="cta-section">
+        <div class="cta-geometric-bg">
+            <div class="cta-hex cta-hex-1"></div>
+            <div class="cta-hex cta-hex-2"></div>
+        </div>
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Spremni za digitalnu ekselenciju?</h2>
+                <p class="cta-subtitle">Ograničen broj klijenata. <br>Počnimo projekat koji menja pravila igre.</p>
+                <a href="contact.html" class="btn-primary btn-large">
+                    <span class="btn-text">Zakaži Konsultaciju</span>
+                    <span class="btn-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
