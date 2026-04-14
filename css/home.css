@@ -1,3 +1,120 @@
+body {
+    background: radial-gradient(circle at top, #0d0d0d 0%, #000 60%);
+    color: #fff;
+    font-family: Inter, sans-serif;
+    overflow-x: hidden;
+}
+
+/* GLOBAL TEXT FIX (ovo rešava "word" osećaj) */
+p {
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+}
+
+h1,h2,h3 {
+    letter-spacing: -0.03em;
+}
+
+/* HERO — GLAVNI FIX */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* OVO PRAVI "WOW" BACKGROUND */
+.hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(58,143,255,0.15), transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(154,77,255,0.12), transparent 45%);
+    z-index: 0;
+}
+
+/* HERO TEXT — JAČI KONTRAST */
+.hero-title {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    position: relative;
+    z-index: 2;
+}
+
+.title-accent {
+    background: linear-gradient(90deg, #3A8FFF, #9A4DFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* SUBTITLE — CLEAN PREMIUM */
+.hero-subtitle {
+    max-width: 700px;
+    margin: 20px auto;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.65);
+}
+
+/* CTA FIX — mora da "iskače" */
+.btn-primary {
+    background: linear-gradient(135deg, #3A8FFF, #9A4DFF);
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: 0.3s;
+    box-shadow: 0 10px 40px rgba(58,143,255,0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 60px rgba(58,143,255,0.35);
+}
+
+/* SECOND BUTTON — mora biti "light ghost" */
+.btn-secondary {
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 14px 28px;
+    border-radius: 12px;
+    transition: 0.3s;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    border-color: #3A8FFF;
+    color: #3A8FFF;
+}
+
+/* SERVICES — DA NE LIČI NA WORD */
+.service-card {
+    background: rgba(13,13,13,0.6);
+    border: 1px solid rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 30px;
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(58,143,255,0.3);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* GRID — VEĆI GAP = LUXURY FEEL */
+.services-grid {
+    gap: 25px;
+}
+
+/* NAV — PREMIUM GLASS */
+.nav-container {
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
 :root {
   --bg: #000;
   --panel: #0d0d0d;
