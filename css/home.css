@@ -1,238 +1,158 @@
-/* ============================================
-   NEXORY - HOME CLEAN VERSION
-   ============================================ */
+:root {
+  --bg: #000;
+  --panel: #0d0d0d;
+  --text: #fff;
+  --muted: #9a9a9a;
+  --blue: #3A8FFF;
+  --violet: #9A4DFF;
 
-/* RESET */
+  --radius: 14px;
+  --transition: 0.3s ease;
+  --max: 1200px;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background: #000;
-    color: #fff;
-    font-family: 'Inter', sans-serif;
+  font-family: Inter, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
 }
 
 /* CONTAINER */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+  max-width: var(--max);
+  margin: auto;
+  padding: 0 20px;
 }
 
 /* NAV */
-.nav {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    padding: 20px 0;
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(20px);
+  padding: 20px 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-.nav-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 2px;
-    font-weight: 700;
+  font-weight: 700;
+  letter-spacing: 4px;
 }
 
-.nav a {
-    color: #999;
-    margin-left: 30px;
-    text-decoration: none;
-    transition: 0.3s;
+nav a {
+  color: var(--muted);
+  margin-left: 20px;
+  text-decoration: none;
+  transition: var(--transition);
 }
 
-.nav a:hover {
-    color: #fff;
+nav a:hover {
+  color: var(--text);
 }
 
 /* HERO */
 .hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    position: relative;
-}
-
-/* background grid (minimal) */
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(58,143,255,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(58,143,255,0.05) 1px, transparent 1px);
-    background-size: 60px 60px;
-    z-index: 0;
-}
-
-/* HERO CONTENT */
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 900px;
-    margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 100px;
+  position: relative;
 }
 
 .hero h1 {
-    font-size: 5rem;
-    line-height: 1.1;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-.hero h1 span {
-    background: linear-gradient(135deg, #3A8FFF, #9A4DFF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  font-size: 64px;
+  line-height: 1.1;
+  background: linear-gradient(90deg, var(--blue), var(--violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero p {
-    color: #aaa;
-    font-size: 1.2rem;
-    margin-bottom: 40px;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 18px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* BUTTONS */
+/* BUTTON */
 .btn {
-    padding: 14px 30px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: 0.3s;
+  margin-top: 30px;
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, var(--blue), var(--violet));
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
 }
 
-.btn-primary {
-    background: linear-gradient(135deg, #3A8FFF, #9A4DFF);
-    color: #fff;
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 40px rgba(58,143,255,0.3);
 }
 
-.btn-primary:hover {
-    transform: translateY(-3px);
+/* CARDS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 80px;
 }
 
-.btn-secondary {
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #fff;
-    margin-left: 15px;
+.card {
+  background: var(--panel);
+  padding: 30px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: var(--transition);
 }
 
-.btn-secondary:hover {
-    border-color: #3A8FFF;
-}
-
-/* SERVICES */
-.services {
-    padding: 120px 0;
-}
-
-.services h2 {
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 60px;
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-.service {
-    padding: 30px;
-    background: #0D0D0D;
-    border: 1px solid rgba(255,255,255,0.05);
-    transition: 0.3s;
-}
-
-.service:hover {
-    transform: translateY(-5px);
-    border-color: rgba(58,143,255,0.3);
-}
-
-.service h3 {
-    margin-bottom: 15px;
-}
-
-.service p {
-    color: #aaa;
-    line-height: 1.6;
-}
-
-/* PROJECTS */
-.projects {
-    padding: 120px 0;
-}
-
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-}
-
-.project {
-    height: 300px;
-    background: #111;
-    position: relative;
-    overflow: hidden;
-}
-
-.project:hover {
-    transform: scale(1.02);
-}
-
-/* CTA */
-.cta {
-    padding: 120px 0;
-    text-align: center;
-}
-
-.cta h2 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-.cta p {
-    color: #aaa;
-    margin-bottom: 40px;
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(58,143,255,0.3);
 }
 
 /* FOOTER */
-.footer {
-    padding: 60px 0;
-    text-align: center;
-    border-top: 1px solid rgba(255,255,255,0.05);
-}
-
-.footer p {
-    color: #666;
+footer {
+  margin-top: 100px;
+  padding: 40px 0;
+  text-align: center;
+  color: var(--muted);
+  border-top: 1px solid rgba(255,255,255,0.05);
 }
 
 /* RESPONSIVE */
-@media (max-width: 900px) {
-    .hero h1 {
-        font-size: 3rem;
-    }
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 40px;
+  }
 
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
+  .grid {
+    grid-template-columns: 1fr;
+  }
 
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
+  nav a {
+    margin-left: 10px;
+    font-size: 14px;
+  }
 }
