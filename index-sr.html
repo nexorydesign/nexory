@@ -2,180 +2,266 @@
 <html lang="sr">
 <head>
     <meta charset="UTF-8">
-
-    <meta name="google-site-verification" content="8J2o9lq2LQPcxv_vR-HfEzQhfjRvCgw_qlbqeqt9IB8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEXORY — Profesionalna Digitalna Rešenja</title>
 
-    <!-- SINGLE CSS -->
-    <link rel="stylesheet" href="css/main.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Syncopate:wght@700&family=Inter:wght@200;400;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #000000;
+            --accent: #2d70ff;
+            --text: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.4);
+            --font-head: 'Syncopate', sans-serif;
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'Space Grotesk', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+        }
+
+        /* Grain Effect - Digitalni "Noise" za dubinu */
+        .grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.04; pointer-events: none; z-index: 9999;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+
+        /* --- NAV --- */
+        nav { position: fixed; top: 0; width: 100%; padding: 40px 0; z-index: 1000; mix-blend-mode: difference; }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; letter-spacing: 5px; }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; transition: 0.3s; }
+        .nav-links a:hover { opacity: 1; color: var(--accent); }
+
+        /* --- HERO --- */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; }
+        .hero-title {
+            font-family: var(--font-head);
+            font-size: clamp(2rem, 7vw, 6rem);
+            line-height: 1.1; letter-spacing: -2px; text-transform: uppercase;
+        }
+        .title-mask { overflow: hidden; display: block; }
+        .title-line { display: block; transform: translateY(100%); transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); }
+        .title-accent { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); }
+
+        .hero-subtitle { margin-top: 40px; max-width: 500px; color: var(--text-dim); font-size: 1.1rem; line-height: 1.6; opacity: 0; transform: translateY(20px); }
+
+        /* --- STATS --- */
+        .hero-stats { display: flex; gap: 80px; margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .stat-item .stat-value { font-family: var(--font-head); font-size: 3rem; color: var(--accent); }
+        .stat-item .stat-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-top: 10px; }
+
+        /* --- SERVICES GRID --- */
+        .services-overview { padding: 150px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+        .section-tag { font-family: var(--font-mono); color: var(--accent); font-size: 0.7rem; letter-spacing: 5px; margin-bottom: 20px; display: block; }
+        .section-title { font-family: var(--font-head); font-size: 3.5rem; line-height: 1; margin-bottom: 80px; text-transform: uppercase; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); }
+        .service-card { background: var(--bg); padding: 80px 40px; transition: 0.5s; position: relative; overflow: hidden; }
+        .service-card:hover { background: #050505; }
+        .service-number { font-family: var(--font-mono); color: var(--accent); margin-bottom: 30px; font-size: 0.9rem; }
+        .service-title { font-family: var(--font-head); font-size: 1.5rem; margin-bottom: 20px; }
+        .service-description { color: var(--text-dim); line-height: 1.7; font-size: 1rem; max-width: 300px; }
+
+        /* --- PROCESS TIMELINE --- */
+        .process-section { padding: 200px 0; }
+        .process-wrapper { position: relative; max-width: 900px; margin-left: auto; }
+        .line-track { position: absolute; left: 40px; top: 0; width: 1px; height: 100%; background: rgba(255,255,255,0.05); }
+        .line-active { position: absolute; left: 40px; top: 0; width: 2px; height: 0%; background: var(--accent); box-shadow: 0 0 30px var(--accent); }
+
+        .process-step { position: relative; padding-left: 120px; margin-bottom: 150px; opacity: 0; transform: translateY(50px); }
+        .step-number { 
+            position: absolute; left: 18px; top: 0; width: 45px; height: 45px; 
+            background: #000; border: 1px solid rgba(255,255,255,0.1); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-weight: 700; z-index: 5;
+        }
+
+        /* --- CTA --- */
+        .cta-section { padding: 200px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .cta-title { font-family: var(--font-head); font-size: clamp(2rem, 8vw, 6rem); line-height: 1; margin-bottom: 50px; }
+        .btn-large { font-family: var(--font-head); color: #fff; text-decoration: none; font-size: 2rem; transition: 0.5s; -webkit-text-stroke: 1px #fff; color: transparent; }
+        .btn-large:hover { color: var(--accent); -webkit-text-stroke: 1px var(--accent); }
+
+        @media (max-width: 900px) {
+            .container { padding: 0 30px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .hero-stats { flex-direction: column; gap: 40px; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="nav-container">
-        <div class="nav-content">
-            <div class="nav-logo">
-                <span class="logo-text">NEXORY</span>
-                <span class="logo-pulse"></span>
-            </div>
+    <div class="grain"></div>
+
+    <nav>
+        <div class="container nav-content">
+            <div class="logo">NEXORY</div>
             <ul class="nav-links">
-                <li><a href="index.html" class="nav-link active">Početna</a></li>
-                <li><a href="services.html" class="nav-link">Usluge</a></li>
-                <li><a href="projects.html" class="nav-link">Projekti</a></li>
-                <li><a href="about.html" class="nav-link">O nama</a></li>
-                <li><a href="contact.html" class="nav-link nav-link-cta">Kontakt</a></li>
+                <li><a href="#">Početna</a></li>
+                <li><a href="#">Usluge</a></li>
+                <li><a href="#">Projekti</a></li>
+                <li><a href="#">Kontakt</a></li>
             </ul>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-grid-bg"></div>
-        <div class="hero-beam hero-beam-1"></div>
-        <div class="hero-beam hero-beam-2"></div>
-
-        <div class="hero-content">
+    <main>
+        <section class="hero container">
             <h1 class="hero-title">
-                <span class="title-line">Sistem koji ti </span>
-                <span class="title-line">Dovodi</span>
-                <span class="title-line title-accent">Klijente dok</span>
-                <span class="title-line title-accent">spavaš</span>
+                <span class="title-mask"><span class="title-line">Sistem koji ti</span></span>
+                <span class="title-mask"><span class="title-line">Dovodi</span></span>
+                <span class="title-mask"><span class="title-line title-accent">Klijente dok</span></span>
+                <span class="title-mask"><span class="title-line title-accent">spavaš</span></span>
             </h1>
-
-            <p class="hero-subtitle">
-                Dovodimo klijente kroz reklame, pretvaramo ih u kupce kroz sajt, zatvaramo prodaju kroz automatizaciju i gradimo poverenje kroz društvene mreže.
-            </p>
-
-            <div class="hero-cta-group">
-                <a href="contact.html" class="btn-primary">
-                    <span class="btn-text">Kontakt</span>
-                    <span class="btn-arrow">→</span>
-                </a>
-                <a href="projects.html" class="btn-secondary">
-                    <span class="btn-text">Pogledaj Projekte</span>
-                    <span class="btn-icon">⟶</span>
-                </a>
-            </div>
-
-            <div class="hero-stats">
+            <p class="hero-subtitle">Dovodimo klijente kroz reklame, pretvaramo ih u kupce kroz sajt, zatvaramo prodaju kroz automatizaciju i gradimo poverenje kroz društvene mreže.</p>
+            
+            <div class="hero-stats" id="stats-trigger">
                 <div class="stat-item">
-                    <div class="stat-value">3+</div>
+                    <div class="stat-value count" data-target="3">0</div>
                     <div class="stat-label">Godine iskustva</div>
                 </div>
-                <div class="stat-divider"></div>
                 <div class="stat-item">
-                    <div class="stat-value">200+</div>
+                    <div class="stat-value count" data-target="200">0</div>
                     <div class="stat-label">Završenih projekata</div>
                 </div>
-                <div class="stat-divider"></div>
                 <div class="stat-item">
-                    <div class="stat-value">Stalan rast</div>
-                    <div class="stat-label">Klijenata i rezultata</div>
+                    <div class="stat-value">STALAN RAST</div>
+                    <div class="stat-label">Rezultata</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Services Overview -->
-    <section class="services-overview">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">USLUGE</span>
-                <h2 class="section-title">Jasne usluge.<br>Jasni rezultati.</h2>
-                <p class="section-subtitle">
-                    Radimo samo ono što ima smisla za vaš biznis.
-                </p>
-            </div>
-
+        <section class="services-overview container">
+            <span class="section-tag">USLUGE</span>
+            <h2 class="section-title">Jasne usluge.<br>Jasni rezultati.</h2>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-number">01</div>
                     <h3 class="service-title">IZRADA SAJTA</h3>
-                    <p class="service-description">
-                        Kreiranje modernih i brzih prodajnih sajtova koji pretvaraju posetioce u klijente.
-                    </p>
+                    <p class="service-description">Kreiranje modernih i brzih prodajnih sajtova koji pretvaraju posetioce u klijente.</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-number">02</div>
-                    <h3 class="service-title">AI automatizacija</h3>
-                    <p class="service-description">
-                        Automatsko odgovaranje, filtriranje i zakazivanje — sistem radi 24/7.
-                    </p>
+                    <h3 class="service-title">AI AUTOMATIZACIJA</h3>
+                    <p class="service-description">Automatsko odgovaranje, filtriranje i zakazivanje — sistem radi 24/7.</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-number">03</div>
-                    <h3 class="service-title">Meta Ads</h3>
-                    <p class="service-description">
-                        Plaćene reklame fokusirane na prodaju i upite.
-                    </p>
+                    <h3 class="service-title">META ADS</h3>
+                    <p class="service-description">Plaćene reklame fokusirane na prodaju i upite.</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-number">04</div>
                     <h3 class="service-title">VOĐENJE MREŽA</h3>
-                    <p class="service-description">
-                        Rast profila i generisanje upita kroz sadržaj.
-                    </p>
+                    <p class="service-description">Rast profila i generisanje upita kroz sadržaj.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Process -->
-    <section class="process-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">KAKO RADIMO</span>
-                <h2 class="section-title">Jednostavan proces.</h2>
-            </div>
+        <section class="process-section container">
+            <span class="section-tag">KAKO RADIMO</span>
+            <h2 class="section-title">Jednostavan proces.</h2>
+            
+            <div class="process-wrapper" id="process-trigger">
+                <div class="line-track"></div>
+                <div class="line-active" id="line-active"></div>
 
-            <div class="process-timeline">
                 <div class="process-step">
                     <div class="step-number">01</div>
-                    <h3 class="step-title">DOGOVOR</h3>
+                    <h3 class="service-title">DOGOVOR</h3>
                 </div>
                 <div class="process-step">
                     <div class="step-number">02</div>
-                    <h3 class="step-title">PLAN</h3>
+                    <h3 class="service-title">PLAN</h3>
                 </div>
                 <div class="process-step">
                     <div class="step-number">03</div>
-                    <h3 class="step-title">IZRADA</h3>
+                    <h3 class="service-title">IZRADA</h3>
                 </div>
                 <div class="process-step">
                     <div class="step-number">04</div>
-                    <h3 class="step-title">POKRETANJE</h3>
+                    <h3 class="service-title">POKRETANJE</h3>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CTA -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">Treba vam sajt ili marketing?</h2>
-                <a href="contact.html" class="btn-primary btn-large">
-                    <span class="btn-text">Kontakt</span>
-                    <span class="btn-arrow">→</span>
-                </a>
-            </div>
-        </div>
-    </section>
+        <section class="cta-section container">
+            <h2 class="cta-title">Treba vam sajt ili marketing?</h2>
+            <a href="#" class="btn-large">ZAPOČNI KONTAKT →</a>
+        </section>
+    </main>
 
-    <script src="js/main.js"></script>
+    <script>
+        // 1. Lenis Smooth Scroll
+        const lenis = new Lenis();
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // 2. GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Reveal
+        window.addEventListener('load', () => {
+            gsap.to(".title-line", { y: 0, stagger: 0.15, duration: 1.5, ease: "expo.out" });
+            gsap.to(".hero-subtitle", { opacity: 1, y: 0, duration: 1, delay: 0.8 });
+        });
+
+        // Counter Loader (Dvosmerno)
+        const counters = document.querySelectorAll('.count');
+        counters.forEach(c => {
+            const target = +c.getAttribute('data-target');
+            ScrollTrigger.create({
+                trigger: "#stats-trigger",
+                start: "top 85%",
+                onEnter: () => gsap.to(c, { innerText: target, duration: 2, snap: {innerText: 1}, ease: "power2.out" }),
+                onLeaveBack: () => gsap.to(c, { innerText: 0, duration: 1 })
+            });
+        });
+
+        // Blueprint Line Scrub
+        gsap.to("#line-active", {
+            height: "100%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#process-trigger",
+                start: "top 60%",
+                end: "bottom 60%",
+                scrub: true
+            }
+        });
+
+        // Steps Fade (Dvosmerno)
+        const steps = document.querySelectorAll('.process-step');
+        steps.forEach(step => {
+            gsap.to(step, {
+                opacity: 1, y: 0, duration: 1,
+                scrollTrigger: {
+                    trigger: step,
+                    start: "top 80%",
+                    end: "top 20%",
+                    toggleActions: "play reverse play reverse"
+                }
+            });
+        });
+    </script>
 </body>
 </html>
