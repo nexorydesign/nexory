@@ -2,7 +2,7 @@
 <html lang="sr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>NEXORY — Profesionalna Digitalna Rešenja</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,6 +21,7 @@
             --font-head: 'Syncopate', sans-serif;
             --font-main: 'Inter', sans-serif;
             --font-mono: 'Space Grotesk', sans-serif;
+            --side-padding: 6vw;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -30,78 +31,89 @@
             color: var(--text);
             font-family: var(--font-main);
             overflow-x: hidden;
+            width: 100%;
         }
 
-        /* Grain Effect - Digitalni "Noise" za dubinu */
         .grain {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            opacity: 0.04; pointer-events: none; z-index: 9999;
+            opacity: 0.05; pointer-events: none; z-index: 9999;
         }
 
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 var(--side-padding); }
 
         /* --- NAV --- */
-        nav { position: fixed; top: 0; width: 100%; padding: 40px 0; z-index: 1000; mix-blend-mode: difference; }
+        nav { position: fixed; top: 0; width: 100%; padding: 25px 0; z-index: 1000; mix-blend-mode: difference; }
         .nav-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; letter-spacing: 5px; }
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a { color: #fff; text-decoration: none; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; transition: 0.3s; }
-        .nav-links a:hover { opacity: 1; color: var(--accent); }
-
+        .logo { font-family: var(--font-head); font-weight: 700; font-size: clamp(0.9rem, 4vw, 1.1rem); letter-spacing: 4px; }
+        
         /* --- HERO --- */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 100px; padding-bottom: 50px; }
         .hero-title {
             font-family: var(--font-head);
-            font-size: clamp(2rem, 7vw, 6rem);
-            line-height: 1.1; letter-spacing: -2px; text-transform: uppercase;
+            font-size: clamp(1.8rem, 8vw, 6rem);
+            line-height: 1.1; letter-spacing: -1px; text-transform: uppercase;
+            width: 100%;
         }
         .title-mask { overflow: hidden; display: block; }
-        .title-line { display: block; transform: translateY(100%); transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); }
+        .title-line { display: block; transform: translateY(110%); }
         .title-accent { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); }
 
-        .hero-subtitle { margin-top: 40px; max-width: 500px; color: var(--text-dim); font-size: 1.1rem; line-height: 1.6; opacity: 0; transform: translateY(20px); }
+        .hero-subtitle { 
+            margin-top: 30px; max-width: 550px; color: var(--text-dim); 
+            font-size: clamp(0.95rem, 3vw, 1.15rem); line-height: 1.6; 
+            opacity: 0; transform: translateY(20px); 
+        }
 
-        /* --- STATS --- */
-        .hero-stats { display: flex; gap: 80px; margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
-        .stat-item .stat-value { font-family: var(--font-head); font-size: 3rem; color: var(--accent); }
-        .stat-item .stat-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-top: 10px; }
+        /* --- HERO STATS --- */
+        .hero-stats { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+            gap: 30px; margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); 
+        }
+        .stat-item .stat-value { font-family: var(--font-head); font-size: clamp(1.8rem, 5vw, 3rem); color: var(--accent); }
+        .stat-item .stat-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-top: 8px; }
 
-        /* --- SERVICES GRID --- */
-        .services-overview { padding: 150px 0; border-top: 1px solid rgba(255,255,255,0.05); }
-        .section-tag { font-family: var(--font-mono); color: var(--accent); font-size: 0.7rem; letter-spacing: 5px; margin-bottom: 20px; display: block; }
-        .section-title { font-family: var(--font-head); font-size: 3.5rem; line-height: 1; margin-bottom: 80px; text-transform: uppercase; }
+        /* --- SERVICES --- */
+        .services-overview { padding: 100px 0; }
+        .section-tag { font-family: var(--font-mono); color: var(--accent); font-size: 0.65rem; letter-spacing: 4px; margin-bottom: 15px; display: block; }
+        .section-title { font-family: var(--font-head); font-size: clamp(1.8rem, 6vw, 3.5rem); line-height: 1.1; margin-bottom: 50px; text-transform: uppercase; }
 
-        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); }
-        .service-card { background: var(--bg); padding: 80px 40px; transition: 0.5s; position: relative; overflow: hidden; }
-        .service-card:hover { background: #050505; }
-        .service-number { font-family: var(--font-mono); color: var(--accent); margin-bottom: 30px; font-size: 0.9rem; }
-        .service-title { font-family: var(--font-head); font-size: 1.5rem; margin-bottom: 20px; }
-        .service-description { color: var(--text-dim); line-height: 1.7; font-size: 1rem; max-width: 300px; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); }
+        .service-card { background: var(--bg); padding: clamp(40px, 8vw, 80px) 30px; transition: 0.4s; }
+        .service-number { font-family: var(--font-mono); color: var(--accent); margin-bottom: 25px; font-size: 0.8rem; }
+        .service-title { font-family: var(--font-head); font-size: 1.3rem; margin-bottom: 15px; }
+        .service-description { color: var(--text-dim); line-height: 1.6; font-size: 0.95rem; }
 
         /* --- PROCESS TIMELINE --- */
-        .process-section { padding: 200px 0; }
-        .process-wrapper { position: relative; max-width: 900px; margin-left: auto; }
-        .line-track { position: absolute; left: 40px; top: 0; width: 1px; height: 100%; background: rgba(255,255,255,0.05); }
-        .line-active { position: absolute; left: 40px; top: 0; width: 2px; height: 0%; background: var(--accent); box-shadow: 0 0 30px var(--accent); }
+        .process-section { padding: 100px 0; overflow: hidden; }
+        .process-wrapper { position: relative; max-width: 800px; margin-left: auto; padding-top: 20px; }
+        .line-track { position: absolute; left: 20px; top: 0; width: 1px; height: 100%; background: rgba(255,255,255,0.05); }
+        .line-active { position: absolute; left: 20px; top: 0; width: 2px; height: 0%; background: var(--accent); box-shadow: 0 0 20px var(--accent); }
 
-        .process-step { position: relative; padding-left: 120px; margin-bottom: 150px; opacity: 0; transform: translateY(50px); }
+        .process-step { position: relative; padding-left: 60px; margin-bottom: 80px; opacity: 0; transform: translateX(20px); }
         .step-number { 
-            position: absolute; left: 18px; top: 0; width: 45px; height: 45px; 
+            position: absolute; left: 0; top: 0; width: 40px; height: 40px; 
             background: #000; border: 1px solid rgba(255,255,255,0.1); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-weight: 700; z-index: 5;
+            display: flex; align-items: center; justify-content: center; font-weight: 700; z-index: 5; font-size: 0.8rem;
         }
 
         /* --- CTA --- */
-        .cta-section { padding: 200px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
-        .cta-title { font-family: var(--font-head); font-size: clamp(2rem, 8vw, 6rem); line-height: 1; margin-bottom: 50px; }
-        .btn-large { font-family: var(--font-head); color: #fff; text-decoration: none; font-size: 2rem; transition: 0.5s; -webkit-text-stroke: 1px #fff; color: transparent; }
-        .btn-large:hover { color: var(--accent); -webkit-text-stroke: 1px var(--accent); }
+        .cta-section { padding: 120px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .cta-title { font-family: var(--font-head); font-size: clamp(1.5rem, 7vw, 4.5rem); line-height: 1.2; margin-bottom: 40px; }
+        .btn-large { 
+            font-family: var(--font-head); color: #fff; text-decoration: none; 
+            font-size: clamp(1rem, 4vw, 1.8rem); transition: 0.4s; 
+            border: 1px solid rgba(255,255,255,0.2); padding: 20px 40px; display: inline-block;
+        }
+        .btn-large:hover { background: #fff; color: #000; }
 
-        @media (max-width: 900px) {
-            .container { padding: 0 30px; }
-            .services-grid { grid-template-columns: 1fr; }
-            .hero-stats { flex-direction: column; gap: 40px; }
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            :root { --side-padding: 25px; }
+            .hero-stats { grid-template-columns: 1fr; gap: 35px; }
+            .process-step { padding-left: 50px; }
+            .line-track, .line-active { left: 18px; }
+            .step-number { width: 36px; height: 36px; left: 0; }
         }
     </style>
 </head>
@@ -112,12 +124,7 @@
     <nav>
         <div class="container nav-content">
             <div class="logo">NEXORY</div>
-            <ul class="nav-links">
-                <li><a href="#">Početna</a></li>
-                <li><a href="#">Usluge</a></li>
-                <li><a href="#">Projekti</a></li>
-                <li><a href="#">Kontakt</a></li>
-            </ul>
+            <div style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 2px; opacity: 0.5;">MENU</div>
         </div>
     </nav>
 
@@ -141,7 +148,7 @@
                     <div class="stat-label">Završenih projekata</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">STALAN RAST</div>
+                    <div class="stat-value" style="font-size: clamp(1.2rem, 4vw, 1.8rem); padding-top: 10px;">STALAN RAST</div>
                     <div class="stat-label">Rezultata</div>
                 </div>
             </div>
@@ -184,80 +191,85 @@
 
                 <div class="process-step">
                     <div class="step-number">01</div>
-                    <h3 class="service-title">DOGOVOR</h3>
+                    <h3 class="service-title" style="font-size: 1.1rem;">DOGOVOR</h3>
                 </div>
                 <div class="process-step">
                     <div class="step-number">02</div>
-                    <h3 class="service-title">PLAN</h3>
+                    <h3 class="service-title" style="font-size: 1.1rem;">PLAN</h3>
                 </div>
                 <div class="process-step">
                     <div class="step-number">03</div>
-                    <h3 class="service-title">IZRADA</h3>
+                    <h3 class="service-title" style="font-size: 1.1rem;">IZRADA</h3>
                 </div>
                 <div class="process-step">
                     <div class="step-number">04</div>
-                    <h3 class="service-title">POKRETANJE</h3>
+                    <h3 class="service-title" style="font-size: 1.1rem;">POKRETANJE</h3>
                 </div>
             </div>
         </section>
 
         <section class="cta-section container">
             <h2 class="cta-title">Treba vam sajt ili marketing?</h2>
-            <a href="#" class="btn-large">ZAPOČNI KONTAKT →</a>
+            <a href="#" class="btn-large">KONTAKTIRAJ NAS →</a>
         </section>
     </main>
 
     <script>
-        // 1. Lenis Smooth Scroll
-        const lenis = new Lenis();
+        // Lenis Smooth Scroll - Prilagođen za Touch uređaje
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            touchMultiplier: 1.5 // Brži odziv na mobilnom
+        });
+
         function raf(time) {
             lenis.raf(time);
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
 
-        // 2. GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hero Reveal
+        // Hero Animation
         window.addEventListener('load', () => {
-            gsap.to(".title-line", { y: 0, stagger: 0.15, duration: 1.5, ease: "expo.out" });
-            gsap.to(".hero-subtitle", { opacity: 1, y: 0, duration: 1, delay: 0.8 });
+            gsap.to(".title-line", { y: 0, stagger: 0.1, duration: 1.2, ease: "expo.out" });
+            gsap.to(".hero-subtitle", { opacity: 1, y: 0, duration: 1, delay: 0.6 });
         });
 
-        // Counter Loader (Dvosmerno)
+        // Counters
         const counters = document.querySelectorAll('.count');
         counters.forEach(c => {
             const target = +c.getAttribute('data-target');
             ScrollTrigger.create({
                 trigger: "#stats-trigger",
-                start: "top 85%",
+                start: "top 90%",
                 onEnter: () => gsap.to(c, { innerText: target, duration: 2, snap: {innerText: 1}, ease: "power2.out" }),
                 onLeaveBack: () => gsap.to(c, { innerText: 0, duration: 1 })
             });
         });
 
-        // Blueprint Line Scrub
+        // Line Scrub
         gsap.to("#line-active", {
             height: "100%",
             ease: "none",
             scrollTrigger: {
                 trigger: "#process-trigger",
-                start: "top 60%",
-                end: "bottom 60%",
+                start: "top 70%",
+                end: "bottom 70%",
                 scrub: true
             }
         });
 
-        // Steps Fade (Dvosmerno)
+        // Step Fade
         const steps = document.querySelectorAll('.process-step');
         steps.forEach(step => {
             gsap.to(step, {
-                opacity: 1, y: 0, duration: 1,
+                opacity: 1, x: 0, duration: 0.8,
                 scrollTrigger: {
                     trigger: step,
-                    start: "top 80%",
-                    end: "top 20%",
+                    start: "top 85%",
+                    end: "top 15%",
                     toggleActions: "play reverse play reverse"
                 }
             });
