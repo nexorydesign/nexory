@@ -3,216 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usluge — NEXORY</title>
-    <link rel="stylesheet" href="css/main.css">
+    <title>Usluge — NEXORY Digitalni Inženjering</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Syncopate:wght@700&family=Inter:wght@200;400;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #050505;
+            --accent: #2d70ff;
+            --text: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.5);
+            --border: rgba(255, 255, 255, 0.08);
+            --font-head: 'Syncopate', sans-serif;
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'Space Grotesk', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+        }
+
+        .grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.05; pointer-events: none; z-index: 9999;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+
+        /* --- NAV --- */
+        nav { position: fixed; top: 0; width: 100%; padding: 30px 0; z-index: 1000; mix-blend-mode: difference; }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; letter-spacing: 5px; color: #fff; text-decoration: none; }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; transition: 0.4s; }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--accent); }
+
+        /* --- HERO --- */
+        .page-hero { padding: 200px 0 100px 0; }
+        .page-tag { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; letter-spacing: 8px; margin-bottom: 25px; display: block; }
+        .page-title {
+            font-family: var(--font-head);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1; letter-spacing: -2px; text-transform: uppercase;
+        }
+        .hollow-text { color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
+        .page-subtitle { margin-top: 40px; max-width: 650px; color: var(--text-dim); font-size: 1.2rem; line-height: 1.6; }
+
+        /* --- SERVICES DETAIL --- */
+        .service-detail { padding: 120px 0; border-top: 1px solid var(--border); }
+        .service-detail-grid { display: grid; grid-template-columns: 1fr; gap: 60px; }
+        
+        .service-detail-number { font-family: var(--font-mono); color: var(--accent); font-size: 1.5rem; margin-bottom: 20px; display: block; opacity: 0.5; }
+        .service-detail-title { font-family: var(--font-head); font-size: 2.5rem; margin-bottom: 30px; text-transform: uppercase; }
+        .service-detail-intro { color: #fff; font-size: 1.4rem; line-height: 1.5; max-width: 800px; margin-bottom: 50px; font-weight: 200; }
+
+        .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-bottom: 60px; }
+        .feature-card { padding: 40px; border: 1px solid var(--border); background: rgba(255,255,255,0.01); transition: 0.5s; }
+        .feature-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.03); }
+        .feature-title { font-family: var(--font-head); font-size: 1rem; margin-bottom: 15px; letter-spacing: 2px; }
+        .feature-description { color: var(--text-dim); font-size: 1rem; line-height: 1.6; }
+
+        .deliverables-container { margin-bottom: 60px; }
+        .deliverables-title { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; }
+        .deliverables-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .deliverables-list li { color: var(--text-dim); font-size: 1.1rem; padding-left: 30px; position: relative; }
+        .deliverables-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+
+        .service-pricing { display: flex; align-items: baseline; gap: 20px; padding: 30px; border: 1px solid var(--accent); display: inline-flex; }
+        .pricing-label { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); }
+        .pricing-value { font-family: var(--font-head); font-size: 1.5rem; }
+
+        /* --- CTA --- */
+        .cta-section { padding: 150px 0; border-top: 1px solid var(--border); text-align: center; }
+        .cta-title { font-family: var(--font-head); font-size: 3rem; margin-bottom: 30px; text-transform: uppercase; }
+        .cta-subtitle { color: var(--text-dim); font-size: 1.3rem; max-width: 700px; margin: 0 auto 50px; line-height: 1.6; }
+        
+        .btn-primary {
+            font-family: var(--font-head);
+            font-size: 1.2rem;
+            color: #fff;
+            text-decoration: none;
+            padding: 30px 60px;
+            border: 1px solid var(--accent);
+            display: inline-block;
+            transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .btn-primary:hover {
+            background: var(--accent);
+            box-shadow: 0 0 50px rgba(45, 112, 255, 0.4);
+            transform: translateY(-5px);
+        }
+
+        footer { padding: 80px 0; border-top: 1px solid var(--border); text-align: center; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim); letter-spacing: 2px; }
+
+        @media (max-width: 1024px) {
+            .container { padding: 0 30px; }
+            .features-grid, .deliverables-list { grid-template-columns: 1fr; }
+            .service-detail-title { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav-container">
-    <div class="nav-content">
-        <div class="nav-logo">
-            <a href="index.html" style="text-decoration:none;color:inherit;">
-                <span class="logo-text">NEXORY</span>
+    <div class="grain"></div>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="index.html" class="logo">NEXORY</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Početna</a></li>
+                <li><a href="services.html" class="active">Usluge</a></li>
+                <li><a href="projects.html">Projekti</a></li>
+                <li><a href="about.html">O nama</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="page-hero container">
+            <span class="page-tag">EKOSISTEM</span>
+            <h1 class="page-title">Digitalno oružje<br><span class="hollow-text">za tržišnu dominaciju</span></h1>
+            <p class="page-subtitle">Ne radimo "sajtove" i "objave". Gradimo zatvorene sisteme koji automatski generišu pažnju, poverenje i prodaju.</p>
+        </section>
+
+        <section class="service-detail container" id="web">
+            <div class="service-detail-grid">
+                <div class="service-detail-content">
+                    <span class="service-detail-number">01</span>
+                    <h2 class="service-detail-title">Web Arhitektura</h2>
+                    <p class="service-detail-intro">Izrada high-end web sajtova koji ne služe samo kao vizit karte, već kao vaši najbolji prodavci koji rade 24/7.</p>
+
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <h3 class="feature-title">Custom Development</h3>
+                            <p class="feature-description">Čist kod napisan od nule. Bez sporih šablona koji ograničavaju vaš rast.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3 class="feature-title">Performance First</h3>
+                            <p class="feature-description">Brzina učitavanja ispod 2 sekunde. Jer svaka milisekunde kašnjenja košta prodaje.</p>
+                        </div>
+                    </div>
+
+                    <div class="deliverables-container">
+                        <h3 class="deliverables-title">Inženjerski standardi</h3>
+                        <ul class="deliverables-list">
+                            <li>Potpuna mobilna responzivnost</li>
+                            <li>Integracija sa CRM i analitici</li>
+                            <li>Napredni bezbednosni protokoli</li>
+                            <li>Tehnički SEO optimizacija</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-pricing">
+                        <span class="pricing-label">Investicija</span>
+                        <span class="pricing-value">Po projektu</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-detail container" id="brand">
+            <div class="service-detail-grid">
+                <div class="service-detail-content">
+                    <span class="service-detail-number">02</span>
+                    <h2 class="service-detail-title">Brend Sistemi</h2>
+                    <p class="service-detail-intro">Pretvaramo vaše društvene mreže u kredibilan izvor informacija koji gradi autoritet u vašoj niši.</p>
+
+                    <div class="deliverables-container">
+                        <h3 class="deliverables-title">Faza egzekucije</h3>
+                        <ul class="deliverables-list">
+                            <li>High-end vizuelni identitet</li>
+                            <li>Strategija sadržaja na konverziju</li>
+                            <li>Copywriting koji rešava probleme</li>
+                            <li>Kompletno upravljanje mrežama</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-pricing">
+                        <span class="pricing-label">Investicija</span>
+                        <span class="pricing-value">Mesečni menadžment</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-detail container" id="ads">
+            <div class="service-detail-grid">
+                <div class="service-detail-content">
+                    <span class="service-detail-number">03</span>
+                    <h2 class="service-detail-title">Meta Ads (Skaliranje)</h2>
+                    <p class="service-detail-intro">Precizno targetiranje publike koja je spremna da plati vaše usluge. Fokus je na ROAS-u (povratu novca).</p>
+
+                    <div class="deliverables-container">
+                        <h3 class="deliverables-title">Sistemi rasta</h3>
+                        <ul class="deliverables-list">
+                            <li>Postavljanje prodajnih levaka</li>
+                            <li>A/B testiranje kreativa</li>
+                            <li>Retargeting toplih kupaca</li>
+                            <li>Nedeljni profitni izveštaji</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-pricing">
+                        <span class="pricing-label">Investicija</span>
+                        <span class="pricing-value">Retainer + Ad Spend</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-detail container" id="automation">
+            <div class="service-detail-grid">
+                <div class="service-detail-content">
+                    <span class="service-detail-number">04</span>
+                    <h2 class="service-detail-title">Digitalna Automatizacija</h2>
+                    <p class="service-detail-intro">Eliminišite manuelni rad. Automatizujemo odgovore, zakazivanja i procesuiranje upita.</p>
+
+                    <div class="deliverables-container">
+                        <h3 class="deliverables-title">AI Integracije</h3>
+                        <ul class="deliverables-list">
+                            <li>Pametni ChatBot sistemi</li>
+                            <li>Automatsko slanje ponuda</li>
+                            <li>Sinhronizacija baza klijenata</li>
+                            <li>Sistemi za zakazivanje termina</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-pricing">
+                        <span class="pricing-label">Investicija</span>
+                        <span class="pricing-value">Po kompleksnosti</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section container">
+            <h2 class="cta-title">Analiza vašeg stanja?</h2>
+            <p class="cta-subtitle">Javite se za besplatne konsultacije gde ćemo skenirati vaš digitalni nastup i otkriti gde gubite novac.</p>
+            <a href="contact.html" class="btn-primary">
+                <span class="btn-text">Započni Analizu</span>
             </a>
-            <span class="logo-pulse"></span>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 NEXORY. Sva prava zadržana.</p>
         </div>
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Početna</a></li>
-            <li><a href="services.html" class="nav-link active">Usluge</a></li>
-            <li><a href="projects.html" class="nav-link">Projekti</a></li>
-            <li><a href="about.html" class="nav-link">O nama</a></li>
-            <li><a href="contact.html" class="nav-link nav-link-cta">Kontakt</a></li>
-        </ul>
-    </div>
-</nav>
+    </footer>
 
-<!-- HERO -->
-<section class="page-hero">
-    <div class="hero-grid-bg"></div>
-    <div class="container">
-        <div class="page-hero-content">
-            <span class="page-tag">USLUGE</span>
-            <h1 class="page-title">Sve usluge<br>na jednom mestu</h1>
-            <p class="page-subtitle">
-                Radimo kompletno online prisustvo – od sajta do reklama i automatizacije.
-            </p>
-        </div>
-    </div>
-</section>
+    <script>
+        const lenis = new Lenis();
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
 
-<!-- 01 WEB -->
-<section class="service-detail" id="web">
-    <div class="container">
-        <div class="service-detail-grid">
-            <div class="service-detail-content">
-                <div class="service-detail-number">01</div>
-                <h2 class="service-detail-title">Web Sistemi</h2>
-                <p class="service-detail-intro">
-                    Izrada modernih web sajtova koji jasno predstavljaju vaš biznis
-                    i pretvaraju posetioce u klijente.
-                </p>
+        gsap.registerPlugin(ScrollTrigger);
 
-                <div class="service-features">
-                    <div class="feature-item">
-                        <div class="feature-content">
-                            <h3 class="feature-title">Izrada sajta od nule</h3>
-                            <p class="feature-description">
-                                Dizajn i izrada sajta prema vašim potrebama, bez gotovih šablona.
-                            </p>
-                        </div>
-                    </div>
+        // Animations
+        gsap.utils.toArray('.service-detail').forEach(section => {
+            gsap.from(section, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                }
+            });
+        });
 
-                    <div class="feature-item">
-                        <div class="feature-content">
-                            <h3 class="feature-title">Mobilna i desktop optimizacija</h3>
-                            <p class="feature-description">
-                                Sajt pravilno radi na telefonu, tabletu i računaru.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feature-content">
-                            <h3 class="feature-title">Kontakt i upiti</h3>
-                            <p class="feature-description">
-                                Kontakt forme i jasni pozivi na akciju.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feature-content">
-                            <h3 class="feature-title">Osnovni SEO</h3>
-                            <p class="feature-description">
-                                Tehnička optimizacija za pretragu i brzinu sajta.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="service-deliverables">
-                    <h3 class="deliverables-title">Šta dobijate</h3>
-                    <ul class="deliverables-list">
-                        <li>Kompletno izrađen web sajt</li>
-                        <li>CMS za samostalno upravljanje</li>
-                        <li>Kontakt forme i email povezivanje</li>
-                        <li>Osnovnu SEO optimizaciju</li>
-                        <li>Podršku nakon puštanja sajta</li>
-                    </ul>
-                </div>
-
-                <div class="service-pricing">
-                    <div class="pricing-label">Cena</div>
-                    <div class="pricing-value">Po dogovoru</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 02 BREND -->
-<section class="service-detail" id="brand">
-    <div class="container">
-        <div class="service-detail-grid">
-            <div class="service-detail-content">
-                <div class="service-detail-number">02</div>
-                <h2 class="service-detail-title">Brend Sistemi (Instagram & Facebook)</h2>
-                <p class="service-detail-intro">
-                    Vođenje društvenih mreža za firme koje nemaju vremena da se time bave.
-                </p>
-
-                <ul class="deliverables-list">
-                    <li>Dizajn postova i storija</li>
-                    <li>Plan i raspored objava</li>
-                    <li>Vođenje profila u vaše ime</li>
-                    <li>Odgovaranje na poruke i komentare</li>
-                    <li>Profesionalan izgled profila</li>
-                </ul>
-
-                <div class="service-pricing">
-                    <div class="pricing-label">Cena</div>
-                    <div class="pricing-value">Mesečno – po dogovoru</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 03 META ADS -->
-<section class="service-detail" id="ads">
-    <div class="container">
-        <div class="service-detail-grid">
-            <div class="service-detail-content">
-                <div class="service-detail-number">03</div>
-                <h2 class="service-detail-title">Meta Ads (Facebook & Instagram reklame)</h2>
-                <p class="service-detail-intro">
-                    Plaćene reklame za povećanje prodaje, upita i vidljivosti.
-                </p>
-
-                <ul class="deliverables-list">
-                    <li>Kreiranje reklamnih kampanja</li>
-                    <li>Postavljanje ciljne publike</li>
-                    <li>Dizajn reklamnih vizuala</li>
-                    <li>Praćenje rezultata i optimizacija</li>
-                    <li>Jasni izveštaji o učinku</li>
-                </ul>
-
-                <div class="service-pricing">
-                    <div class="pricing-label">Cena</div>
-                    <div class="pricing-value">Mesečno – po dogovoru</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 04 BOT -->
-<section class="service-detail" id="automation">
-    <div class="container">
-        <div class="service-detail-grid">
-            <div class="service-detail-content">
-                <div class="service-detail-number">04</div>
-                <h2 class="service-detail-title">Automatski odgovori i Chat Botovi</h2>
-                <p class="service-detail-intro">
-                    Automatizovani odgovori za Instagram i Facebook koji rade 24/7.
-                </p>
-
-                <ul class="deliverables-list">
-                    <li>Automatski odgovori na poruke</li>
-                    <li>Osnovni chat bot po dogovoru</li>
-                    <li>Filtriranje i prosleđivanje upita</li>
-                    <li>Povezivanje sa emailom ili WhatsAppom</li>
-                </ul>
-
-                <div class="service-pricing">
-                    <div class="pricing-label">Cena</div>
-                    <div class="pricing-value">Po projektu</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-    <div class="container">
-        <div class="cta-content">
-            <h2 class="cta-title">Ne znate šta vam tačno treba?</h2>
-            <p class="cta-subtitle">
-                Javite se, objasnite ukratko situaciju i mi ćemo vam predložiti rešenje.
-            </p>
-            <a href="contact.html" class="btn-primary btn-large">
-                <span class="btn-text">Kontakt</span>
-                <span class="btn-arrow">→</span>
-            </a>
-        </div>
-    </div>
-</section>
-
-<script src="js/main.js"></script>
+        gsap.from(".page-title", { y: 100, opacity: 0, duration: 1.5, ease: "expo.out" });
+        gsap.from(".page-subtitle", { y: 30, opacity: 0, duration: 1, delay: 0.5 });
+    </script>
 </body>
 </html>
