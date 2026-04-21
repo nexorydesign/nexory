@@ -1,374 +1,254 @@
-@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
 <html lang="sr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact — NEXORY Elite Digital Engineering</title>
     <title>Kontakt — NEXORY Elite Digital Engineering</title>
-    <link rel="stylesheet" href="css/main.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-@@ -20,11 +20,11 @@
-                <span class="logo-pulse"></span>
-            </div>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@700&family=Inter:wght@200;400;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #050505;
+            --accent: #2d70ff;
+            --text: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.5);
+            --border: rgba(255, 255, 255, 0.08);
+            --font-head: 'Syncopate', sans-serif;
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'Space Grotesk', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { background: var(--bg); color: var(--text); font-family: var(--font-main); overflow-x: hidden; }
+        
+        .grain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.05; pointer-events: none; z-index: 9999; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+
+        /* --- NAV --- */
+        nav { position: fixed; top: 0; width: 100%; padding: 30px 0; z-index: 1000; mix-blend-mode: difference; }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; letter-spacing: 5px; color: #fff; text-decoration: none; }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; transition: 0.4s; }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--accent); }
+
+        /* --- HERO --- */
+        .page-hero { padding: 180px 0 60px 0; }
+        .section-tag { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; letter-spacing: 8px; margin-bottom: 25px; display: block; }
+        .page-title { font-family: var(--font-head); font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -2px; text-transform: uppercase; }
+        .hollow { color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
+        .page-subtitle { margin-top: 35px; max-width: 700px; color: var(--text-dim); font-size: clamp(1.1rem, 2vw, 1.3rem); line-height: 1.6; }
+
+        /* --- CONTACT GRID --- */
+        .contact-main-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(40px, 8vw, 100px); margin-bottom: 120px; }
+        
+        /* FORM AREA */
+        .form-section { background: rgba(255,255,255,0.015); border: 1px solid var(--border); padding: clamp(25px, 5vw, 60px); }
+        .form-header { margin-bottom: 50px; }
+        .form-title { font-family: var(--font-head); font-size: 1.4rem; margin-bottom: 15px; }
+        .form-subtitle { color: var(--text-dim); font-size: 0.95rem; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+        .form-group { display: flex; flex-direction: column; gap: 12px; }
+        .form-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
+        .form-control { background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 20px; color: #fff; font-family: var(--font-main); transition: 0.4s; font-size: 1rem; border-radius: 0; }
+        .form-control:focus { outline: none; border-color: var(--accent); background: rgba(45, 112, 255, 0.05); }
+
+        .btn-submit { width: 100%; padding: 25px; background: transparent; border: 1px solid var(--accent); color: #fff; font-family: var(--font-head); font-size: 1rem; cursor: pointer; transition: 0.5s; text-transform: uppercase; letter-spacing: 3px; display: flex; justify-content: center; align-items: center; gap: 15px; }
+        .btn-submit:hover { background: var(--accent); box-shadow: 0 0 40px rgba(45, 112, 255, 0.4); transform: translateY(-3px); }
+        .form-note { color: var(--text-dim); font-size: 0.75rem; margin-top: 20px; text-align: center; }
+
+        /* INFO AREA */
+        .info-panel { display: flex; flex-direction: column; gap: 60px; }
+        .info-block h3 { font-family: var(--font-head); font-size: 0.9rem; margin-bottom: 30px; letter-spacing: 3px; text-transform: uppercase; }
+        
+        .contact-item { display: flex; gap: 20px; margin-bottom: 35px; }
+        .contact-label { font-family: var(--font-mono); color: var(--accent); font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; display: block; }
+        .contact-value { color: #fff; text-decoration: none; font-size: 1.1rem; line-height: 1.6; display: block; transition: 0.3s; }
+        .contact-value:hover { color: var(--accent); }
+
+        /* ALT GRID */
+        .alt-section-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 120px; }
+        .alt-card { padding: 40px; border: 1px solid var(--border); background: rgba(255,255,255,0.01); transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1); text-align: center; }
+        .alt-card:hover { border-color: var(--accent); transform: translateY(-10px); background: rgba(255,255,255,0.03); }
+        .alt-card h3 { font-family: var(--font-head); font-size: 0.85rem; margin-bottom: 20px; letter-spacing: 2px; }
+        .alt-card p { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 30px; line-height: 1.6; }
+        .alt-btn { color: var(--accent); text-decoration: none; font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid transparent; transition: 0.3s; }
+        .alt-btn:hover { border-color: var(--accent); }
+
+        /* FOOTER */
+        footer { padding: 80px 0; border-top: 1px solid var(--border); text-align: center; }
+        .footer-logo { font-family: var(--font-head); font-size: 1.6rem; letter-spacing: 10px; color: #fff; text-decoration: none; display: block; margin-bottom: 25px; }
+        .footer-copy { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); letter-spacing: 4px; text-transform: uppercase; }
+
+        /* --- PHONE FRIENDLY (MOBILE) --- */
+        @media (max-width: 1100px) {
+            .contact-main-grid, .alt-section-grid { grid-template-columns: 1fr; }
+            .container { padding: 0 30px; }
+            .page-hero { padding: 140px 0 40px 0; }
+        }
+        @media (max-width: 850px) {
+            .nav-links { display: none; }
+        }
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .alt-card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grain"></div>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="index-sr.html" class="logo">NEXORY</a>
             <ul class="nav-links">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="services.html" class="nav-link">Services</a></li>
-                <li><a href="projects.html" class="nav-link">Projects</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link nav-link-cta active">Contact</a></li>
-                <li><a href="index.html" class="nav-link">Početna</a></li>
-                <li><a href="services.html" class="nav-link">Usluge</a></li>
-                <li><a href="projects.html" class="nav-link">Projekti</a></li>
-                <li><a href="about.html" class="nav-link">O nama</a></li>
-                <li><a href="contact.html" class="nav-link nav-link-cta active">Kontakt</a></li>
+                <li><a href="index-sr.html">Početna</a></li>
+                <li><a href="services.html">Usluge</a></li>
+                <li><a href="projects.html">Projekti</a></li>
+                <li><a href="about.html">O nama</a></li>
+                <li><a href="contact.html" class="active">Kontakt</a></li>
             </ul>
-            <div class="nav-toggle">
-                <span></span>
-@@ -39,9 +39,9 @@
-        <div class="hero-grid-bg"></div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="page-hero">
+            <span class="section-tag" id="a-tag">KONTAKT</span>
+            <h1 class="page-title" id="a-title">Započnimo vaš <span class="hollow">projekat</span></h1>
+            <p class="page-subtitle" id="a-sub">Tu smo da pronađemo rešenje za vas. Javite nam se putem forme ili direktno, a mi ćemo vam se javiti sa konkretnim odgovorima.</p>
+        </section>
+
+        <section class="contact-main-grid">
+            <div class="form-section" id="a-form">
+                <div class="form-header">
+                    <h2 class="form-title">Pošaljite poruku</h2>
+                    <p class="form-subtitle">Popunite formular ispod. Odgovaramo brzo i jasno.</p>
+                </div>
+
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Ime Prezime *</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Ime Firme (opcionalno)</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Email *</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Telefon *</label>
+                            <input type="tel" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <label class="form-label">Odaberi uslugu *</label>
+                        <select class="form-control" required>
+                            <option value="">Izaberite uslugu</option>
+                            <option value="web">Izrada Web Sajta</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="automation">Ai Automatizacija</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Vaši ciljevi (opcionalno)</label>
+                        <textarea class="form-control" rows="6" placeholder="Recite nam nešto više o vašoj viziji..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit" style="margin-top: 30px;">
+                        POŠALJI <span>→</span>
+                    </button>
+                    <p class="form-note">* Obavezna polja. Poštujemo vašu privatnost.</p>
+                </form>
+            </div>
+
+            <div class="info-panel" id="a-info">
+                <div class="info-block">
+                    <h3>Direktan kontakt</h3>
+                    <div class="contact-item">
+                        <div>
+                            <span class="contact-label">Email</span>
+                            <a href="mailto:team.nexory@gmail.com" class="contact-value">team.nexory@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div>
+                            <span class="contact-label">Telefon</span>
+                            <a href="tel:+381692009519" class="contact-value">+381 69 2009 519</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div>
+                            <span class="contact-label">Dostupnost</span>
+                            <span class="contact-value">Uvek otvoreni — Srbija</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="alt-section-grid">
+            <div class="alt-card">
+                <h3>Zakaži razgovor</h3>
+                <p>Želite prvo kratak dogovor? Izaberite termin koji vam odgovara i čujemo se.</p>
+                <a href="#" class="alt-btn">Pogledaj termine →</a>
+            </div>
+            <div class="alt-card">
+                <h3>Saradnja</h3>
+                <p>Imate ideju za saradnju ili želite da nas preporučite klijentu? Pišite nam.</p>
+                <a href="mailto:team.nexory@gmail.com" class="alt-btn">KONTAKTIRAJ NAS →</a>
+            </div>
+            <div class="alt-card">
+                <h3>Posao</h3>
+                <p>Ako si dobar u onome što radiš i voliš jasne projekte — javi se.</p>
+                <a href="mailto:team.nexory@gmail.com" class="alt-btn">POŠALJI PORUKU →</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
         <div class="container">
-            <div class="page-hero-content">
-                <span class="page-tag">GET IN TOUCH</span>
-                <h1 class="page-title">Let's Engineer<br>Your Dominance</h1>
-                <p class="page-subtitle">Premium clients only. Limited availability.<br>Tell us about your vision, and we'll architect your path to market supremacy.</p>
-                <span class="page-tag">KONTAKT</span>
-                <h1 class="page-title">Treba vam sajt<br>ili marketing?</h1>
-                <p class="page-subtitle">Tu smo da pomognemo — brzo i konkretno.<br>Pišite nam direktno ili pošaljite poruku kroz formu i javljamo se čim stignemo.</p>
-            </div>
+            <a href="index-sr.html" class="footer-logo">NEXORY</a>
+            <p class="footer-copy">© 2026 NEXORY. INŽENJERING DIGITALNE DOMINACIJE.</p>
         </div>
-    </section>
-@@ -53,21 +53,16 @@ <h1 class="page-title">Let's Engineer<br>Your Dominance</h1>
-                <!-- Contact Form -->
-                <div class="contact-form-container">
-                    <div class="form-header">
-                        <h2 class="form-title">Initiate Project</h2>
-                        <p class="form-subtitle">Fill out the form below. We respond to qualified inquiries within 24 hours.</p>
-                        <h2 class="form-title">Pošaljite poruku</h2>
-                        <p class="form-subtitle">Popunite formular ispod. Odgovaramo brzo i jasno.</p>
-                    </div>
+    </footer>
 
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="firstName" class="form-label">First Name *</label>
-                                <label for="firstName" class="form-label">Ime *</label>
-                                <input type="text" id="firstName" name="firstName" class="form-input" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="lastName" class="form-label">Last Name *</label>
-                                <input type="text" id="lastName" name="lastName" class="form-input" required>
-                            </div>
-                        </div>
+    <script>
+        const lenis = new Lenis();
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
 
-                        <div class="form-row">
-@@ -77,87 +72,50 @@ <h2 class="form-title">Initiate Project</h2>
-                            </div>
+        gsap.registerPlugin(ScrollTrigger);
 
-                            <div class="form-group">
-                                <label for="phone" class="form-label">Phone</label>
-                                <label for="phone" class="form-label">Telefon</label>
-                                <input type="tel" id="phone" name="phone" class="form-input">
-                            </div>
-                        </div>
+        window.addEventListener('load', () => {
+            const tl = gsap.timeline();
+            tl.from("#a-tag", { y: 20, opacity: 0, duration: 0.8 })
+              .from("#a-title", { y: 40, opacity: 0, duration: 1, ease: "expo.out" }, "-=0.4")
+              .from("#a-sub", { y: 20, opacity: 0, duration: 1 }, "-=0.6")
+              .from("#a-form", { x: -30, opacity: 0, duration: 1.2, ease: "power4.out" }, "-=0.8")
+              .from("#a-info", { x: 30, opacity: 0, duration: 1.2, ease: "power4.out" }, "-=1.2");
 
-                        <div class="form-group">
-                            <label for="company" class="form-label">Company *</label>
-                            <input type="text" id="company" name="company" class="form-input" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="website" class="form-label">Current Website</label>
-                            <input type="url" id="website" name="website" class="form-input" placeholder="https://">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="service" class="form-label">Service Interest *</label>
-                            <label for="service" class="form-label">Interesovanje *</label>
-                            <select id="service" name="service" class="form-select" required>
-                                <option value="">Select a service</option>
-                                <option value="web">Web Architecture</option>
-                                <option value="brand">Brand Systems</option>
-                                <option value="automation">Automation Engineering</option>
-                                <option value="systems">Systems Integration</option>
-                                <option value="multiple">Multiple Services</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="budget" class="form-label">Investment Range *</label>
-                            <select id="budget" name="budget" class="form-select" required>
-                                <option value="">Select budget range</option>
-                                <option value="25-50">€25,000 - €50,000</option>
-                                <option value="50-100">€50,000 - €100,000</option>
-                                <option value="100-200">€100,000 - €200,000</option>
-                                <option value="200+">€200,000+</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="timeline" class="form-label">Project Timeline *</label>
-                            <select id="timeline" name="timeline" class="form-select" required>
-                                <option value="">Select timeline</option>
-                                <option value="immediate">Immediate (Start within 2 weeks)</option>
-                                <option value="1-2-months">1-2 Months</option>
-                                <option value="3-6-months">3-6 Months</option>
-                                <option value="flexible">Flexible / Planning Phase</option>
-                                <option value="">Izaberite uslugu</option>
-                                <option value="web">Izrada sajta</option>
-                                <option value="brand">Društvene mreže</option>
-                                <option value="automation">Automatizacija / odgovori</option>
-                                <option value="systems">Meta Ads kampanje</option>
-                                <option value="multiple">Više usluga</option>
-                                <option value="other">Ostalo</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message" class="form-label">Project Details *</label>
-                            <textarea id="message" name="message" class="form-textarea" rows="6" placeholder="Tell us about your vision, challenges, and goals..." required></textarea>
-                        </div>
-                        
-                        <div class="form-group form-checkbox-group">
-                            <label class="form-checkbox">
-                                <input type="checkbox" name="nda" id="nda">
-                                <span class="checkbox-label">I require an NDA before discussing details</span>
-                                <span class="checkbox-label">Želim da prvo potpišemo NDA (ugovor o poverljivosti)</span>
-                            </label>
-                        </div>
-
-                        <button type="submit" class="btn-primary btn-large btn-full-width">
-                            <span class="btn-text">Submit Application</span>
-                            <span class="btn-text">Pošalji</span>
-                            <span class="btn-arrow">→</span>
-                        </button>
-
-                        <p class="form-note">* Required fields. We respect your privacy and never share your information.</p>
-                        <p class="form-note">* Obavezna polja. Poštujemo vašu privatnost i ne delimo vaše podatke.</p>
-                    </form>
-
-                    <div class="form-success" id="formSuccess" style="display: none;">
-                        <div class="success-icon">✓</div>
-                        <h3 class="success-title">Application Received</h3>
-                        <p class="success-message">Thank you for your interest in NEXORY. Our team will review your inquiry and respond within 24 hours.</p>
-                        <h3 class="success-title">Poruka je poslata</h3>
-                        <p class="success-message">Hvala! Javljamo se uskoro sa jasnim sledećim koracima.</p>
-                    </div>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="contact-info-container">
-                    <div class="contact-info-card">
-                        <h3 class="info-card-title">Direct Contact</h3>
-                        <h3 class="info-card-title">Direktan kontakt</h3>
-                        <div class="info-items">
-                            <div class="info-item">
-                                <div class="info-icon">
-@@ -167,7 +125,8 @@ <h3 class="info-card-title">Direct Contact</h3>
-                                </div>
-                                <div class="info-content">
-                                    <div class="info-label">Email</div>
-                                    <a href="mailto:elite@nexory.agency" class="info-value">elite@nexory.agency</a>
-                                    <a href="mailto:team.nexory@gmail.com" class="info-value">team.nexory@gmail.com</a><br>
-                                    <a href="mailto:nexory.marketing@gmail.com" class="info-value">nexory.marketing@gmail.com</a>
-                                </div>
-                            </div>
-
-@@ -178,8 +137,9 @@ <h3 class="info-card-title">Direct Contact</h3>
-                                    </svg>
-                                </div>
-                                <div class="info-content">
-                                    <div class="info-label">Phone</div>
-                                    <a href="tel:+33123456789" class="info-value">+33 1 23 45 67 89</a>
-                                    <div class="info-label">Telefon</div>
-                                    <a href="tel:+381692009519" class="info-value">+381 69 2009 519</a><br>
-                                    <a href="tel:+381665661232" class="info-value">+381 66 5661 232</a>
-                                </div>
-                            </div>
-
-@@ -191,8 +151,8 @@ <h3 class="info-card-title">Direct Contact</h3>
-                                    </svg>
-                                </div>
-                                <div class="info-content">
-                                    <div class="info-label">Office Hours</div>
-                                    <div class="info-value">Mon-Fri: 9:00 - 18:00 CET</div>
-                                    <div class="info-label">Dostupnost</div>
-                                    <div class="info-value">Uvek otvoreni</div>
-                                </div>
-                            </div>
-
-@@ -203,54 +163,54 @@ <h3 class="info-card-title">Direct Contact</h3>
-                                    </svg>
-                                </div>
-                                <div class="info-content">
-                                    <div class="info-label">Location</div>
-                                    <div class="info-value">Paris, France</div>
-                                    <div class="info-label">Lokacija</div>
-                                    <div class="info-value">Srbija</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contact-info-card">
-                        <h3 class="info-card-title">What to Expect</h3>
-                        <h3 class="info-card-title">Šta možete da očekujete</h3>
-                        <div class="expect-items">
-                            <div class="expect-item">
-                                <div class="expect-number">01</div>
-                                <div class="expect-content">
-                                    <h4 class="expect-title">Application Review</h4>
-                                    <p class="expect-description">We review your inquiry within 24 hours and assess project fit.</p>
-                                    <h4 class="expect-title">Brz odgovor</h4>
-                                    <p class="expect-description">Pročitamo poruku i javljamo se sa prvim konkretnim korakom.</p>
-                                </div>
-                            </div>
-
-                            <div class="expect-item">
-                                <div class="expect-number">02</div>
-                                <div class="expect-content">
-                                    <h4 class="expect-title">Discovery Call</h4>
-                                    <p class="expect-description">45-minute strategic consultation to understand your vision and challenges.</p>
-                                    <h4 class="expect-title">Kratak dogovor</h4>
-                                    <p class="expect-description">Ako ima smisla, dogovorimo brz poziv ili poruke da uskladimo očekivanja.</p>
-                                </div>
-                            </div>
-
-                            <div class="expect-item">
-                                <div class="expect-number">03</div>
-                                <div class="expect-content">
-                                    <h4 class="expect-title">Proposal Delivery</h4>
-                                    <p class="expect-description">Custom strategy, timeline, and investment proposal within 5-7 days.</p>
-                                    <h4 class="expect-title">Predlog rešenja</h4>
-                                    <p class="expect-description">Dobićete jasan predlog šta radimo, kako radimo i koji je sledeći korak.</p>
-                                </div>
-                            </div>
-
-                            <div class="expect-item">
-                                <div class="expect-number">04</div>
-                                <div class="expect-content">
-                                    <h4 class="expect-title">Project Initiation</h4>
-                                    <p class="expect-description">Contract finalization and immediate project kickoff.</p>
-                                    <h4 class="expect-title">Krećemo</h4>
-                                    <p class="expect-description">Kada se usaglasimo, krećemo odmah i držimo vas u toku.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contact-info-card">
-                        <h3 class="info-card-title">Investment Guidelines</h3>
-                        <p class="guidelines-text">NEXORY works exclusively with premium clients on projects starting at €25,000. Our average project value ranges from €45,000 to €180,000.</p>
-                        <p class="guidelines-text">We maintain limited availability to ensure every project receives surgical attention and elite execution.</p>
-                        <h3 class="info-card-title">Samo jasno i direktno</h3>
-                        <p class="guidelines-text">Napišite nam šta vam treba i gde želite da stignete. Ako možemo da pomognemo, dobićete konkretan plan.</p>
-                        <p class="guidelines-text">Bez komplikovanja. Bez prazne priče. Samo rezultat i uredna saradnja.</p>
-                    </div>
-                </div>
-            </div>
-@@ -268,9 +228,9 @@ <h3 class="info-card-title">Investment Guidelines</h3>
-                            <path d="M7 2V22M17 2V22M2 7H22M2 12H7M17 12H22M2 17H22" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3 class="alt-title">Schedule Discovery Call</h3>
-                    <p class="alt-description">Prefer to talk first? Book a 45-minute strategic consultation directly with our team.</p>
-                    <a href="#" class="alt-link">View Availability →</a>
-                    <h3 class="alt-title">Zakaži razgovor</h3>
-                    <p class="alt-description">Želite prvo kratak dogovor? Izaberite termin koji vam odgovara i čujemo se.</p>
-                    <a href="#" class="alt-link">Pogledaj termine →</a>
-                </div>
-
-                <div class="alt-contact-card">
-@@ -280,9 +240,9 @@ <h3 class="alt-title">Schedule Discovery Call</h3>
-                            <path d="M2 17L12 22L22 17M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3 class="alt-title">Partnership Inquiries</h3>
-                    <p class="alt-description">Interested in strategic partnerships or referring clients? Let's explore collaboration.</p>
-                    <a href="mailto:partnerships@nexory.agency" class="alt-link">partnerships@nexory.agency →</a>
-                    <h3 class="alt-title">Saradnja i preporuke</h3>
-                    <p class="alt-description">Imate ideju za saradnju ili želite da nas preporučite klijentu? Pišite nam direktno.</p>
-                    <a href="mailto:nexory.marketing@gmail.com" class="alt-link">nexory.marketing@gmail.com →</a>
-                </div>
-
-                <div class="alt-contact-card">
-@@ -292,9 +252,9 @@ <h3 class="alt-title">Partnership Inquiries</h3>
-                            <path d="M12 8V12L15 15" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3 class="alt-title">Career Opportunities</h3>
-                    <p class="alt-description">Elite talent only. If you're exceptional at what you do, we want to hear from you.</p>
-                    <a href="mailto:careers@nexory.agency" class="alt-link">careers@nexory.agency →</a>
-                    <h3 class="alt-title">Posao i angažman</h3>
-                    <p class="alt-description">Ako si dobar u onome što radiš i voliš jasne projekte — pošalji nam poruku.</p>
-                    <a href="mailto:team.nexory@gmail.com" class="alt-link">team.nexory@gmail.com →</a>
-                </div>
-            </div>
-        </div>
-@@ -316,42 +276,44 @@ <h3 class="alt-title">Career Opportunities</h3>
-
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4 class="footer-title">Navigation</h4>
-                        <h4 class="footer-title">Navigacija</h4>
-                        <ul class="footer-list">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="projects.html">Projects</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="index.html">Početna</a></li>
-                            <li><a href="services.html">Usluge</a></li>
-                            <li><a href="projects.html">Projekti</a></li>
-                            <li><a href="about.html">O nama</a></li>
-                            <li><a href="contact.html">Kontakt</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-column">
-                        <h4 class="footer-title">Services</h4>
-                        <h4 class="footer-title">Usluge</h4>
-                        <ul class="footer-list">
-                            <li><a href="services.html#web">Web Architecture</a></li>
-                            <li><a href="services.html#brand">Brand Systems</a></li>
-                            <li><a href="services.html#automation">Automation</a></li>
-                            <li><a href="services.html#systems">Systems Integration</a></li>
-                            <li><a href="services.html#web">Izrada sajta</a></li>
-                            <li><a href="services.html#brand">Društvene mreže</a></li>
-                            <li><a href="services.html#automation">Automatizacija</a></li>
-                            <li><a href="services.html#systems">Meta Ads</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-column">
-                        <h4 class="footer-title">Contact</h4>
-                        <h4 class="footer-title">Kontakt</h4>
-                        <ul class="footer-list">
-                            <li><a href="mailto:elite@nexory.agency">elite@nexory.agency</a></li>
-                            <li><a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
-                            <li>Paris, France</li>
-                            <li><a href="mailto:team.nexory@gmail.com">team.nexory@gmail.com</a></li>
-                            <li><a href="mailto:nexory.marketing@gmail.com">nexory.marketing@gmail.com</a></li>
-                            <li><a href="tel:+381692009519">+381 69 2009 519</a></li>
-                            <li><a href="tel:+381665661232">+381 66 5661 232</a></li>
-                            <li>Srbija</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p class="footer-copyright">© 2026 NEXORY. All rights reserved.</p>
-                <p class="footer-copyright">© 2026 NEXORY. Sva prava zadržana.</p>
-                <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Politika privatnosti</a>
-                    <a href="#">Uslovi korišćenja</a>
-                </div>
-            </div>
-        </div>
+            gsap.from(".alt-card", {
+                scrollTrigger: { trigger: ".alt-section-grid", start: "top 85%" },
+                y: 50, opacity: 0, stagger: 0.2, duration: 1, ease: "power3.out"
+            });
+        });
+    </script>
+</body>
+</html>
