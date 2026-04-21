@@ -2,8 +2,8 @@
 <html lang="sr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NEXORY — Profesionalna Digitalna Rešenja</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXORY — Sistem koji dovodi klijente</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Syncopate:wght@700&family=Inter:wght@200;400;700&display=swap" rel="stylesheet">
@@ -14,14 +14,13 @@
 
     <style>
         :root {
-            --bg: #000000;
+            --bg: #050505;
             --accent: #2d70ff;
             --text: #ffffff;
-            --text-dim: rgba(255, 255, 255, 0.4);
+            --text-dim: rgba(255, 255, 255, 0.5);
             --font-head: 'Syncopate', sans-serif;
             --font-main: 'Inter', sans-serif;
             --font-mono: 'Space Grotesk', sans-serif;
-            --side-padding: 6vw;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -31,7 +30,6 @@
             color: var(--text);
             font-family: var(--font-main);
             overflow-x: hidden;
-            width: 100%;
         }
 
         .grain {
@@ -40,80 +38,110 @@
             opacity: 0.05; pointer-events: none; z-index: 9999;
         }
 
-        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 var(--side-padding); }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
 
         /* --- NAV --- */
-        nav { position: fixed; top: 0; width: 100%; padding: 25px 0; z-index: 1000; mix-blend-mode: difference; }
+        nav { position: fixed; top: 0; width: 100%; padding: 20px 0; z-index: 1000; mix-blend-mode: difference; }
         .nav-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-head); font-weight: 700; font-size: clamp(0.9rem, 4vw, 1.1rem); letter-spacing: 4px; }
+        .logo { font-family: var(--font-head); font-weight: 700; font-size: 1rem; letter-spacing: 5px; color: #fff; }
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; transition: 0.4s; }
         
         /* --- HERO --- */
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 100px; padding-bottom: 50px; }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 120px; padding-bottom: 60px; }
         .hero-title {
             font-family: var(--font-head);
-            font-size: clamp(1.8rem, 8vw, 6rem);
-            line-height: 1.1; letter-spacing: -1px; text-transform: uppercase;
-            width: 100%;
+            font-size: clamp(2.2rem, 8vw, 6.5rem);
+            line-height: 1.1; letter-spacing: -2px; text-transform: uppercase;
         }
-        .title-mask { overflow: hidden; display: block; }
-        .title-line { display: block; transform: translateY(110%); }
-        .title-accent { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); }
-
-        .hero-subtitle { 
-            margin-top: 30px; max-width: 550px; color: var(--text-dim); 
-            font-size: clamp(0.95rem, 3vw, 1.15rem); line-height: 1.6; 
-            opacity: 0; transform: translateY(20px); 
+        
+        .hollow-text {
+            color: transparent;
+            -webkit-text-stroke: 1px var(--accent);
+            filter: drop-shadow(0 0 10px rgba(45, 112, 255, 0.3));
         }
 
-        /* --- HERO STATS --- */
-        .hero-stats { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
-            gap: 30px; margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); 
-        }
-        .stat-item .stat-value { font-family: var(--font-head); font-size: clamp(1.8rem, 5vw, 3rem); color: var(--accent); }
-        .stat-item .stat-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-top: 8px; }
+        .hero-subtitle { margin-top: 30px; max-width: 650px; color: var(--text-dim); font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.6; opacity: 0; transform: translateY(30px); }
 
-        /* --- SERVICES --- */
+        /* --- STATS LOADERS --- */
+        .hero-stats { display: flex; flex-wrap: wrap; gap: 40px 80px; margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .stat-item { opacity: 0; transform: translateY(20px); }
+        .stat-number-wrapper { display: flex; align-items: baseline; font-family: var(--font-head); font-size: clamp(2.5rem, 5vw, 4.5rem); color: #fff; line-height: 1; }
+        .stat-plus { color: var(--accent); margin-left: 5px; }
+        .stat-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); margin-top: 10px; }
+
+        /* --- SERVICES GRID --- */
         .services-overview { padding: 100px 0; }
-        .section-tag { font-family: var(--font-mono); color: var(--accent); font-size: 0.65rem; letter-spacing: 4px; margin-bottom: 15px; display: block; }
-        .section-title { font-family: var(--font-head); font-size: clamp(1.8rem, 6vw, 3.5rem); line-height: 1.1; margin-bottom: 50px; text-transform: uppercase; }
+        .section-tag { font-family: var(--font-mono); color: var(--accent); font-size: 0.7rem; letter-spacing: 6px; margin-bottom: 20px; display: block; }
+        .section-title { font-family: var(--font-head); font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 60px; text-transform: uppercase; }
 
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); }
-        .service-card { background: var(--bg); padding: clamp(40px, 8vw, 80px) 30px; transition: 0.4s; }
-        .service-number { font-family: var(--font-mono); color: var(--accent); margin-bottom: 25px; font-size: 0.8rem; }
-        .service-title { font-family: var(--font-head); font-size: 1.3rem; margin-bottom: 15px; }
-        .service-description { color: var(--text-dim); line-height: 1.6; font-size: 0.95rem; }
-
-        /* --- PROCESS TIMELINE --- */
-        .process-section { padding: 100px 0; overflow: hidden; }
-        .process-wrapper { position: relative; max-width: 800px; margin-left: auto; padding-top: 20px; }
-        .line-track { position: absolute; left: 20px; top: 0; width: 1px; height: 100%; background: rgba(255,255,255,0.05); }
-        .line-active { position: absolute; left: 20px; top: 0; width: 2px; height: 0%; background: var(--accent); box-shadow: 0 0 20px var(--accent); }
-
-        .process-step { position: relative; padding-left: 60px; margin-bottom: 80px; opacity: 0; transform: translateX(20px); }
-        .step-number { 
-            position: absolute; left: 0; top: 0; width: 40px; height: 40px; 
-            background: #000; border: 1px solid rgba(255,255,255,0.1); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-weight: 700; z-index: 5; font-size: 0.8rem;
+        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); }
+        .service-card { 
+            background: var(--bg);
+            padding: clamp(40px, 6vw, 80px) clamp(30px, 4vw, 60px);
+            position: relative;
+            overflow: hidden;
+            transition: 0.7s cubic-bezier(0.19, 1, 0.22, 1);
         }
+        .service-card:hover { background: #080808; padding-left: clamp(35px, 5vw, 75px); }
+        .service-card::before {
+            content: ''; position: absolute; left: 0; top: 0; width: 4px; height: 0%; background: var(--accent); transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .service-card:hover::before { height: 100%; }
+
+        .service-number { font-family: var(--font-mono); color: var(--accent); font-size: 0.9rem; margin-bottom: 30px; display: block; }
+        .service-title { font-family: var(--font-head); font-size: clamp(1.2rem, 2vw, 1.6rem); margin-bottom: 15px; }
+        .service-description { color: var(--text-dim); line-height: 1.6; font-size: 1rem; max-width: 400px; }
+
+        /* --- PROCESS SECTION --- */
+        .process-section { padding: 100px 0; }
+        .process-container { display: flex; gap: clamp(30px, 8vw, 100px); position: relative; }
+        
+        .process-visual { position: relative; width: 6px; flex-shrink: 0; }
+        .massive-line-track { width: 3px; height: 100%; background: rgba(255,255,255,0.05); border-radius: 20px; }
+        .massive-line-active { 
+            position: absolute; top: 0; left: 0; width: 3px; height: 0%; 
+            background: var(--accent); border-radius: 20px;
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        .process-content { flex: 1; }
+        .process-step { margin-bottom: clamp(100px, 15vw, 250px); opacity: 0.1; transform: translateX(20px); transition: 0.8s ease-out; }
+        .process-step.active { opacity: 1; transform: translateX(0); }
+        
+        .step-meta { font-family: var(--font-mono); color: var(--accent); margin-bottom: 15px; font-size: 0.8rem; letter-spacing: 3px; }
+        .step-title { font-family: var(--font-head); font-size: clamp(1.8rem, 4vw, 3.5rem); margin-bottom: 20px; text-transform: uppercase; }
+        .step-details { color: var(--text-dim); font-size: clamp(1rem, 1.5vw, 1.4rem); line-height: 1.6; max-width: 650px; }
 
         /* --- CTA --- */
-        .cta-section { padding: 120px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
-        .cta-title { font-family: var(--font-head); font-size: clamp(1.5rem, 7vw, 4.5rem); line-height: 1.2; margin-bottom: 40px; }
-        .btn-large { 
-            font-family: var(--font-head); color: #fff; text-decoration: none; 
-            font-size: clamp(1rem, 4vw, 1.8rem); transition: 0.4s; 
-            border: 1px solid rgba(255,255,255,0.2); padding: 20px 40px; display: inline-block;
+        .cta-section { padding: 150px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .btn-premium {
+            font-family: var(--font-head);
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #fff;
+            text-decoration: none;
+            padding: 25px 50px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: inline-block;
+            transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
         }
-        .btn-large:hover { background: #fff; color: #000; }
+        .btn-premium:hover {
+            border-color: var(--accent);
+            background: var(--accent);
+            box-shadow: 0 0 40px rgba(45, 112, 255, 0.4);
+        }
 
-        /* Mobile Adjustments */
-        @media (max-width: 600px) {
-            :root { --side-padding: 25px; }
-            .hero-stats { grid-template-columns: 1fr; gap: 35px; }
-            .process-step { padding-left: 50px; }
-            .line-track, .line-active { left: 18px; }
-            .step-number { width: 36px; height: 36px; left: 0; }
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 768px) {
+            .container { padding: 0 25px; }
+            .nav-links { display: none; } /* Sakrivamo linkove na mobilnom radi čistoće */
+            .services-grid { grid-template-columns: 1fr; }
+            .hero-stats { gap: 30px; }
+            .hero { padding-top: 100px; }
+            .process-container { gap: 20px; }
+            .process-visual { width: 4px; }
+            .massive-line-track, .massive-line-active { width: 2px; }
+            .btn-premium { width: 100%; padding: 20px; }
         }
     </style>
 </head>
@@ -124,153 +152,167 @@
     <nav>
         <div class="container nav-content">
             <div class="logo">NEXORY</div>
-            <div style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 2px; opacity: 0.5;">MENU</div>
+            <ul class="nav-links">
+                <li><a href="#services">Usluge</a></li>
+                <li><a href="#process">Proces</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
         </div>
     </nav>
 
     <main>
         <section class="hero container">
             <h1 class="hero-title">
-                <span class="title-mask"><span class="title-line">Sistem koji ti</span></span>
-                <span class="title-mask"><span class="title-line">Dovodi</span></span>
-                <span class="title-mask"><span class="title-line title-accent">Klijente dok</span></span>
-                <span class="title-mask"><span class="title-line title-accent">spavaš</span></span>
+                Sistem koji ti <br>
+                <span class="hollow-text">Dovodi Klijente</span> <br>
+                dok spavaš
             </h1>
             <p class="hero-subtitle">Dovodimo klijente kroz reklame, pretvaramo ih u kupce kroz sajt, zatvaramo prodaju kroz automatizaciju i gradimo poverenje kroz društvene mreže.</p>
             
-            <div class="hero-stats" id="stats-trigger">
+            <div class="hero-stats">
                 <div class="stat-item">
-                    <div class="stat-value count" data-target="3">0</div>
-                    <div class="stat-label">Godine iskustva</div>
+                    <div class="stat-number-wrapper">
+                        <span class="count" data-target="3">0</span><span class="stat-plus">+</span>
+                    </div>
+                    <span class="stat-label">Godine iskustva</span>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value count" data-target="200">0</div>
-                    <div class="stat-label">Završenih projekata</div>
+                    <div class="stat-number-wrapper">
+                        <span class="count" data-target="200">0</span><span class="stat-plus">+</span>
+                    </div>
+                    <span class="stat-label">Završenih projekata</span>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value" style="font-size: clamp(1.2rem, 4vw, 1.8rem); padding-top: 10px;">STALAN RAST</div>
-                    <div class="stat-label">Rezultata</div>
+                    <div class="stat-number-wrapper">
+                        <span class="count" data-target="100">0</span><span class="stat-plus">%</span>
+                    </div>
+                    <span class="stat-label">Rezultati</span>
                 </div>
             </div>
         </section>
 
-        <section class="services-overview container">
-            <span class="section-tag">USLUGE</span>
+        <section class="services-overview container" id="services">
+            <span class="section-tag">SERVICES</span>
             <h2 class="section-title">Jasne usluge.<br>Jasni rezultati.</h2>
+            
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-number">01</div>
+                    <span class="service-number">01</span>
                     <h3 class="service-title">IZRADA SAJTA</h3>
                     <p class="service-description">Kreiranje modernih i brzih prodajnih sajtova koji pretvaraju posetioce u klijente.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-number">02</div>
+                    <span class="service-number">02</span>
                     <h3 class="service-title">AI AUTOMATIZACIJA</h3>
                     <p class="service-description">Automatsko odgovaranje, filtriranje i zakazivanje — sistem radi 24/7.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-number">03</div>
+                    <span class="service-number">03</span>
                     <h3 class="service-title">META ADS</h3>
                     <p class="service-description">Plaćene reklame fokusirane na prodaju i upite.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-number">04</div>
+                    <span class="service-number">04</span>
                     <h3 class="service-title">VOĐENJE MREŽA</h3>
                     <p class="service-description">Rast profila i generisanje upita kroz sadržaj.</p>
                 </div>
             </div>
         </section>
 
-        <section class="process-section container">
-            <span class="section-tag">KAKO RADIMO</span>
-            <h2 class="section-title">Jednostavan proces.</h2>
-            
-            <div class="process-wrapper" id="process-trigger">
-                <div class="line-track"></div>
-                <div class="line-active" id="line-active"></div>
-
-                <div class="process-step">
-                    <div class="step-number">01</div>
-                    <h3 class="service-title" style="font-size: 1.1rem;">DOGOVOR</h3>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">02</div>
-                    <h3 class="service-title" style="font-size: 1.1rem;">PLAN</h3>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">03</div>
-                    <h3 class="service-title" style="font-size: 1.1rem;">IZRADA</h3>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">04</div>
-                    <h3 class="service-title" style="font-size: 1.1rem;">POKRETANJE</h3>
+        <section class="process-section">
+            <div class="container">
+                <span class="section-tag">STRATEGIJA</span>
+                <h2 class="section-title">Jednostavan proces.</h2>
+                
+                <div class="process-container">
+                    <div class="process-visual">
+                        <div class="massive-line-track"></div>
+                        <div class="massive-line-active" id="massive-line"></div>
+                    </div>
+                    
+                    <div class="process-content" id="process-trigger">
+                        <div class="process-step">
+                            <div class="step-meta">FAZA 01</div>
+                            <h3 class="step-title">DOGOVOR</h3>
+                            <p class="step-details">Sve počinje razgovorom. Definišemo vaše potrebe, analiziramo tržište i postavljamo jasne ciljeve koje želimo da postignemo.</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-meta">FAZA 02</div>
+                            <h3 class="step-title">PLAN</h3>
+                            <p class="step-details">Pravimo precizan plan rada. Tačno znate šta se radi, kako će izgledati i u kom roku će biti isporučeno.</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-meta">FAZA 03</div>
+                            <h3 class="step-title">IZRADA</h3>
+                            <p class="step-details">Naš tim kreće u realizaciju sajta ili oglasnih kampanja koristeći najsavremenije digitalne alate.</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-meta">FAZA 04</div>
+                            <h3 class="step-title">POKRETANJE</h3>
+                            <p class="step-details">Sistem puštamo u rad. Pratimo rezultate, vršimo optimizaciju i osiguravamo da vaše novo prisustvo donosi profit.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="cta-section container">
-            <h2 class="cta-title">Treba vam sajt ili marketing?</h2>
-            <a href="#" class="btn-large">KONTAKTIRAJ NAS →</a>
+        <section class="cta-section container" id="contact">
+            <h2 class="cta-title">Spremni za rast?</h2>
+            <a href="mailto:kontakt@nexory.rs" class="btn-premium">ZAPOČNI PROJEKAT →</a>
         </section>
     </main>
 
     <script>
-        // Lenis Smooth Scroll - Prilagođen za Touch uređaje
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smoothWheel: true,
-            touchMultiplier: 1.5 // Brži odziv na mobilnom
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
+        const lenis = new Lenis();
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
         requestAnimationFrame(raf);
 
         gsap.registerPlugin(ScrollTrigger);
 
         // Hero Animation
         window.addEventListener('load', () => {
-            gsap.to(".title-line", { y: 0, stagger: 0.1, duration: 1.2, ease: "expo.out" });
-            gsap.to(".hero-subtitle", { opacity: 1, y: 0, duration: 1, delay: 0.6 });
-        });
+            const tl = gsap.timeline();
+            tl.from(".hero-title", { y: 60, opacity: 0, duration: 1.2, ease: "expo.out" })
+              .to(".hero-subtitle", { opacity: 1, y: 0, duration: 1 }, "-=0.8")
+              .to(".stat-item", { opacity: 1, y: 0, stagger: 0.2, duration: 0.8 }, "-=0.5");
 
-        // Counters
-        const counters = document.querySelectorAll('.count');
-        counters.forEach(c => {
-            const target = +c.getAttribute('data-target');
-            ScrollTrigger.create({
-                trigger: "#stats-trigger",
-                start: "top 90%",
-                onEnter: () => gsap.to(c, { innerText: target, duration: 2, snap: {innerText: 1}, ease: "power2.out" }),
-                onLeaveBack: () => gsap.to(c, { innerText: 0, duration: 1 })
+            // Stats Counter
+            document.querySelectorAll('.count').forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                gsap.to(counter, {
+                    innerText: target,
+                    duration: 2.5,
+                    snap: { innerText: 1 },
+                    scrollTrigger: {
+                        trigger: ".hero-stats",
+                        start: "top 95%"
+                    },
+                    ease: "power3.out"
+                });
             });
         });
 
-        // Line Scrub
-        gsap.to("#line-active", {
+        // Massive Line
+        gsap.to("#massive-line", {
             height: "100%",
             ease: "none",
             scrollTrigger: {
                 trigger: "#process-trigger",
-                start: "top 70%",
-                end: "bottom 70%",
-                scrub: true
+                start: "top 60%",
+                end: "bottom 60%",
+                scrub: 1
             }
         });
 
-        // Step Fade
-        const steps = document.querySelectorAll('.process-step');
-        steps.forEach(step => {
-            gsap.to(step, {
-                opacity: 1, x: 0, duration: 0.8,
-                scrollTrigger: {
-                    trigger: step,
-                    start: "top 85%",
-                    end: "top 15%",
-                    toggleActions: "play reverse play reverse"
+        // Process Steps Highlight
+        document.querySelectorAll('.process-step').forEach(step => {
+            ScrollTrigger.create({
+                trigger: step,
+                start: "top 70%",
+                end: "bottom 30%",
+                onToggle: self => {
+                    if(self.isActive) step.classList.add('active');
+                    else step.classList.remove('active');
                 }
             });
         });
