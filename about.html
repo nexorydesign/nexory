@@ -3,162 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O nama — NEXORY Digital Studio</title>
-    <link rel="stylesheet" href="css/main.css">
+    <title>O nama — NEXORY</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Syncopate:wght@700&family=Inter:wght@200;400;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #050505;
+            --accent: #2d70ff;
+            --text: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.5);
+            --font-head: 'Syncopate', sans-serif;
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'Space Grotesk', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+        }
+
+        .grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.05; pointer-events: none; z-index: 9999;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+
+        /* --- NAV --- */
+        nav { position: fixed; top: 0; width: 100%; padding: 30px 0; z-index: 1000; mix-blend-mode: difference; }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; letter-spacing: 5px; color: #fff; text-decoration: none; }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; transition: 0.4s; }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--accent); }
+
+        /* --- HERO --- */
+        .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding-top: 150px; }
+        .hero-title {
+            font-family: var(--font-head);
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            line-height: 1.1; letter-spacing: -2px; text-transform: uppercase;
+        }
+        .hollow-text {
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--accent);
+        }
+        .hero-subtitle { margin-top: 40px; max-width: 700px; color: var(--text-dim); font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.6; }
+
+        /* --- STORY SECTION --- */
+        .story-section { padding: 150px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+        .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 8vw, 100px); }
+        .section-tag { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; letter-spacing: 8px; margin-bottom: 25px; display: block; }
+        .story-text p { color: var(--text-dim); font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.8; margin-bottom: 30px; }
+
+        /* --- STATS --- */
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .stat-card { padding: clamp(20px, 4vw, 40px); border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
+        .stat-val { font-family: var(--font-head); font-size: clamp(2rem, 4vw, 3rem); color: var(--accent); display: block; margin-bottom: 10px; }
+        .stat-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-dim); }
+
+        /* --- VALUES GRID --- */
+        .values-section { padding: 100px 0; }
+        .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.1); margin-top: 80px; border: 1px solid rgba(255,255,255,0.1); }
+        .value-card { 
+            background: var(--bg); padding: clamp(40px, 5vw, 60px) clamp(20px, 4vw, 40px); transition: 0.5s; position: relative;
+        }
+        .value-card:hover { background: #080808; }
+        .value-card::before {
+            content: ''; position: absolute; left: 0; top: 0; width: 3px; height: 0%; background: var(--accent); transition: 0.5s;
+        }
+        .value-card:hover::before { height: 100%; }
+        .value-num { font-family: var(--font-mono); color: var(--accent); margin-bottom: 20px; display: block; }
+        .value-title { font-family: var(--font-head); font-size: 1.1rem; margin-bottom: 15px; }
+        .value-desc { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; }
+
+        /* --- CTA --- */
+        .cta-section { padding: 150px 0; text-align: center; }
+        .btn-premium {
+            font-family: var(--font-head); font-size: clamp(1rem, 2.5vw, 1.5rem); color: #fff; text-decoration: none;
+            padding: 25px 50px; border: 1px solid rgba(255,255,255,0.1); display: inline-block; transition: 0.5s;
+        }
+        .btn-premium:hover { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 50px rgba(45, 112, 255, 0.3); }
+
+        /* --- PHONE FRIENDLY (MOBILE) --- */
+        @media (max-width: 1024px) {
+            .values-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 850px) {
+            .container { padding: 0 25px; }
+            .nav-links { display: none; } /* Hamburger ovde može ići po želji */
+            .story-grid { grid-template-columns: 1fr; gap: 60px; }
+            .values-grid { grid-template-columns: 1fr; }
+            .hero { min-height: 60vh; padding-top: 120px; }
+            .cta-section { padding: 100px 0; }
+            .stat-card { padding: 30px 20px; }
+        }
+    </style>
 </head>
 <body>
 
-<nav class="nav-container">
-    <div class="nav-content">
-        <div class="nav-logo">
-            <a href="index.html"><span class="logo-text">NEXORY</span></a>
+    <div class="grain"></div>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="index-sr.html" class="logo">NEXORY</a>
+            <ul class="nav-links">
+                <li><a href="index-sr.html">Početna</a></li>
+                <li><a href="services.html">Usluge</a></li>
+                <li><a href="projects.html">Projekti</a></li>
+                <li><a href="about.html" class="active">O nama</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
         </div>
-        <ul class="nav-links">
-            <li><a href="index.html">Početna</a></li>
-            <li><a href="services.html">Usluge</a></li>
-            <li><a href="projects.html">Projekti</a></li>
-            <li><a href="about.html" class="active">O nama</a></li>
-            <li><a href="contact.html" class="nav-link-cta">Kontakt</a></li>
-        </ul>
-    </div>
-</nav>
+    </nav>
 
-<section class="page-hero">
-    <div class="container">
-        <div class="page-hero-content">
-            <span class="page-tag">O NAMA</span>
-            <h1 class="page-title">Precizna digitalna<br>rešenja bez kompromisa</h1>
-            <p class="page-subtitle">
-                Nexory je digitalni studio fokusiran na izradu modernih web sistema,
-                jasnog dizajna i rešenja koja donose realne rezultate.
-            </p>
-        </div>
-    </div>
-</section>
+    <main class="container">
+        <section class="hero">
+            <span class="section-tag" style="opacity: 0;" id="tag">ABOUT US</span>
+            <h1 class="hero-title">
+                Precizna rešenja <br>
+                <span class="hollow-text">Bez kompromisa</span>
+            </h1>
+            <p class="hero-subtitle">Nexory nije samo agencija, već inženjerski sistem koji spaja marketing, dizajn i automatizaciju u jednu profitabilnu celinu.</p>
+        </section>
 
-<section class="about-story">
-    <div class="container">
-        <div class="story-grid">
-            <div class="story-content">
-                <h2 class="section-title">Zašto Nexory postoji</h2>
-                <div class="story-text">
-                    <p>
-                        Nexory je nastao iz jednostavne ideje — većina web sajtova danas
-                        izgleda isto i ne donosi nikakvu vrednost.
-                    </p>
-
-                    <p>
-                        Mi ne pravimo sajtove „reda radi“. Svaki projekat posmatramo
-                        kao sistem koji mora da bude jasan, brz, funkcionalan i
-                        prilagođen stvarnim korisnicima.
-                    </p>
-
-                    <p>
-                        Fokusirani smo na kvalitet, dugoročnu stabilnost i
-                        profesionalan pristup — bez šablona, bez improvizacije.
-                    </p>
-
-                    <p>
-                        Radimo sa klijentima koji žele ozbiljno digitalno prisustvo,
-                        a ne samo „lepu stranicu“.
-                    </p>
+        <section class="story-section">
+            <div class="story-grid">
+                <div class="story-content">
+                    <span class="section-tag">NAŠA FILOZOFIJA</span>
+                    <div class="story-text">
+                        <p>Nexory je nastao iz potrebe za sistemom koji zapravo radi. Većina današnjih rešenja su samo „lepe slike“ koje ne rešavaju glavni problem — dovođenje klijenata.</p>
+                        <p>Mi ne pravimo samo sajtove. Mi pravimo prodajne mašine. Svaki kod koji napišemo i svaka reklama koju pustimo ima jedan cilj: da tvoj biznis raste dok se ti fokusiraš na ono što najbolje radiš.</p>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-val">3+</span>
+                        <span class="stat-label">Godine iskustva</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-val">200+</span>
+                        <span class="stat-label">Projekata</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-val">100%</span>
+                        <span class="stat-label">Rezultati</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-val">24h</span>
+                        <span class="stat-label">Plan rada</span>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="story-stats">
-                <div class="story-stat-card">
-                    <div class="story-stat-value">2024</div>
-                    <div class="story-stat-label">Osnovano</div>
-                </div>
-                <div class="story-stat-card">
-                    <div class="story-stat-value">20+</div>
-                    <div class="story-stat-label">Realizovanih projekata</div>
-                </div>
-                <div class="story-stat-card">
-                    <div class="story-stat-value">100%</div>
-                    <div class="story-stat-label">Prilagođena rešenja</div>
-                </div>
-                <div class="story-stat-card">
-                    <div class="story-stat-value">24h</div>
-                    <div class="story-stat-label">Prosečno vreme odgovora</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="about-values">
-    <div class="container">
-        <div class="section-header-center">
+        <section class="values-section">
             <span class="section-tag">PRINCIPI</span>
-            <h2 class="section-title">Kako radimo</h2>
-        </div>
-
-        <div class="values-grid">
-            <div class="value-card">
-                <div class="value-number">01</div>
-                <h3 class="value-title">Jasna struktura</h3>
-                <p>Sve što pravimo mora biti logično, čitljivo i lako za korišćenje.</p>
+            <h2 class="hero-title" style="font-size: clamp(2rem, 5vw, 3rem);">Kako radimo</h2>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <span class="value-num">01</span>
+                    <h3 class="value-title">Sistem pre dizajna</h3>
+                    <p class="value-desc">Prvo gradimo logiku koja prodaje, a onda je pakujemo u vrhunski vizuelni identitet.</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-num">02</span>
+                    <h3 class="value-title">AI Integracija</h3>
+                    <p class="value-desc">Koristimo najnovije automatizacije kako bi vaš biznis odgovarao klijentima 24/7.</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-num">03</span>
+                    <h3 class="value-title">Merna vrednost</h3>
+                    <p class="value-desc">Svaki evro uložen u marketing mora imati jasan povrat kroz nove upite.</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-num">04</span>
+                    <h3 class="value-title">Brzina isporuke</h3>
+                    <p class="value-desc">Znamo da je vreme novac. Isporuka preciznog plana stiže za manje od 24h.</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-num">05</span>
+                    <h3 class="value-title">Direktnost</h3>
+                    <p class="value-desc">Nema skrivenih troškova i komplikovanih termina. Jasna komunikacija uvek.</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-num">06</span>
+                    <h3 class="value-title">Skalabilnost</h3>
+                    <p class="value-desc">Naša rešenja su temelji koji omogućavaju vašem biznisu da raste bez limita.</p>
+                </div>
             </div>
+        </section>
 
-            <div class="value-card">
-                <div class="value-number">02</div>
-                <h3 class="value-title">Profesionalan dizajn</h3>
-                <p>Moderan izgled koji gradi poverenje i kredibilitet.</p>
-            </div>
+        <section class="cta-section">
+            <h2 class="value-title" style="font-size: 2rem; margin-bottom: 40px;">Spremni za sledeći nivo?</h2>
+            <a href="contact.html" class="btn-premium">ZAPOČNI PROJEKAT →</a>
+        </section>
+    </main>
 
-            <div class="value-card">
-                <div class="value-number">03</div>
-                <h3 class="value-title">Funkcionalnost</h3>
-                <p>Dizajn bez funkcije ne vredi. Sve mora imati svrhu.</p>
-            </div>
+    <script>
+        const lenis = new Lenis();
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
 
-            <div class="value-card">
-                <div class="value-number">04</div>
-                <h3 class="value-title">Brzina i stabilnost</h3>
-                <p>Optimizacija performansi je obavezna, ne opcija.</p>
-            </div>
+        gsap.registerPlugin(ScrollTrigger);
 
-            <div class="value-card">
-                <div class="value-number">05</div>
-                <h3 class="value-title">Transparentna saradnja</h3>
-                <p>Jasna komunikacija i dogovor od početka do kraja.</p>
-            </div>
+        // Hero Intro
+        gsap.from(".hero-title", { y: 50, opacity: 0, duration: 1.2, ease: "power4.out", delay: 0.2 });
+        gsap.from(".hero-subtitle", { y: 30, opacity: 0, duration: 1, ease: "power3.out", delay: 0.5 });
+        gsap.to("#tag", { opacity: 1, duration: 1, delay: 0.1 });
 
-            <div class="value-card">
-                <div class="value-number">06</div>
-                <h3 class="value-title">Dugoročna vrednost</h3>
-                <p>Rešenja koja traju i mogu da rastu zajedno sa biznisom.</p>
-            </div>
-        </div>
-    </div>
-</section>
+        // Scroll animations for cards
+        gsap.from(".value-card", {
+            y: 50,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 0.8,
+            scrollTrigger: {
+                trigger: ".values-grid",
+                start: "top 80%"
+            }
+        });
 
-<section class="cta-section">
-    <div class="container">
-        <div class="cta-content">
-            <h2 class="cta-title">Spremni za sledeći korak?</h2>
-            <p class="cta-subtitle">
-                Ako vam je potreban ozbiljan web sajt ili digitalno rešenje,
-                kontaktirajte nas i dogovorimo saradnju.
-            </p>
-            <a href="contact.html" class="btn-primary btn-large">
-                <span class="btn-text">Kontaktirajte nas</span>
-                <span class="btn-arrow">→</span>
-            </a>
-        </div>
-    </div>
-</section>
-
-<footer class="footer">
-    <div class="container">
-        <p>© 2026 NEXORY — Digitalna rešenja</p>
-    </div>
-</footer>
-
-<script src="js/main.js"></script>
+        gsap.from(".stat-card", {
+            scale: 0.9,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 0.8,
+            scrollTrigger: {
+                trigger: ".stats-grid",
+                start: "top 85%"
+            }
+        });
+    </script>
 </body>
 </html>
