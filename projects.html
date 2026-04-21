@@ -3,52 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projekti — NEXORY Digitalna Inženjering</title>
-    <link rel="stylesheet" href="css/main.css">
+    <title>Projekti — NEXORY Digitalni Inženjering</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Syncopate:wght@700&family=Inter:wght@200;400;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #050505;
+            --accent: #2d70ff;
+            --text: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.5);
+            --border: rgba(255, 255, 255, 0.08);
+            --font-head: 'Syncopate', sans-serif;
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'Space Grotesk', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { background: var(--bg); color: var(--text); font-family: var(--font-main); overflow-x: hidden; }
+        
+        .grain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.05; pointer-events: none; z-index: 9999; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+
+        /* --- NAV --- */
+        nav { position: fixed; top: 0; width: 100%; padding: 30px 0; z-index: 1000; mix-blend-mode: difference; }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; letter-spacing: 5px; color: #fff; text-decoration: none; }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; transition: 0.4s; }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--accent); }
+
+        /* --- HERO --- */
+        .page-hero { padding: 200px 0 100px 0; }
+        .page-tag { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; letter-spacing: 8px; margin-bottom: 25px; display: block; }
+        .page-title { font-family: var(--font-head); font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; letter-spacing: -2px; text-transform: uppercase; }
+        .page-subtitle { margin-top: 40px; max-width: 650px; color: var(--text-dim); font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.6; }
+
+        /* --- FILTER --- */
+        .projects-filter { padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 80px; }
+        .filter-controls { display: flex; gap: 30px; flex-wrap: wrap; }
+        .filter-btn { 
+            background: none; border: none; color: var(--text-dim); 
+            font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; 
+            letter-spacing: 2px; cursor: pointer; transition: 0.4s; padding-bottom: 5px;
+            border-bottom: 1px solid transparent;
+        }
+        .filter-btn:hover, .filter-btn.active { color: var(--accent); border-bottom: 1px solid var(--accent); }
+
+        /* --- PROJECTS GRID --- */
+        .projects-masonry { display: grid; grid-template-columns: repeat(2, 1fr); gap: 80px; }
+        .project-item { opacity: 1; transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1); }
+
+        .project-item-image { 
+            position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden; 
+            background: #111; margin-bottom: 30px; border: 1px solid var(--border);
+        }
+        .project-img-placeholder { 
+            width: 100%; height: 100%; display: flex; align-items: flex-end; padding: 40px; 
+            transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .project-item:hover .project-img-placeholder { transform: scale(1.05); }
+        
+        .project-category-tag { font-family: var(--font-mono); color: var(--accent); font-size: 0.7rem; letter-spacing: 3px; display: block; margin-bottom: 15px; }
+        .project-overlay-title { font-family: var(--font-head); font-size: 1.8rem; letter-spacing: 2px; }
+
+        .project-meta { display: flex; justify-content: space-between; margin-bottom: 15px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; }
+        .project-item-title { font-family: var(--font-head); font-size: 1.4rem; margin-bottom: 15px; }
+        .project-item-description { color: var(--text-dim); line-height: 1.6; font-size: 1rem; margin-bottom: 25px; }
+
+        .project-results { display: flex; gap: clamp(20px, 4vw, 40px); padding-top: 25px; border-top: 1px solid var(--border); }
+        .result-item { display: flex; flex-direction: column; }
+        .result-value { font-family: var(--font-head); font-size: clamp(1rem, 2vw, 1.2rem); color: var(--accent); }
+        .result-label { font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; color: var(--text-dim); margin-top: 5px; }
+
+        /* --- STATS --- */
+        .projects-stats-section { padding: 120px 0; border-top: 1px solid var(--border); margin-top: 100px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        .stat-card-value { font-family: var(--font-head); font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 10px; color: #fff; }
+        .stat-card-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; }
+
+        /* --- CTA --- */
+        .cta-section { padding: 150px 0; border-top: 1px solid var(--border); text-align: center; }
+        .cta-title { font-family: var(--font-head); font-size: clamp(1.5rem, 4vw, 2.5rem); margin-bottom: 30px; text-transform: uppercase; }
+        .cta-subtitle { color: var(--text-dim); font-size: 1.2rem; max-width: 600px; margin: 0 auto 50px; line-height: 1.6; }
+        
+        .btn-primary {
+            font-family: var(--font-head); font-size: 1.1rem; color: #fff; text-decoration: none;
+            padding: 25px 50px; border: 1px solid var(--accent); display: inline-block; transition: 0.5s;
+        }
+        .btn-primary:hover { background: var(--accent); box-shadow: 0 0 40px rgba(45, 112, 255, 0.4); transform: translateY(-5px); }
+
+        footer { padding: 80px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim); font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 2px; }
+
+        /* --- PHONE FRIENDLY (MOBILE) --- */
+        @media (max-width: 1024px) {
+            .projects-masonry { grid-template-columns: 1fr; gap: 60px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .container { padding: 0 30px; }
+        }
+        @media (max-width: 850px) {
+            .nav-links { display: none; }
+            .page-hero { padding: 150px 0 60px 0; }
+        }
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: 1fr; gap: 30px; }
+            .filter-controls { gap: 15px; }
+            .project-img-placeholder { padding: 25px; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigacija -->
-    <nav class="nav-container">
-        <div class="nav-content">
-            <div class="nav-logo">
-                <a href="index.html" style="text-decoration: none; color: inherit;">
-                    <span class="logo-text">NEXORY</span>
-                </a>
-                <span class="logo-pulse"></span>
-            </div>
+
+    <div class="grain"></div>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="index-sr.html" class="logo">NEXORY</a>
             <ul class="nav-links">
-                <li><a href="index.html" class="nav-link">Početna</a></li>
-                <li><a href="services.html" class="nav-link">Usluge</a></li>
-                <li><a href="projects.html" class="nav-link active">Projekti</a></li>
-                <li><a href="about.html" class="nav-link">O nama</a></li>
-                <li><a href="contact.html" class="nav-link nav-link-cta">Kontakt</a></li>
+                <li><a href="index-sr.html">Početna</a></li>
+                <li><a href="services.html">Usluge</a></li>
+                <li><a href="projects.html" class="active">Projekti</a></li>
+                <li><a href="about.html">O nama</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
             </ul>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
-    <!-- Hero Sekcija -->
-    <section class="page-hero">
-        <div class="hero-grid-bg"></div>
-        <div class="container">
-            <div class="page-hero-content">
-                <span class="page-tag">PORTFOLIO</span>
-                <h1 class="page-title">Provereni Digitalni<br>Arsenal</h1>
-                <p class="page-subtitle">47 projekata sa dokazanim rezultatima.<br>Generisano više od €2.4M za klijente.<br>Apsolutni rezultati. Bez kompromisa.</p>
-            </div>
-        </div>
-    </section>
+    <main>
+        <section class="page-hero container">
+            <span class="page-tag">PORTFOLIO</span>
+            <h1 class="page-title">Provereni Digitalni<br>Arsenal</h1>
+            <p class="page-subtitle">47 projekata sa dokazanim rezultatima. Generisano više od €2.4M za klijente. Apsolutni rezultati bez kompromisa.</p>
+        </section>
 
-    <!-- Filter Sekcija -->
-    <section class="projects-filter">
-        <div class="container">
+        <section class="projects-filter container">
             <div class="filter-controls">
                 <button class="filter-btn active" data-filter="all">Svi Projekti</button>
                 <button class="filter-btn" data-filter="web">Web Arhitektura</button>
@@ -56,187 +149,156 @@
                 <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
                 <button class="filter-btn" data-filter="enterprise">Enterprise</button>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Projekti Grid -->
-    <section class="projects-grid-section">
-        <div class="container">
+        <section class="projects-grid-section container">
             <div class="projects-masonry">
-                
-                <!-- Projekat 1: LUXEFORM -->
                 <article class="project-item" data-category="web ecommerce">
                     <div class="project-item-image">
-                        <div class="project-img-placeholder" style="background: linear-gradient(135deg, #3A8FFF 0%, #9A4DFF 100%);">
-                            <div class="project-overlay-content">
+                        <div class="project-img-placeholder" style="background: linear-gradient(135deg, #0f1215 0%, #3A8FFF 100%);">
+                            <div>
                                 <span class="project-category-tag">E-COMMERCE</span>
                                 <h3 class="project-overlay-title">LUXEFORM</h3>
                             </div>
                         </div>
                     </div>
                     <div class="project-item-content">
-                        <div class="project-meta">
-                            <span class="project-client">Luxury Furniture</span>
-                            <span class="project-year">2025</span>
-                        </div>
+                        <div class="project-meta"><span>Luxury Furniture</span><span>2025</span></div>
                         <h3 class="project-item-title">LUXEFORM</h3>
-                        <p class="project-item-description">Potpuna digitalna transformacija luksuznog brenda nameštaja. Prilagođena e-commerce platforma sa 3D vizualizacijom proizvoda.</p>
+                        <p class="project-item-description">Digitalna transformacija luksuznog brenda. 3D vizualizacija i high-end checkout sistem.</p>
                         <div class="project-results">
-                            <div class="result-item">
-                                <span class="result-value">+347%</span>
-                                <span class="result-label">Prihod</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-value">2.1s</span>
-                                <span class="result-label">Brzina učitavanja</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-value">94</span>
-                                <span class="result-label">Score</span>
-                            </div>
+                            <div class="result-item"><span class="result-value">+347%</span><span class="result-label">Prihod</span></div>
+                            <div class="result-item"><span class="result-value">2.1s</span><span class="result-label">Load Time</span></div>
                         </div>
                     </div>
                 </article>
 
-                <!-- Projekat 2: QUANTUM FINANCE -->
                 <article class="project-item" data-category="web enterprise">
                     <div class="project-item-image">
-                        <div class="project-img-placeholder" style="background: linear-gradient(135deg, #FFD86B 0%, #3A8FFF 100%);">
-                            <div class="project-overlay-content">
+                        <div class="project-img-placeholder" style="background: linear-gradient(135deg, #0f1215 0%, #9A4DFF 100%);">
+                            <div>
                                 <span class="project-category-tag">FINTECH</span>
-                                <h3 class="project-overlay-title">QUANTUM FINANCE</h3>
+                                <h3 class="project-overlay-title">QUANTUM</h3>
                             </div>
                         </div>
                     </div>
                     <div class="project-item-content">
-                        <div class="project-meta">
-                            <span class="project-client">Finansijska platforma</span>
-                            <span class="project-year">2025</span>
-                        </div>
+                        <div class="project-meta"><span>Enterprise Solution</span><span>2025</span></div>
                         <h3 class="project-item-title">QUANTUM FINANCE</h3>
-                        <p class="project-item-description">Enterprise finansijski dashboard sa vizualizacijom podataka u realnom vremenu i naprednim analitičkim modulom.</p>
+                        <p class="project-item-description">Analitički dashboard sa real-time procesuiranjem podataka za Series A startup.</p>
                         <div class="project-results">
-                            <div class="result-item">
-                                <span class="result-value">€1.2M</span>
-                                <span class="result-label">Series A</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-value">50K</span>
-                                <span class="result-label">Korisnici</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-value">99.9%</span>
-                                <span class="result-label">Uptime</span>
-                            </div>
+                            <div class="result-item"><span class="result-value">€1.2M</span><span class="result-label">Series A</span></div>
+                            <div class="result-item"><span class="result-value">99.9%</span><span class="result-label">Uptime</span></div>
                         </div>
                     </div>
                 </article>
 
-                <!-- Projekat 3: APEX MOTORS -->
-                <article class="project-item" data-category="web brand">
+                <article class="project-item" data-category="brand web">
                     <div class="project-item-image">
-                        <div class="project-img-placeholder" style="background: linear-gradient(135deg, #9A4DFF 0%, #FFD86B 100%);">
-                            <div class="project-overlay-content">
-                                <span class="project-category-tag">AUTOMOBILI</span>
-                                <h3 class="project-overlay-title">APEX MOTORS</h3>
+                        <div class="project-img-placeholder" style="background: linear-gradient(135deg, #0f1215 0%, #FFD86B 100%);">
+                            <div>
+                                <span class="project-category-tag">REAL ESTATE</span>
+                                <h3 class="project-overlay-title">VANGUARD</h3>
                             </div>
                         </div>
                     </div>
                     <div class="project-item-content">
-                        <div class="project-meta">
-                            <span class="project-client">Luksuzni Automobili</span>
-                            <span class="project-year">2024</span>
-                        </div>
-                        <h3 class="project-item-title">APEX MOTORS</h3>
-                        <p class="project-item-description">Premium automobil web sajt sa 3D konfiguratorom i virtualnim showroom iskustvom.</p>
+                        <div class="project-meta"><span>Nekretnine</span><span>2024</span></div>
+                        <h3 class="project-item-title">VANGUARD ESTATE</h3>
+                        <p class="project-item-description">Sistem za automatizaciju prodaje nekretnina i premium prezentaciju objekata.</p>
                         <div class="project-results">
-                            <div class="result-item">
-                                <span class="result-value">+218%</span>
-                                <span class="result-label">Leads</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-value">6.2min</span>
-                                <span class="result-label">Prosečno vreme sesije</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-value">92%</span>
-                                <span class="result-label">Zadovoljstvo</span>
-                            </div>
+                            <div class="result-item"><span class="result-value">250+</span><span class="result-label">Leads/Mo</span></div>
+                            <div class="result-item"><span class="result-value">94</span><span class="result-label">SEO Score</span></div>
                         </div>
                     </div>
                 </article>
-
-                <!-- Ostatak projekata prepraviti istim principom... -->
-
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Stats Sekcija -->
-    <section class="projects-stats-section">
-        <div class="container">
+        <section class="projects-stats-section container">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 3L21 21M21 3L3 21" stroke="currentColor" stroke-width="2"/>
-                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
                     <div class="stat-card-value">€2.4M+</div>
-                    <div class="stat-card-label">Ukupni prihod klijenata</div>
+                    <div class="stat-card-label">Generated Revenue</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M2 17L12 22L22 17M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
                     <div class="stat-card-value">47</div>
-                    <div class="stat-card-label">Realizovani projekti</div>
+                    <div class="stat-card-label">Srećnih Klijenata</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                            <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
                     <div class="stat-card-value">99.8%</div>
-                    <div class="stat-card-label">Zadržavanje klijenata</div>
+                    <div class="stat-card-label">Client Retention</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
                     <div class="stat-card-value">2.1s</div>
-                    <div class="stat-card-label">Prosečno vreme učitavanja</div>
+                    <div class="stat-card-label">Avg. Load Speed</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CTA Sekcija -->
-    <section class="cta-section">
-        <div class="cta-geometric-bg">
-            <div class="cta-hex cta-hex-1"></div>
-            <div class="cta-hex cta-hex-2"></div>
-        </div>
+        <section class="cta-section container">
+            <h2 class="cta-title">Spremni za digitalnu ekselenciju?</h2>
+            <p class="cta-subtitle">Ograničen broj mesta za Q2 2026. Hajde da izgradimo vaš digitalni autoritet.</p>
+            <a href="contact.html" class="btn-primary">ZAKAŽI KONSULTACIJU →</a>
+        </section>
+    </main>
+
+    <footer>
         <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">Spremni za digitalnu ekselenciju?</h2>
-                <p class="cta-subtitle">Ograničen broj klijenata. <br>Počnimo projekat koji menja pravila igre.</p>
-                <a href="contact.html" class="btn-primary btn-large">
-                    <span class="btn-text">Zakaži Konsultaciju</span>
-                    <span class="btn-arrow">→</span>
-                </a>
-            </div>
+            <p>© 2026 NEXORY. INŽENJERING DIGITALNE DOMINACIJE.</p>
         </div>
-    </section>
+    </footer>
 
-    <script src="js/main.js"></script>
+    <script>
+        const lenis = new Lenis();
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Filter Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectItems.forEach(item => {
+                    const categories = item.getAttribute('data-category');
+                    if(filter === 'all' || categories.includes(filter)) {
+                        gsap.to(item, { 
+                            opacity: 1, 
+                            scale: 1, 
+                            duration: 0.4, 
+                            display: 'block',
+                            pointerEvents: 'auto',
+                            ease: "power2.out"
+                        });
+                    } else {
+                        gsap.to(item, { 
+                            opacity: 0, 
+                            scale: 0.9, 
+                            duration: 0.4, 
+                            display: 'none',
+                            pointerEvents: 'none',
+                            ease: "power2.in"
+                        });
+                    }
+                });
+            });
+        });
+
+        // Intro Animations
+        gsap.from(".page-title", { y: 60, opacity: 0, duration: 1.2, ease: "expo.out" });
+        gsap.from(".page-subtitle", { y: 30, opacity: 0, duration: 1, delay: 0.4 });
+        gsap.from(".project-item", { 
+            scrollTrigger: { trigger: ".projects-masonry", start: "top 85%" },
+            y: 80, opacity: 0, stagger: 0.2, duration: 1, ease: "power3.out" 
+        });
+    </script>
 </body>
 </html>
