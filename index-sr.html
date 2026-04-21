@@ -41,107 +41,118 @@
         .container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
 
         /* --- NAV --- */
-        nav { position: fixed; top: 0; width: 100%; padding: 20px 0; z-index: 1000; mix-blend-mode: difference; }
+        nav { position: fixed; top: 0; width: 100%; padding: 25px 0; z-index: 1000; mix-blend-mode: difference; }
         .nav-content { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: var(--font-head); font-weight: 700; font-size: 1rem; letter-spacing: 5px; color: #fff; }
-        .nav-links { display: flex; gap: 20px; list-style: none; }
-        .nav-links a { color: #fff; text-decoration: none; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; transition: 0.4s; }
-        
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; transition: 0.4s; }
+        .nav-links a:hover { opacity: 1; color: var(--accent); }
+
         /* --- HERO --- */
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 120px; padding-bottom: 60px; }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 80px; }
         .hero-title {
             font-family: var(--font-head);
-            font-size: clamp(2.2rem, 8vw, 6.5rem);
+            font-size: clamp(2rem, 7vw, 6rem);
             line-height: 1.1; letter-spacing: -2px; text-transform: uppercase;
         }
         
         .hollow-text {
             color: transparent;
             -webkit-text-stroke: 1px var(--accent);
-            filter: drop-shadow(0 0 10px rgba(45, 112, 255, 0.3));
+            filter: drop-shadow(0 0 10px rgba(45, 112, 255, 0.2));
         }
 
-        .hero-subtitle { margin-top: 30px; max-width: 650px; color: var(--text-dim); font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.6; opacity: 0; transform: translateY(30px); }
+        .hero-subtitle { margin-top: 30px; max-width: 600px; color: var(--text-dim); font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.6; opacity: 0; transform: translateY(30px); }
 
-        /* --- STATS LOADERS --- */
-        .hero-stats { display: flex; flex-wrap: wrap; gap: 40px 80px; margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.08); }
+        /* --- STATS --- */
+        .hero-stats { display: flex; gap: clamp(30px, 5vw, 100px); margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.08); }
         .stat-item { opacity: 0; transform: translateY(20px); }
         .stat-number-wrapper { display: flex; align-items: baseline; font-family: var(--font-head); font-size: clamp(2.5rem, 5vw, 4.5rem); color: #fff; line-height: 1; }
-        .stat-plus { color: var(--accent); margin-left: 5px; }
+        .stat-plus { color: var(--accent); margin-left: 2px; }
         .stat-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); margin-top: 10px; }
 
-        /* --- SERVICES GRID --- */
-        .services-overview { padding: 100px 0; }
-        .section-tag { font-family: var(--font-mono); color: var(--accent); font-size: 0.7rem; letter-spacing: 6px; margin-bottom: 20px; display: block; }
-        .section-title { font-family: var(--font-head); font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 60px; text-transform: uppercase; }
+        /* --- SERVICES (WITH PROGRESS LINE) --- */
+        .services-overview { padding: 120px 0; position: relative; }
+        .services-wrapper { display: flex; gap: 40px; position: relative; }
+        
+        .services-line-container { width: 4px; background: rgba(255,255,255,0.05); position: relative; border-radius: 10px; }
+        .services-line-active { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 0%; 
+            background: var(--accent); border-radius: 10px; box-shadow: 0 0 20px var(--accent); 
+        }
 
-        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); }
+        .services-content { flex: 1; }
+        .section-tag { font-family: var(--font-mono); color: var(--accent); font-size: 0.7rem; letter-spacing: 6px; margin-bottom: 20px; display: block; }
+        .section-title { font-family: var(--font-head); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 60px; text-transform: uppercase; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
         .service-card { 
-            background: var(--bg);
-            padding: clamp(40px, 6vw, 80px) clamp(30px, 4vw, 60px);
-            position: relative;
-            overflow: hidden;
-            transition: 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+            background: rgba(255,255,255,0.02);
+            padding: 50px 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            opacity: 0; transform: translateY(30px);
         }
-        .service-card:hover { background: #080808; padding-left: clamp(35px, 5vw, 75px); }
-        .service-card::before {
-            content: ''; position: absolute; left: 0; top: 0; width: 4px; height: 0%; background: var(--accent); transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        .service-card:hover { 
+            background: rgba(45, 112, 255, 0.05);
+            border-color: var(--accent);
+            transform: translateY(-10px);
         }
-        .service-card:hover::before { height: 100%; }
 
         .service-number { font-family: var(--font-mono); color: var(--accent); font-size: 0.9rem; margin-bottom: 30px; display: block; }
-        .service-title { font-family: var(--font-head); font-size: clamp(1.2rem, 2vw, 1.6rem); margin-bottom: 15px; }
-        .service-description { color: var(--text-dim); line-height: 1.6; font-size: 1rem; max-width: 400px; }
+        .service-title { font-family: var(--font-head); font-size: 1.3rem; margin-bottom: 15px; }
+        .service-description { color: var(--text-dim); line-height: 1.6; font-size: 0.95rem; }
 
-        /* --- PROCESS SECTION --- */
-        .process-section { padding: 100px 0; }
+        /* --- PROCESS --- */
+        .process-section { padding: 120px 0; }
         .process-container { display: flex; gap: clamp(30px, 8vw, 100px); position: relative; }
         
-        .process-visual { position: relative; width: 6px; flex-shrink: 0; }
-        .massive-line-track { width: 3px; height: 100%; background: rgba(255,255,255,0.05); border-radius: 20px; }
+        .process-visual { position: relative; width: 4px; }
+        .massive-line-track { width: 100%; height: 100%; background: rgba(255,255,255,0.05); border-radius: 20px; }
         .massive-line-active { 
-            position: absolute; top: 0; left: 0; width: 3px; height: 0%; 
+            position: absolute; top: 0; left: 0; width: 100%; height: 0%; 
             background: var(--accent); border-radius: 20px;
-            box-shadow: 0 0 20px var(--accent);
+            box-shadow: 0 0 30px var(--accent);
         }
 
         .process-content { flex: 1; }
-        .process-step { margin-bottom: clamp(100px, 15vw, 250px); opacity: 0.1; transform: translateX(20px); transition: 0.8s ease-out; }
+        .process-step { margin-bottom: 150px; opacity: 0.2; transform: translateX(20px); transition: 0.6s ease-out; }
         .process-step.active { opacity: 1; transform: translateX(0); }
+        .process-step:last-child { margin-bottom: 0; }
         
-        .step-meta { font-family: var(--font-mono); color: var(--accent); margin-bottom: 15px; font-size: 0.8rem; letter-spacing: 3px; }
-        .step-title { font-family: var(--font-head); font-size: clamp(1.8rem, 4vw, 3.5rem); margin-bottom: 20px; text-transform: uppercase; }
-        .step-details { color: var(--text-dim); font-size: clamp(1rem, 1.5vw, 1.4rem); line-height: 1.6; max-width: 650px; }
+        .step-meta { font-family: var(--font-mono); color: var(--accent); margin-bottom: 15px; font-size: 0.9rem; letter-spacing: 3px; }
+        .step-title { font-family: var(--font-head); font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 20px; text-transform: uppercase; }
+        .step-details { color: var(--text-dim); font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.6; max-width: 600px; }
 
         /* --- CTA --- */
-        .cta-section { padding: 150px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .cta-section { padding: 150px 0; text-align: center; }
         .btn-premium {
             font-family: var(--font-head);
-            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             color: #fff;
             text-decoration: none;
-            padding: 25px 50px;
+            padding: 30px 60px;
             border: 1px solid rgba(255,255,255,0.1);
             display: inline-block;
-            transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
         .btn-premium:hover {
-            border-color: var(--accent);
             background: var(--accent);
-            box-shadow: 0 0 40px rgba(45, 112, 255, 0.4);
+            border-color: var(--accent);
+            box-shadow: 0 0 50px rgba(45, 112, 255, 0.4);
+            transform: scale(1.05);
         }
 
-        /* --- MOBILE OPTIMIZATION --- */
-        @media (max-width: 768px) {
+        /* --- MOBILE ADAPTATION --- */
+        @media (max-width: 850px) {
             .container { padding: 0 25px; }
-            .nav-links { display: none; } /* Sakrivamo linkove na mobilnom radi čistoće */
+            .nav-links { display: none; } /* Možeš dodati hamburger kasnije */
+            .hero-stats { flex-direction: column; gap: 40px; margin-top: 50px; }
             .services-grid { grid-template-columns: 1fr; }
-            .hero-stats { gap: 30px; }
-            .hero { padding-top: 100px; }
-            .process-container { gap: 20px; }
-            .process-visual { width: 4px; }
-            .massive-line-track, .massive-line-active { width: 2px; }
-            .btn-premium { width: 100%; padding: 20px; }
+            .services-wrapper { gap: 20px; }
+            .process-step { margin-bottom: 80px; }
+            .service-card { padding: 40px 30px; }
+            .cta-section { padding: 100px 0; }
         }
     </style>
 </head>
@@ -163,7 +174,7 @@
     <main>
         <section class="hero container">
             <h1 class="hero-title">
-                Sistem koji ti <br>
+                Sistem koji <br>
                 <span class="hollow-text">Dovodi Klijente</span> <br>
                 dok spavaš
             </h1>
@@ -178,103 +189,115 @@
                 </div>
                 <div class="stat-item">
                     <div class="stat-number-wrapper">
-                        <span class="count" data-target="200">0</span><span class="stat-plus">+</span>
+                        <span class="count" data-target="24">0</span><span class="stat-plus">/7</span>
                     </div>
-                    <span class="stat-label">Završenih projekata</span>
+                    <span class="stat-label">Podrška 24/7</span>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number-wrapper">
                         <span class="count" data-target="100">0</span><span class="stat-plus">%</span>
                     </div>
-                    <span class="stat-label">Rezultati</span>
+                    <span class="stat-label">Posvećenost</span>
                 </div>
             </div>
         </section>
 
         <section class="services-overview container" id="services">
-            <span class="section-tag">SERVICES</span>
-            <h2 class="section-title">Jasne usluge.<br>Jasni rezultati.</h2>
+            <span class="section-tag">USLUGE</span>
+            <h2 class="section-title">Šta radimo za tebe</h2>
             
-            <div class="services-grid">
-                <div class="service-card">
-                    <span class="service-number">01</span>
-                    <h3 class="service-title">IZRADA SAJTA</h3>
-                    <p class="service-description">Kreiranje modernih i brzih prodajnih sajtova koji pretvaraju posetioce u klijente.</p>
+            <div class="services-wrapper">
+                <div class="services-line-container">
+                    <div class="services-line-active" id="services-line"></div>
                 </div>
-                <div class="service-card">
-                    <span class="service-number">02</span>
-                    <h3 class="service-title">AI AUTOMATIZACIJA</h3>
-                    <p class="service-description">Automatsko odgovaranje, filtriranje i zakazivanje — sistem radi 24/7.</p>
-                </div>
-                <div class="service-card">
-                    <span class="service-number">03</span>
-                    <h3 class="service-title">META ADS</h3>
-                    <p class="service-description">Plaćene reklame fokusirane na prodaju i upite.</p>
-                </div>
-                <div class="service-card">
-                    <span class="service-number">04</span>
-                    <h3 class="service-title">VOĐENJE MREŽA</h3>
-                    <p class="service-description">Rast profila i generisanje upita kroz sadržaj.</p>
+                
+                <div class="services-content">
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <span class="service-number">01</span>
+                            <h3 class="service-title">IZRADA SAJTA</h3>
+                            <p class="service-description">Kreiranje modernih i brzih prodajnih sajtova koji pretvaraju posetioce u klijente.</p>
+                        </div>
+                        <div class="service-card">
+                            <span class="service-number">02</span>
+                            <h3 class="service-title">AI AUTOMATIZACIJA</h3>
+                            <p class="service-description">Automatsko odgovaranje, filtriranje i zakazivanje — sistem radi dok ti odmaraš.</p>
+                        </div>
+                        <div class="service-card">
+                            <span class="service-number">03</span>
+                            <h3 class="service-title">META ADS</h3>
+                            <p class="service-description">Precizno ciljane plaćene reklame fokusirane isključivo na prodaju i nove upite.</p>
+                        </div>
+                        <div class="service-card">
+                            <span class="service-number">04</span>
+                            <h3 class="service-title">VOĐENJE MREŽA</h3>
+                            <p class="service-description">Dizajn i strategija sadržaja koji grade autoritet tvoj brend na tržištu.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="process-section">
-            <div class="container">
-                <span class="section-tag">STRATEGIJA</span>
-                <h2 class="section-title">Jednostavan proces.</h2>
+        <section class="process-section container" id="process">
+            <span class="section-tag">STRATEGIJA</span>
+            <h2 class="section-title">Kako radimo</h2>
+            
+            <div class="process-container">
+                <div class="process-visual">
+                    <div class="massive-line-track"></div>
+                    <div class="massive-line-active" id="massive-line"></div>
+                </div>
                 
-                <div class="process-container">
-                    <div class="process-visual">
-                        <div class="massive-line-track"></div>
-                        <div class="massive-line-active" id="massive-line"></div>
+                <div class="process-content" id="process-trigger">
+                    <div class="process-step">
+                        <div class="step-meta">KORAK 01</div>
+                        <h3 class="step-title">Odabir usluge</h3>
+                        <p class="step-details">Izaberi paket koji odgovara tvojim ciljevima. Svaka opcija je jasno definisana.</p>
                     </div>
-                    
-                    <div class="process-content" id="process-trigger">
-                        <div class="process-step">
-                            <div class="step-meta">FAZA 01</div>
-                            <h3 class="step-title">DOGOVOR</h3>
-                            <p class="step-details">Sve počinje razgovorom. Definišemo vaše potrebe, analiziramo tržište i postavljamo jasne ciljeve koje želimo da postignemo.</p>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-meta">FAZA 02</div>
-                            <h3 class="step-title">PLAN</h3>
-                            <p class="step-details">Pravimo precizan plan rada. Tačno znate šta se radi, kako će izgledati i u kom roku će biti isporučeno.</p>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-meta">FAZA 03</div>
-                            <h3 class="step-title">IZRADA</h3>
-                            <p class="step-details">Naš tim kreće u realizaciju sajta ili oglasnih kampanja koristeći najsavremenije digitalne alate.</p>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-meta">FAZA 04</div>
-                            <h3 class="step-title">POKRETANJE</h3>
-                            <p class="step-details">Sistem puštamo u rad. Pratimo rezultate, vršimo optimizaciju i osiguravamo da vaše novo prisustvo donosi profit.</p>
-                        </div>
+                    <div class="process-step">
+                        <div class="step-meta">KORAK 02</div>
+                        <h3 class="step-title">Kontakt i Analiza</h3>
+                        <p class="step-details">Pošalji upit, a mi ćemo analizirati tvoj trenutni biznis model potpuno besplatno.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-meta">KORAK 03</div>
+                        <h3 class="step-title">Plan rada</h3>
+                        <p class="step-details">U roku od 24h dobijaš precizan plan sa rokovima i očekivanim rezultatima.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-meta">KORAK 04</div>
+                        <h3 class="step-title">Realizacija</h3>
+                        <p class="step-details">Pravimo sistem, puštamo reklame i integrišemo automatizaciju u tvoj posao.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-meta">KORAK 05</div>
+                        <h3 class="step-title">Skaliranje</h3>
+                        <p class="step-details">Kada klijenti krenu da stižu, optimizujemo budžet za još veći profit.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="cta-section container" id="contact">
-            <h2 class="cta-title">Spremni za rast?</h2>
-            <a href="mailto:kontakt@nexory.rs" class="btn-premium">ZAPOČNI PROJEKAT →</a>
+            <h2 class="section-title" style="margin-bottom: 40px;">Spremni za rast?</h2>
+            <a href="mailto:kontakt@nexory.rs" class="btn-premium">ZAPOČNI SARADNJU →</a>
         </section>
     </main>
 
     <script>
+        // Smooth Scroll (Lenis)
         const lenis = new Lenis();
         function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
         requestAnimationFrame(raf);
 
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hero Animation
         window.addEventListener('load', () => {
+            // Hero Intro
             const tl = gsap.timeline();
             tl.from(".hero-title", { y: 60, opacity: 0, duration: 1.2, ease: "expo.out" })
-              .to(".hero-subtitle", { opacity: 1, y: 0, duration: 1 }, "-=0.8")
-              .to(".stat-item", { opacity: 1, y: 0, stagger: 0.2, duration: 0.8 }, "-=0.5");
+              .to(".hero-subtitle", { opacity: 1, y: 0, duration: 0.8 }, "-=0.8")
+              .to(".stat-item", { opacity: 1, y: 0, stagger: 0.15, duration: 0.8 }, "-=0.4");
 
             // Stats Counter
             document.querySelectorAll('.count').forEach(counter => {
@@ -285,35 +308,59 @@
                     snap: { innerText: 1 },
                     scrollTrigger: {
                         trigger: ".hero-stats",
-                        start: "top 95%"
+                        start: "top 90%"
                     },
                     ease: "power3.out"
                 });
             });
-        });
 
-        // Massive Line
-        gsap.to("#massive-line", {
-            height: "100%",
-            ease: "none",
-            scrollTrigger: {
-                trigger: "#process-trigger",
-                start: "top 60%",
-                end: "bottom 60%",
-                scrub: 1
-            }
-        });
-
-        // Process Steps Highlight
-        document.querySelectorAll('.process-step').forEach(step => {
-            ScrollTrigger.create({
-                trigger: step,
-                start: "top 70%",
-                end: "bottom 30%",
-                onToggle: self => {
-                    if(self.isActive) step.classList.add('active');
-                    else step.classList.remove('active');
+            // Services Blue Line (Vertical Progress)
+            gsap.to("#services-line", {
+                height: "100%",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".services-grid",
+                    start: "top 70%",
+                    end: "bottom 70%",
+                    scrub: true
                 }
+            });
+
+            // Services Cards Fade-in
+            gsap.to(".service-card", {
+                opacity: 1,
+                y: 0,
+                stagger: 0.2,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: ".services-grid",
+                    start: "top 80%"
+                }
+            });
+
+            // Process Massive Line
+            gsap.to("#massive-line", {
+                height: "100%",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#process-trigger",
+                    start: "top 50%",
+                    end: "bottom 50%",
+                    scrub: 1
+                }
+            });
+
+            // Process Steps Highlight
+            document.querySelectorAll('.process-step').forEach(step => {
+                ScrollTrigger.create({
+                    trigger: step,
+                    start: "top 60%",
+                    end: "bottom 40%",
+                    onToggle: self => {
+                        if(self.isActive) step.classList.add('active');
+                        else step.classList.remove('active');
+                    }
+                });
             });
         });
     </script>
