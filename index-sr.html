@@ -43,7 +43,7 @@
         /* --- NAV --- */
         nav { position: fixed; top: 0; width: 100%; padding: 25px 0; z-index: 1000; mix-blend-mode: difference; }
         .nav-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-head); font-weight: 700; font-size: 1rem; letter-spacing: 5px; color: #fff; }
+        .logo { font-family: var(--font-head); font-weight: 700; font-size: 1rem; letter-spacing: 5px; color: #fff; text-decoration: none; }
         .nav-links { display: flex; gap: 30px; list-style: none; }
         .nav-links a { color: #fff; text-decoration: none; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; transition: 0.4s; }
         .nav-links a:hover { opacity: 1; color: var(--accent); }
@@ -92,6 +92,7 @@
             border: 1px solid rgba(255,255,255,0.05);
             transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
             opacity: 0; transform: translateY(30px);
+            text-decoration: none; color: inherit; display: block;
         }
         .service-card:hover { 
             background: rgba(45, 112, 255, 0.05);
@@ -146,7 +147,7 @@
         /* --- MOBILE ADAPTATION --- */
         @media (max-width: 850px) {
             .container { padding: 0 25px; }
-            .nav-links { display: none; } /* Možeš dodati hamburger kasnije */
+            .nav-links { display: none; }
             .hero-stats { flex-direction: column; gap: 40px; margin-top: 50px; }
             .services-grid { grid-template-columns: 1fr; }
             .services-wrapper { gap: 20px; }
@@ -162,11 +163,12 @@
 
     <nav>
         <div class="container nav-content">
-            <div class="logo">NEXORY</div>
+            <a href="index-sr.html" class="logo">NEXORY</a>
             <ul class="nav-links">
-                <li><a href="#services">Usluge</a></li>
-                <li><a href="#process">Proces</a></li>
-                <li><a href="#contact">Kontakt</a></li>
+                <li><a href="services.html">Usluge</a></li>
+                <li><a href="projects.html">Projekti</a></li>
+                <li><a href="about.html">O nama</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
             </ul>
         </div>
     </nav>
@@ -213,26 +215,26 @@
                 
                 <div class="services-content">
                     <div class="services-grid">
-                        <div class="service-card">
+                        <a href="services.html" class="service-card">
                             <span class="service-number">01</span>
                             <h3 class="service-title">IZRADA SAJTA</h3>
                             <p class="service-description">Kreiranje modernih i brzih prodajnih sajtova koji pretvaraju posetioce u klijente.</p>
-                        </div>
-                        <div class="service-card">
+                        </a>
+                        <a href="services.html" class="service-card">
                             <span class="service-number">02</span>
                             <h3 class="service-title">AI AUTOMATIZACIJA</h3>
                             <p class="service-description">Automatsko odgovaranje, filtriranje i zakazivanje — sistem radi dok ti odmaraš.</p>
-                        </div>
-                        <div class="service-card">
+                        </a>
+                        <a href="services.html" class="service-card">
                             <span class="service-number">03</span>
                             <h3 class="service-title">META ADS</h3>
                             <p class="service-description">Precizno ciljane plaćene reklame fokusirane isključivo na prodaju i nove upite.</p>
-                        </div>
-                        <div class="service-card">
+                        </a>
+                        <a href="services.html" class="service-card">
                             <span class="service-number">04</span>
                             <h3 class="service-title">VOĐENJE MREŽA</h3>
                             <p class="service-description">Dizajn i strategija sadržaja koji grade autoritet tvoj brend na tržištu.</p>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -280,7 +282,7 @@
 
         <section class="cta-section container" id="contact">
             <h2 class="section-title" style="margin-bottom: 40px;">Spremni za rast?</h2>
-            <a href="mailto:kontakt@nexory.rs" class="btn-premium">ZAPOČNI SARADNJU →</a>
+            <a href="contact.html" class="btn-premium">ZAPOČNI SARADNJU →</a>
         </section>
     </main>
 
