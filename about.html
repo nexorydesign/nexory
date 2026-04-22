@@ -6,7 +6,7 @@
     <title>O nama — NEXORY</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Syncopate:wght@700&family=Inter:wght@200;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Syncopate:wght@700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -17,7 +17,7 @@
             --bg: #050505;
             --accent: #2d70ff;
             --text: #ffffff;
-            --text-dim: rgba(255, 255, 255, 0.5);
+            --text-dim: rgba(255, 255, 255, 0.4);
             --font-head: 'Syncopate', sans-serif;
             --font-main: 'Inter', sans-serif;
             --font-mono: 'Space Grotesk', sans-serif;
@@ -30,88 +30,71 @@
             color: var(--text);
             font-family: var(--font-main);
             overflow-x: hidden;
+            line-height: 1.5;
         }
 
         .grain {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            opacity: 0.05; pointer-events: none; z-index: 9999;
+            opacity: 0.04; pointer-events: none; z-index: 9999;
         }
 
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 40px; }
 
         /* --- NAV --- */
-        nav { position: fixed; top: 0; width: 100%; padding: 30px 0; z-index: 1000; mix-blend-mode: difference; }
+        nav { position: fixed; top: 0; width: 100%; padding: 25px 0; z-index: 1000; background: rgba(5,5,5,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
         .nav-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; letter-spacing: 5px; color: #fff; text-decoration: none; }
-        .nav-links { display: flex; gap: 40px; list-style: none; }
-        .nav-links a { color: #fff; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; transition: 0.4s; }
+        .logo { font-family: var(--font-head); font-weight: 700; font-size: 1rem; letter-spacing: 4px; color: #fff; text-decoration: none; }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; transition: 0.3s; }
         .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--accent); }
 
         /* --- HERO --- */
-        .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding-top: 150px; }
-        .hero-title {
-            font-family: var(--font-head);
-            font-size: clamp(2.5rem, 7vw, 5rem);
-            line-height: 1.1; letter-spacing: -2px; text-transform: uppercase;
-        }
-        .hollow-text {
-            color: transparent;
-            -webkit-text-stroke: 1.5px var(--accent);
-        }
-        .hero-subtitle { margin-top: 40px; max-width: 750px; color: var(--text-dim); font-size: clamp(1.1rem, 2vw, 1.3rem); line-height: 1.6; }
+        .hero { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; padding-top: 120px; }
+        .section-tag { font-family: var(--font-mono); color: var(--accent); font-size: 0.7rem; letter-spacing: 6px; margin-bottom: 20px; display: block; text-transform: uppercase; }
+        .hero-title { font-family: var(--font-head); font-size: clamp(2rem, 6vw, 4rem); line-height: 1.1; text-transform: uppercase; letter-spacing: -1px; }
+        .hero-subtitle { margin-top: 30px; max-width: 600px; color: var(--text-dim); font-size: clamp(1rem, 1.5vw, 1.2rem); font-weight: 300; }
 
-        /* --- SKILLS MARQUEE --- */
-        .skills-marquee {
-            width: 100%; overflow: hidden; background: rgba(255,255,255,0.02);
-            border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding: 35px 0; margin: 50px 0; display: flex; position: relative;
+        /* --- PREMIUM MARQUEE --- */
+        .marquee-wrapper {
+            margin: 80px 0; padding: 40px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.01);
+            overflow: hidden;
+            position: relative;
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
         }
-        .marquee-content { display: flex; gap: 80px; animation: scroll 35s linear infinite; flex-shrink: 0; align-items: center; }
-        .skill-item { display: flex; align-items: center; gap: 15px; color: var(--text-dim); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; }
-        .skill-icon { width: 24px; height: 24px; filter: brightness(0) invert(1); opacity: 0.5; transition: 0.4s; }
-        .skill-item:hover .skill-icon { filter: brightness(1) invert(0); opacity: 1; }
+        .marquee-content { display: flex; gap: 100px; animation: scroll 30s linear infinite; width: max-content; align-items: center; }
+        .skill-box { display: flex; align-items: center; gap: 15px; transition: 0.4s; }
+        .skill-box img { width: 32px; height: 32px; filter: grayscale(1) brightness(2); opacity: 0.4; transition: 0.4s; }
+        .skill-box span { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 3px; color: var(--text-dim); text-transform: uppercase; }
+        
+        .skill-box:hover img { filter: grayscale(0) brightness(1); opacity: 1; transform: scale(1.1); }
+        .skill-box:hover span { color: #fff; }
+
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- STORY SECTION --- */
-        .story-section { padding: 150px 0; border-top: 1px solid rgba(255,255,255,0.05); }
-        .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 8vw, 100px); }
-        .section-tag { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; letter-spacing: 8px; margin-bottom: 25px; display: block; }
-        .reveal-text { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
-        .story-text p { color: var(--text-dim); font-size: clamp(1rem, 1.5vw, 1.15rem); line-height: 1.8; margin-bottom: 30px; }
+        /* --- ABOUT CONTENT --- */
+        .about-main { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; padding-bottom: 100px; }
+        .main-p { font-size: clamp(1.1rem, 2vw, 1.5rem); color: #fff; line-height: 1.5; margin-bottom: 40px; font-weight: 400; }
+        .sub-p { font-size: 1rem; color: var(--text-dim); margin-bottom: 20px; line-height: 1.7; }
 
         /* --- STATS --- */
-        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .stat-card { padding: clamp(20px, 4vw, 40px); border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); overflow: hidden; }
-        .stat-val { font-family: var(--font-head); font-size: clamp(2rem, 4vw, 3rem); color: var(--accent); display: block; margin-bottom: 10px; }
-        .stat-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-dim); }
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .stat-card { padding: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .stat-num { display: block; font-family: var(--font-head); font-size: 2rem; color: var(--accent); margin-bottom: 5px; }
+        .stat-text { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); }
 
-        /* --- VALUES GRID --- */
-        .values-section { padding: 100px 0; }
-        .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.1); margin-top: 80px; border: 1px solid rgba(255,255,255,0.1); }
-        .value-card { background: var(--bg); padding: clamp(40px, 5vw, 60px) clamp(20px, 4vw, 40px); transition: 0.5s; position: relative; }
-        .value-card:hover { background: #080808; }
-        .value-card::before { content: ''; position: absolute; left: 0; top: 0; width: 3px; height: 0%; background: var(--accent); transition: 0.5s; }
-        .value-card:hover::before { height: 100%; }
-        .value-num { font-family: var(--font-mono); color: var(--accent); margin-bottom: 20px; display: block; }
-        .value-title { font-family: var(--font-head); font-size: 1.1rem; margin-bottom: 15px; }
-        .value-desc { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; }
-
-        /* --- CTA --- */
-        .cta-section { padding: 150px 0; text-align: center; }
-        .btn-premium {
-            font-family: var(--font-head); font-size: clamp(1rem, 2vw, 1.2rem); color: #fff; text-decoration: none;
-            padding: 25px 50px; border: 1px solid rgba(255,255,255,0.1); display: inline-block; transition: 0.5s; letter-spacing: 2px;
-        }
-        .btn-premium:hover { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 50px rgba(45, 112, 255, 0.3); }
-
-        @media (max-width: 850px) {
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 900px) {
             .container { padding: 0 25px; }
+            .about-main { grid-template-columns: 1fr; gap: 50px; }
             .nav-links { display: none; }
-            .story-grid { grid-template-columns: 1fr; gap: 60px; }
-            .values-grid { grid-template-columns: 1fr; }
+            .hero { min-height: 50vh; }
+            .marquee-content { gap: 60px; }
+            .stat-card { padding: 20px; }
         }
     </style>
 </head>
@@ -121,114 +104,65 @@
 
     <nav>
         <div class="container nav-content">
-            <a href="index-sr.html" class="logo">NEXORY</a>
+            <a href="index.html" class="logo">NEXORY</a>
             <ul class="nav-links">
-                <li><a href="index-sr.html">Pocetna</a></li>
-                <li><a href="services.html">Usluge</a></li>
-                <li><a href="projects.html">Projekti</a></li>
+                <li><a href="index.html">Početna</a></li>
                 <li><a href="about.html" class="active">O nama</a></li>
                 <li><a href="contact.html">Kontakt</a></li>
             </ul>
         </div>
     </nav>
 
-    <main>
-        <section class="container hero">
-            <span class="section-tag" id="tag">VISIJA</span>
-            <h1 class="hero-title">
-                Arhitektura <br>
-                <span class="hollow-text">Digitalnog Rasta</span>
-            </h1>
-            <p class="hero-subtitle">Nexory transformise vizije u opipljive rezultate kroz fuziju naprednog dizajna, automatizacije i strateškog inzenjeringa prodaje.</p>
+    <main class="container">
+        <section class="hero">
+            <span class="section-tag">Nexory Flow</span>
+            <h1 class="hero-title">Mi gradimo sisteme <br> koji rade za vas.</h1>
+            <p class="hero-subtitle">Agencija fokusirana na digitalni inženjering, dizajn visokih performansi i automatizaciju poslovanja.</p>
         </section>
 
-        <div class="skills-marquee">
+        <div class="marquee-wrapper">
             <div class="marquee-content">
-                <div class="skill-item"><img src="https://cdn.simpleicons.org/figma" class="skill-icon"> FIGMA</div>
-                <div class="skill-item"><img src="https://cdn.simpleicons.org/framer" class="skill-icon"> FRAMER</div>
-                <div class="skill-item"><img src="https://cdn.simpleicons.org/html5" class="skill-icon"> HTML</div>
-                <div class="skill-item"><img src="https://cdn.simpleicons.org/css3" class="skill-icon"> CSS</div>
-                <div class="skill-item"><img src="https://cdn.simpleicons.org/javascript" class="skill-icon"> JS</div>
-                <div class="skill-item"><img src="https://cdn.simpleicons.org/adobephotoshop" class="skill-icon"> PS</div>
-                <div class="skill-item"><img src="https://cdn.simpleicons.org/adobeillustrator" class="skill-icon"> AI</div>
-                <div class="skill-item"><img src="https://cdn.simpleicons.org/canva" class="skill-icon"> CANVA</div>
-                <div class="skill-item"><img src="https://cdn.simpleicons.org/figma" class="skill-icon"> FIGMA</div>
-                <div class="skill-item"><img src="https://cdn.simpleicons.org/framer" class="skill-icon"> FRAMER</div>
-                <div class="skill-item"><img src="https://cdn.simpleicons.org/html5" class="skill-icon"> HTML</div>
-                <div class="skill-item"><img src="https://cdn.simpleicons.org/css3" class="skill-icon"> CSS</div>
+                <div class="skill-box"><img src="https://cdn.simpleicons.org/figma" alt=""><span>Figma</span></div>
+                <div class="skill-box"><img src="https://cdn.simpleicons.org/framer" alt=""><span>Framer</span></div>
+                <div class="skill-box"><img src="https://cdn.simpleicons.org/adobephotoshop" alt=""><span>Photoshop</span></div>
+                <div class="skill-box"><img src="https://cdn.simpleicons.org/javascript" alt=""><span>JavaScript</span></div>
+                <div class="skill-box"><img src="https://cdn.simpleicons.org/webflow" alt=""><span>Webflow</span></div>
+                <div class="skill-box"><img src="https://cdn.simpleicons.org/figma" alt=""><span>Figma</span></div>
+                <div class="skill-box"><img src="https://cdn.simpleicons.org/framer" alt=""><span>Framer</span></div>
+                <div class="skill-box"><img src="https://cdn.simpleicons.org/adobephotoshop" alt=""><span>Photoshop</span></div>
+                <div class="skill-box"><img src="https://cdn.simpleicons.org/javascript" alt=""><span>JavaScript</span></div>
+                <div class="skill-box"><img src="https://cdn.simpleicons.org/webflow" alt=""><span>Webflow</span></div>
             </div>
         </div>
 
-        <section class="container story-section">
-            <div class="story-grid">
-                <div class="story-content">
-                    <span class="section-tag">NAS IDENTITET</span>
-                    <div class="story-text">
-                        <p class="reveal-text">Nexory je nastao kao odgovor na trziste preplavljeno generickim resenjima. Verujemo da estetika bez funkcionalnosti nema svrhu.</p>
-                        <p class="reveal-text">Nas pristup je direktan: eliminisemo suvisno i fokusiramo se na mehanizme koji donose konverziju. Svaki pixel i svaka linija koda sluze vasoj profitabilnosti.</p>
-                    </div>
-                </div>
+        <section class="about-main">
+            <div class="left-col">
+                <span class="section-tag">Ko smo mi</span>
+                <p class="main-p">Nexory je tim dizajnera i programera posvećenih kreiranju rešenja koja eliminišu nepotrebne korake i maksimizuju profit.</p>
+                <p class="sub-p">Verujemo u direktnost. Naš proces je oslobođen komplikovanih termina i praznih obećanja. Svaki projekat tretiramo kao inženjerski izazov gde je cilj jasan: stabilnost, brzina i rast.</p>
+                <p class="sub-p">Bilo da je reč o kompleksnom Web sajtu, automatizaciji prodaje ili dizajnu brenda, fokus ostaje isti – vaš ROI (povrat investicije).</p>
+            </div>
+            
+            <div class="right-col">
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <span class="stat-val" data-val="3">0</span>
-                        <span class="stat-label">Godine inovacija</span>
+                        <span class="stat-num" data-count="3">0</span>
+                        <span class="stat-text">Godine rada</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-val" data-val="200">0</span>
-                        <span class="stat-label">Uspesnih projekata</span>
+                        <span class="stat-num" data-count="150">0</span>
+                        <span class="stat-text">Projekata</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-val" data-val="100">0</span>
-                        <span class="stat-label">Zadovoljstvo klijenata</span>
+                        <span class="stat-num" data-count="100">0</span>
+                        <span class="stat-text">Zadovoljstvo %</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-val">24/7</span>
-                        <span class="stat-label">Sistemska podrska</span>
+                        <span class="stat-num">24/7</span>
+                        <span class="stat-text">Dostupnost</span>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section class="container values-section">
-            <span class="section-tag">STRATEGIJA</span>
-            <h2 class="hero-title" style="font-size: clamp(2rem, 5vw, 3rem);">Standardi rada</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <span class="value-num">01</span>
-                    <h3 class="value-title">Analiticki pristup</h3>
-                    <p class="value-desc">Svaki projekat pocinje dubokom analizom trzista kako bismo osigurali prednost nad konkurencijom.</p>
-                </div>
-                <div class="value-card">
-                    <span class="value-num">02</span>
-                    <h3 class="value-title">AI Optimizacija</h3>
-                    <p class="value-desc">Implementiramo najnoviju AI tehnologiju u vase procese radi maksimalne efikasnosti.</p>
-                </div>
-                <div class="value-card">
-                    <span class="value-num">03</span>
-                    <h3 class="value-title">Skalabilna arhitektura</h3>
-                    <p class="value-desc">Gradimo sisteme koji rastu uporedo sa vasim biznisom, bez potrebe za stalnim izmenama.</p>
-                </div>
-                <div class="value-card">
-                    <span class="value-num">04</span>
-                    <h3 class="value-title">Agilna isporuka</h3>
-                    <p class="value-desc">Postujemo vase vreme. Radimo brzo, precizno i transparentno u svakoj fazi razvoja.</p>
-                </div>
-                <div class="value-card">
-                    <span class="value-num">05</span>
-                    <h3 class="value-title">Besprena estetika</h3>
-                    <p class="value-desc">Dizajniramo vizuelne identitete koji ostavljaju snazan utisak i grade poverenje brenda.</p>
-                </div>
-                <div class="value-card">
-                    <span class="value-num">06</span>
-                    <h3 class="value-title">Fokus na ROI</h3>
-                    <p class="value-desc">Nas primarni cilj je povrat investicije. Mi ne trosimo vas budzet, mi ga investiramo.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="container cta-section">
-            <h2 class="value-title" style="font-size: 2.5rem; margin-bottom: 40px;">Hajde da gradimo buducnost.</h2>
-            <a href="contact.html" class="btn-premium">ZAKAZI KONSULTACIJE →</a>
         </section>
     </main>
 
@@ -239,35 +173,41 @@
 
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hero Anims
-        gsap.from(".hero-title", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" });
-        gsap.from(".hero-subtitle", { y: 50, opacity: 0, duration: 1.2, ease: "power3.out", delay: 0.4 });
-        gsap.from("#tag", { x: -20, opacity: 0, duration: 1, delay: 0.2 });
+        // Intro animacije
+        gsap.from(".hero-title", { opacity: 0, y: 50, duration: 1.2, ease: "power4.out" });
+        gsap.from(".hero-subtitle", { opacity: 0, y: 30, duration: 1.2, delay: 0.3, ease: "power3.out" });
+        gsap.from(".section-tag", { opacity: 0, x: -20, duration: 1, stagger: 0.2 });
 
-        // Reveal Text on Scroll
-        gsap.utils.toArray(".reveal-text").forEach(text => {
-            gsap.to(text, {
-                opacity: 1, y: 0, duration: 1, ease: "power2.out",
-                scrollTrigger: { trigger: text, start: "top 90%" }
-            });
-        });
-
-        // Stat Counter
-        gsap.utils.toArray(".stat-val").forEach(stat => {
-            const target = parseInt(stat.getAttribute('data-val'));
-            if(target) {
-                gsap.to(stat, {
-                    innerText: target, duration: 2, snap: { innerText: 1 },
-                    scrollTrigger: { trigger: stat, start: "top 90%" },
-                    onUpdate: function() { if(target === 100) stat.innerText += "%"; else stat.innerText += "+"; }
+        // Counter animacija za brojeve
+        gsap.utils.toArray(".stat-num").forEach(num => {
+            const endVal = parseInt(num.getAttribute("data-count"));
+            if(endVal) {
+                gsap.to(num, {
+                    innerText: endVal,
+                    duration: 2,
+                    snap: { innerText: 1 },
+                    scrollTrigger: {
+                        trigger: num,
+                        start: "top 90%"
+                    },
+                    onUpdate: function() {
+                        if(endVal === 100) num.innerText += "%";
+                        else if(endVal > 10) num.innerText += "+";
+                    }
                 });
             }
         });
 
-        // Card Entrance
-        gsap.from(".value-card", {
-            y: 50, opacity: 0, stagger: 0.1, duration: 0.8,
-            scrollTrigger: { trigger: ".values-grid", start: "top 80%" }
+        // Ulazak teksta na skrol
+        gsap.from(".left-col p", {
+            opacity: 0,
+            y: 30,
+            stagger: 0.2,
+            duration: 1,
+            scrollTrigger: {
+                trigger: ".left-col",
+                start: "top 80%"
+            }
         });
     </script>
 </body>
