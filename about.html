@@ -59,30 +59,41 @@
             color: transparent;
             -webkit-text-stroke: 1.5px var(--accent);
         }
-        .hero-subtitle { margin-top: 40px; max-width: 700px; color: var(--text-dim); font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.6; }
+        .hero-subtitle { margin-top: 40px; max-width: 750px; color: var(--text-dim); font-size: clamp(1.1rem, 2vw, 1.3rem); line-height: 1.6; }
+
+        /* --- SKILLS MARQUEE --- */
+        .skills-marquee {
+            width: 100%; overflow: hidden; background: rgba(255,255,255,0.02);
+            border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 35px 0; margin: 50px 0; display: flex; position: relative;
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+        .marquee-content { display: flex; gap: 80px; animation: scroll 35s linear infinite; flex-shrink: 0; align-items: center; }
+        .skill-item { display: flex; align-items: center; gap: 15px; color: var(--text-dim); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; }
+        .skill-icon { width: 24px; height: 24px; filter: brightness(0) invert(1); opacity: 0.5; transition: 0.4s; }
+        .skill-item:hover .skill-icon { filter: brightness(1) invert(0); opacity: 1; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* --- STORY SECTION --- */
         .story-section { padding: 150px 0; border-top: 1px solid rgba(255,255,255,0.05); }
         .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 8vw, 100px); }
         .section-tag { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; letter-spacing: 8px; margin-bottom: 25px; display: block; }
-        .story-text p { color: var(--text-dim); font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.8; margin-bottom: 30px; }
+        .reveal-text { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
+        .story-text p { color: var(--text-dim); font-size: clamp(1rem, 1.5vw, 1.15rem); line-height: 1.8; margin-bottom: 30px; }
 
         /* --- STATS --- */
         .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .stat-card { padding: clamp(20px, 4vw, 40px); border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
+        .stat-card { padding: clamp(20px, 4vw, 40px); border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); overflow: hidden; }
         .stat-val { font-family: var(--font-head); font-size: clamp(2rem, 4vw, 3rem); color: var(--accent); display: block; margin-bottom: 10px; }
         .stat-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-dim); }
 
         /* --- VALUES GRID --- */
         .values-section { padding: 100px 0; }
         .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.1); margin-top: 80px; border: 1px solid rgba(255,255,255,0.1); }
-        .value-card { 
-            background: var(--bg); padding: clamp(40px, 5vw, 60px) clamp(20px, 4vw, 40px); transition: 0.5s; position: relative;
-        }
+        .value-card { background: var(--bg); padding: clamp(40px, 5vw, 60px) clamp(20px, 4vw, 40px); transition: 0.5s; position: relative; }
         .value-card:hover { background: #080808; }
-        .value-card::before {
-            content: ''; position: absolute; left: 0; top: 0; width: 3px; height: 0%; background: var(--accent); transition: 0.5s;
-        }
+        .value-card::before { content: ''; position: absolute; left: 0; top: 0; width: 3px; height: 0%; background: var(--accent); transition: 0.5s; }
         .value-card:hover::before { height: 100%; }
         .value-num { font-family: var(--font-mono); color: var(--accent); margin-bottom: 20px; display: block; }
         .value-title { font-family: var(--font-head); font-size: 1.1rem; margin-bottom: 15px; }
@@ -91,24 +102,16 @@
         /* --- CTA --- */
         .cta-section { padding: 150px 0; text-align: center; }
         .btn-premium {
-            font-family: var(--font-head); font-size: clamp(1rem, 2.5vw, 1.5rem); color: #fff; text-decoration: none;
-            padding: 25px 50px; border: 1px solid rgba(255,255,255,0.1); display: inline-block; transition: 0.5s;
+            font-family: var(--font-head); font-size: clamp(1rem, 2vw, 1.2rem); color: #fff; text-decoration: none;
+            padding: 25px 50px; border: 1px solid rgba(255,255,255,0.1); display: inline-block; transition: 0.5s; letter-spacing: 2px;
         }
         .btn-premium:hover { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 50px rgba(45, 112, 255, 0.3); }
 
-        /* --- PHONE FRIENDLY (MOBILE) --- */
-        @media (max-width: 1024px) {
-            .values-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
         @media (max-width: 850px) {
             .container { padding: 0 25px; }
-            .nav-links { display: none; } /* Hamburger ovde može ići po želji */
+            .nav-links { display: none; }
             .story-grid { grid-template-columns: 1fr; gap: 60px; }
             .values-grid { grid-template-columns: 1fr; }
-            .hero { min-height: 60vh; padding-top: 120px; }
-            .cta-section { padding: 100px 0; }
-            .stat-card { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -120,7 +123,7 @@
         <div class="container nav-content">
             <a href="index-sr.html" class="logo">NEXORY</a>
             <ul class="nav-links">
-                <li><a href="index-sr.html">Početna</a></li>
+                <li><a href="index-sr.html">Pocetna</a></li>
                 <li><a href="services.html">Usluge</a></li>
                 <li><a href="projects.html">Projekti</a></li>
                 <li><a href="about.html" class="active">O nama</a></li>
@@ -129,87 +132,103 @@
         </div>
     </nav>
 
-    <main class="container">
-        <section class="hero">
-            <span class="section-tag" style="opacity: 0;" id="tag">ABOUT US</span>
+    <main>
+        <section class="container hero">
+            <span class="section-tag" id="tag">VISIJA</span>
             <h1 class="hero-title">
-                Precizna rešenja <br>
-                <span class="hollow-text">Bez kompromisa</span>
+                Arhitektura <br>
+                <span class="hollow-text">Digitalnog Rasta</span>
             </h1>
-            <p class="hero-subtitle">Nexory nije samo agencija, već inženjerski sistem koji spaja marketing, dizajn i automatizaciju u jednu profitabilnu celinu.</p>
+            <p class="hero-subtitle">Nexory transformise vizije u opipljive rezultate kroz fuziju naprednog dizajna, automatizacije i strateškog inzenjeringa prodaje.</p>
         </section>
 
-        <section class="story-section">
+        <div class="skills-marquee">
+            <div class="marquee-content">
+                <div class="skill-item"><img src="https://cdn.simpleicons.org/figma" class="skill-icon"> FIGMA</div>
+                <div class="skill-item"><img src="https://cdn.simpleicons.org/framer" class="skill-icon"> FRAMER</div>
+                <div class="skill-item"><img src="https://cdn.simpleicons.org/html5" class="skill-icon"> HTML</div>
+                <div class="skill-item"><img src="https://cdn.simpleicons.org/css3" class="skill-icon"> CSS</div>
+                <div class="skill-item"><img src="https://cdn.simpleicons.org/javascript" class="skill-icon"> JS</div>
+                <div class="skill-item"><img src="https://cdn.simpleicons.org/adobephotoshop" class="skill-icon"> PS</div>
+                <div class="skill-item"><img src="https://cdn.simpleicons.org/adobeillustrator" class="skill-icon"> AI</div>
+                <div class="skill-item"><img src="https://cdn.simpleicons.org/canva" class="skill-icon"> CANVA</div>
+                <div class="skill-item"><img src="https://cdn.simpleicons.org/figma" class="skill-icon"> FIGMA</div>
+                <div class="skill-item"><img src="https://cdn.simpleicons.org/framer" class="skill-icon"> FRAMER</div>
+                <div class="skill-item"><img src="https://cdn.simpleicons.org/html5" class="skill-icon"> HTML</div>
+                <div class="skill-item"><img src="https://cdn.simpleicons.org/css3" class="skill-icon"> CSS</div>
+            </div>
+        </div>
+
+        <section class="container story-section">
             <div class="story-grid">
                 <div class="story-content">
-                    <span class="section-tag">NAŠA FILOZOFIJA</span>
+                    <span class="section-tag">NAS IDENTITET</span>
                     <div class="story-text">
-                        <p>Nexory je nastao iz potrebe za sistemom koji zapravo radi. Većina današnjih rešenja su samo „lepe slike“ koje ne rešavaju glavni problem — dovođenje klijenata.</p>
-                        <p>Mi ne pravimo samo sajtove. Mi pravimo prodajne mašine. Svaki kod koji napišemo i svaka reklama koju pustimo ima jedan cilj: da tvoj biznis raste dok se ti fokusiraš na ono što najbolje radiš.</p>
+                        <p class="reveal-text">Nexory je nastao kao odgovor na trziste preplavljeno generickim resenjima. Verujemo da estetika bez funkcionalnosti nema svrhu.</p>
+                        <p class="reveal-text">Nas pristup je direktan: eliminisemo suvisno i fokusiramo se na mehanizme koji donose konverziju. Svaki pixel i svaka linija koda sluze vasoj profitabilnosti.</p>
                     </div>
                 </div>
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <span class="stat-val">3+</span>
-                        <span class="stat-label">Godine iskustva</span>
+                        <span class="stat-val" data-val="3">0</span>
+                        <span class="stat-label">Godine inovacija</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-val">200+</span>
-                        <span class="stat-label">Projekata</span>
+                        <span class="stat-val" data-val="200">0</span>
+                        <span class="stat-label">Uspesnih projekata</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-val">100%</span>
-                        <span class="stat-label">Rezultati</span>
+                        <span class="stat-val" data-val="100">0</span>
+                        <span class="stat-label">Zadovoljstvo klijenata</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-val">24h</span>
-                        <span class="stat-label">Plan rada</span>
+                        <span class="stat-val">24/7</span>
+                        <span class="stat-label">Sistemska podrska</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="values-section">
-            <span class="section-tag">PRINCIPI</span>
-            <h2 class="hero-title" style="font-size: clamp(2rem, 5vw, 3rem);">Kako radimo</h2>
-            
+        <section class="container values-section">
+            <span class="section-tag">STRATEGIJA</span>
+            <h2 class="hero-title" style="font-size: clamp(2rem, 5vw, 3rem);">Standardi rada</h2>
             <div class="values-grid">
                 <div class="value-card">
                     <span class="value-num">01</span>
-                    <h3 class="value-title">Sistem pre dizajna</h3>
-                    <p class="value-desc">Prvo gradimo logiku koja prodaje, a onda je pakujemo u vrhunski vizuelni identitet.</p>
+                    <h3 class="value-title">Analiticki pristup</h3>
+                    <p class="value-desc">Svaki projekat pocinje dubokom analizom trzista kako bismo osigurali prednost nad konkurencijom.</p>
                 </div>
                 <div class="value-card">
                     <span class="value-num">02</span>
-                    <h3 class="value-title">AI Integracija</h3>
-                    <p class="value-desc">Koristimo najnovije automatizacije kako bi vaš biznis odgovarao klijentima 24/7.</p>
+                    <h3 class="value-title">AI Optimizacija</h3>
+                    <p class="value-desc">Implementiramo najnoviju AI tehnologiju u vase procese radi maksimalne efikasnosti.</p>
                 </div>
                 <div class="value-card">
                     <span class="value-num">03</span>
-                    <h3 class="value-title">Merna vrednost</h3>
-                    <p class="value-desc">Svaki evro uložen u marketing mora imati jasan povrat kroz nove upite.</p>
+                    <h3 class="value-title">Skalabilna arhitektura</h3>
+                    <p class="value-desc">Gradimo sisteme koji rastu uporedo sa vasim biznisom, bez potrebe za stalnim izmenama.</p>
                 </div>
                 <div class="value-card">
                     <span class="value-num">04</span>
-                    <h3 class="value-title">Brzina isporuke</h3>
-                    <p class="value-desc">Znamo da je vreme novac. Isporuka preciznog plana stiže za manje od 24h.</p>
+                    <h3 class="value-title">Agilna isporuka</h3>
+                    <p class="value-desc">Postujemo vase vreme. Radimo brzo, precizno i transparentno u svakoj fazi razvoja.</p>
                 </div>
                 <div class="value-card">
                     <span class="value-num">05</span>
-                    <h3 class="value-title">Direktnost</h3>
-                    <p class="value-desc">Nema skrivenih troškova i komplikovanih termina. Jasna komunikacija uvek.</p>
+                    <h3 class="value-title">Besprena estetika</h3>
+                    <p class="value-desc">Dizajniramo vizuelne identitete koji ostavljaju snazan utisak i grade poverenje brenda.</p>
                 </div>
                 <div class="value-card">
                     <span class="value-num">06</span>
-                    <h3 class="value-title">Skalabilnost</h3>
-                    <p class="value-desc">Naša rešenja su temelji koji omogućavaju vašem biznisu da raste bez limita.</p>
+                    <h3 class="value-title">Fokus na ROI</h3>
+                    <p class="value-desc">Nas primarni cilj je povrat investicije. Mi ne trosimo vas budzet, mi ga investiramo.</p>
                 </div>
             </div>
         </section>
 
-        <section class="cta-section">
-            <h2 class="value-title" style="font-size: 2rem; margin-bottom: 40px;">Spremni za sledeći nivo?</h2>
-            <a href="contact.html" class="btn-premium">ZAPOČNI PROJEKAT →</a>
+        <section class="container cta-section">
+            <h2 class="value-title" style="font-size: 2.5rem; margin-bottom: 40px;">Hajde da gradimo buducnost.</h2>
+            <a href="contact.html" class="btn-premium">ZAKAZI KONSULTACIJE →</a>
         </section>
     </main>
 
@@ -220,32 +239,35 @@
 
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hero Intro
-        gsap.from(".hero-title", { y: 50, opacity: 0, duration: 1.2, ease: "power4.out", delay: 0.2 });
-        gsap.from(".hero-subtitle", { y: 30, opacity: 0, duration: 1, ease: "power3.out", delay: 0.5 });
-        gsap.to("#tag", { opacity: 1, duration: 1, delay: 0.1 });
+        // Hero Anims
+        gsap.from(".hero-title", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" });
+        gsap.from(".hero-subtitle", { y: 50, opacity: 0, duration: 1.2, ease: "power3.out", delay: 0.4 });
+        gsap.from("#tag", { x: -20, opacity: 0, duration: 1, delay: 0.2 });
 
-        // Scroll animations for cards
-        gsap.from(".value-card", {
-            y: 50,
-            opacity: 0,
-            stagger: 0.1,
-            duration: 0.8,
-            scrollTrigger: {
-                trigger: ".values-grid",
-                start: "top 80%"
+        // Reveal Text on Scroll
+        gsap.utils.toArray(".reveal-text").forEach(text => {
+            gsap.to(text, {
+                opacity: 1, y: 0, duration: 1, ease: "power2.out",
+                scrollTrigger: { trigger: text, start: "top 90%" }
+            });
+        });
+
+        // Stat Counter
+        gsap.utils.toArray(".stat-val").forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-val'));
+            if(target) {
+                gsap.to(stat, {
+                    innerText: target, duration: 2, snap: { innerText: 1 },
+                    scrollTrigger: { trigger: stat, start: "top 90%" },
+                    onUpdate: function() { if(target === 100) stat.innerText += "%"; else stat.innerText += "+"; }
+                });
             }
         });
 
-        gsap.from(".stat-card", {
-            scale: 0.9,
-            opacity: 0,
-            stagger: 0.1,
-            duration: 0.8,
-            scrollTrigger: {
-                trigger: ".stats-grid",
-                start: "top 85%"
-            }
+        // Card Entrance
+        gsap.from(".value-card", {
+            y: 50, opacity: 0, stagger: 0.1, duration: 0.8,
+            scrollTrigger: { trigger: ".values-grid", start: "top 80%" }
         });
     </script>
 </body>
